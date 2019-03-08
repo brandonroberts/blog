@@ -2,3 +2,51 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// Import library functions for theme creation.
+@import '~@angular/material/theming';
+
+// Theme colors generated using http://mcg.mbitson.com/#!?black=%23eeeff4&blue=%233f51b5&themename=mcgtheme
+$md-blue: (
+    50 : #e8eaf6,
+    100 : #c5cae9,
+    200 : #9fa8da,
+    300 : #7986cb,
+    400 : #5c6bc0,
+    500 : #3f51b5,
+    600 : #3949ab,
+    700 : #303f9f,
+    800 : #283593,
+    900 : #1a237e,
+    A100 : #8c9eff,
+    A200 : #536dfe,
+    A400 : #3d5afe,
+    A700 : #304ffe,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+// Include non-theme styles for core.
+@include mat-core();
+
+// Define your application's custom theme.
+$primary: mat-palette($md-blue);
+$accent:  mat-palette($mat-grey, A200, A100, A400);
+$theme: mat-light-theme($primary, $accent);
+
+// Include theme styles for Angular Material components.
+@include angular-material-theme($theme);

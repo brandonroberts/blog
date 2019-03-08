@@ -11,7 +11,9 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "sass",
-          "skipTests": true
+          "skipTests": true,
+          "inlineStyle": true,
+          "inlineTemplate": true
         },
         "@schematics/angular:class": {
           "skipTests": true
@@ -46,7 +48,7 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              
               "src/styles.scss"
             ],
             "scripts": [],
