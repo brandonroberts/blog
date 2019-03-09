@@ -41,9 +41,12 @@ import { map } from 'rxjs/operators';
           </div>         
         </mat-toolbar>
 
-        <div [class.container]="!(isHandset$ | async)">
+        <div class="content" [class.container]="!(isHandset$ | async)">
           <router-outlet></router-outlet>
-        </div>  
+        </div>
+        
+        <app-footer>
+        </app-footer>
 
       </mat-sidenav-content>
     </mat-sidenav-container>
@@ -55,6 +58,13 @@ import { map } from 'rxjs/operators';
     
     .sidenav-container {
       height: 100%;
+    }
+
+    .content {
+      display: flex;
+      flex: 1 1 auto;
+      padding: 8px;
+      min-height: calc(100% - (63px));
     }
 
     .container {

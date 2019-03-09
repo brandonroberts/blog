@@ -5,6 +5,7 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import { RouterModule } from '@angular/router';
 
 import { LayoutComponent, PageNotFoundComponent } from './components';
+import { FooterModule } from '../shared/footer';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LayoutComponent, PageNotFoundComponent } from './components';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    FooterModule
   ],
   exports: [
     LayoutComponent
