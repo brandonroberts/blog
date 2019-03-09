@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
     <mat-sidenav-container class="sidenav-container">
       <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
           [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-          [mode]="(isHandset$ | async) ? 'over' : 'over'">
+          mode='over'>
         <mat-toolbar>Menu</mat-toolbar>
         <mat-nav-list>
           <a mat-list-item routerLink="/">Posts</a>
@@ -25,7 +25,20 @@ import { map } from 'rxjs/operators';
             *ngIf="isHandset$ | async">
             <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
           </button>
+          
           <a routerLink="/">Brandon Roberts</a>
+
+          <div class="social">
+            <a routerLink="/about" title="About Me">About</a>
+
+            <a href="https://twitter.com/brandontroberts" title="Twitter">
+              <img src="assets/images/logos/twitter-icon.svg">
+            </a>
+            
+            <a href="https://github.com/brandonroberts" title="GitHub">
+              <img src="assets/images/logos/github-icon.svg">
+            </a>
+          </div>         
         </mat-toolbar>
 
         <div [class.container]="!(isHandset$ | async)">
@@ -61,6 +74,37 @@ import { map } from 'rxjs/operators';
       position: sticky;
       top: 0;
       z-index: 1;
+    }
+
+    .filler {
+      flex: 1 1 auto;
+    }
+
+    .social {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      justify-content: flex-end;
+    }
+
+    .social a {
+      display: flex;
+      align-items: center;
+      margin-left: 16px;
+    }
+
+    .social a:hover {
+      opacity: 0.8;
+    }
+
+    .social img {
+      height: 24px;
+    }
+
+    @media screen and (max-width: 480px) {
+      .social a {
+        margin-left: 8px;
+      }
     }
   `]
 })

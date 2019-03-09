@@ -22,6 +22,7 @@ import { Post } from 'src/app/core/models';
     `
     a {
       font-size: 36px;
+      color: black;
     }
 
     :host /deep/ .mat-list-item { 
