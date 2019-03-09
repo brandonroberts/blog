@@ -27,13 +27,26 @@ import { map } from 'rxjs/operators';
           </button>
           <a routerLink="/">Brandon Roberts</a>
         </mat-toolbar>
-        <router-outlet></router-outlet>    
+
+        <div [class.container]="!(isHandset$ | async)">
+          <router-outlet></router-outlet>
+        </div>  
+
       </mat-sidenav-content>
     </mat-sidenav-container>
   `,
   styles: [`
+    a {
+      color: white;
+    }
+    
     .sidenav-container {
       height: 100%;
+    }
+
+    .container {
+      padding-left: 15%;
+      padding-right: 15%;
     }
     
     .sidenav {

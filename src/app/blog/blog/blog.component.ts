@@ -2,22 +2,33 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from 'src/app/core/services';
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/core/models';
-import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-blog',
   template: `
+    <h2>Posts</h2>
+
     <mat-list>
       <mat-list-item *ngFor="let post of posts$ | async">
-        <h3 mat-line>
+        <h2 mat-line>
           <a [routerLink]="['/blog/posts', post.id]">{{post.title}}</a>
-        </h3>
+        </h2>
 
         <p mat-line> {{post.dateCreated | date}} </p>
       </mat-list-item>
     </mat-list>
   `,
-  styles: []
+  styles: [
+    `
+    a {
+      font-size: 36px;
+    }
+
+    :host /deep/ .mat-list-item { 
+      font-size: 24px;
+    }
+    `
+  ]
 })
 export class BlogComponent implements OnInit {
   posts$: Observable<Post[]>;

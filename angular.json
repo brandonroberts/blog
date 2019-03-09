@@ -50,7 +50,7 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/prismjs/themes/prism-okaidia.css"
+              "node_modules/prism-themes/themes/prism-atom-dark.css"
             ],
             "scripts": [
               "node_modules/marked/lib/marked.js",

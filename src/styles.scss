@@ -50,3 +50,11 @@ $theme: mat-light-theme($primary, $accent);
 
 // Include theme styles for Angular Material components.
 @include angular-material-theme($theme);
+
+a {
+    text-decoration: none;
+}
+
+h2 { 
+    font-weight: normal;
+}
