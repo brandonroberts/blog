@@ -7,6 +7,7 @@ import { MarkdownModule } from 'ngx-markdown';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
+import { PageNotFoundComponent } from './core/components';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CoreModule } from './core/core.module';
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', redirectTo: '/blog', pathMatch: 'full' },
-      { path: 'blog', loadChildren: './blog/blog.module#BlogModule' }
+      { path: 'blog', loadChildren: './blog/blog.module#BlogModule' },
+      { path: '**', component: PageNotFoundComponent }
     ]),
     MarkdownModule.forRoot({
       loader: HttpClient

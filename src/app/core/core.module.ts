@@ -4,11 +4,12 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 
-import { LayoutComponent } from './components';
+import { LayoutComponent, PageNotFoundComponent } from './components';
 
 @NgModule({
   declarations: [
-    LayoutComponent
+    LayoutComponent,
+    PageNotFoundComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +19,7 @@ import { LayoutComponent } from './components';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule,
+    MatListModule
   ],
   exports: [
     LayoutComponent
