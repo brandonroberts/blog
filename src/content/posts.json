@@ -1,0 +1,14 @@
+{
+  "posts": [
+    {
+      "id": "2019-03-04-handling-error-states-with-ngrx",
+      "title": "Handling Error States with NgRx",
+      "excerpt": "When building applications with NgRx, one thing you have to be aware of is how to handle error states.",
+      "dateCreated": "1551657600000",
+      "lastUpdated": "1551657600000",
+      "tags": [
+        "my first blog post"
+      ]
+    }
+  ]
+}
