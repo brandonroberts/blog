@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "npm run build --prod && cp dist/blog/index.html dist/blog/404.html",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
