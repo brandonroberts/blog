@@ -4,13 +4,14 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 
-import { LayoutComponent, PageNotFoundComponent } from './components';
+import { LayoutComponent, PageNotFoundComponent, AboutComponent } from './components';
 import { FooterModule } from '../shared/footer';
 
 @NgModule({
   declarations: [
     LayoutComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AboutComponent
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material';
+import { RouterModule } from '@angular/router';
 
 import { FooterComponent } from './footer.component';
 
@@ -10,7 +11,8 @@ import { FooterComponent } from './footer.component';
   ],
   imports: [
     CommonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    RouterModule
   ],
   exports: [
     FooterComponent

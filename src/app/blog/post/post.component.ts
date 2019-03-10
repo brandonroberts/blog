@@ -9,8 +9,7 @@ import { PostService } from 'src/app/core/services';
   selector: 'app-post',
   template: `
     <markdown [data]="post$ | async"></markdown>
-  `,
-  styles: []
+  `
 })
 export class PostComponent implements OnInit {
   post$ = this.route.paramMap.pipe(

@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
           mode='over'>
         <mat-toolbar>Menu</mat-toolbar>
         <mat-nav-list>
-          <a mat-list-item routerLink="/">Posts</a>
+          <a mat-list-item routerLink="/" (click)="drawer.close()">Posts</a>
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
@@ -29,7 +29,6 @@ import { map } from 'rxjs/operators';
           <a routerLink="/">Brandon Roberts</a>
 
           <div class="social">
-            <a routerLink="/about" title="About Me">About</a>
 
             <a href="https://twitter.com/brandontroberts" title="Twitter">
               <img src="assets/images/logos/twitter-icon.svg">
@@ -84,10 +83,6 @@ import { map } from 'rxjs/operators';
       position: sticky;
       top: 0;
       z-index: 1;
-    }
-
-    .filler {
-      flex: 1 1 auto;
     }
 
     .social {
