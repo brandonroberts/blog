@@ -21,9 +21,9 @@ import { Post } from 'src/app/core/models';
   styles: [
     `
     :host {
-      height: 100%;
+      width: 80%;
     }
-    
+
     a {
       font-size: 36px;
       color: black;

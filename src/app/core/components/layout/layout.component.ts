@@ -30,6 +30,8 @@ import { map } from 'rxjs/operators';
 
           <div class="social">
 
+            <a routerLink="/about">About</a>
+
             <a href="https://twitter.com/brandontroberts" title="Twitter">
               <img src="assets/images/logos/twitter-icon.svg">
             </a>
@@ -61,14 +63,8 @@ import { map } from 'rxjs/operators';
 
     .content {
       display: flex;
-      flex: 1 1 auto;
-      padding: 8px;
+      justify-content: space-evenly;
       min-height: calc(100% - (63px));
-    }
-
-    .container {
-      padding-left: 15%;
-      padding-right: 15%;
     }
     
     .sidenav {

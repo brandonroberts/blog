@@ -20,7 +20,7 @@ import { Component, OnInit } from '@angular/core';
   styles: [
     `
     :host {
-      width: 100%;
+      width: 80%;
     }
     
     .pic {
