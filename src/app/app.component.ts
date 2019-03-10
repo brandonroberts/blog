@@ -4,9 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <app-layout></app-layout>
-  `,
-  styles: []
+  `
 })
-export class AppComponent {
-  title = 'blog';
-}
+export class AppComponent {}

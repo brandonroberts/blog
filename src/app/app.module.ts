@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { MarkdownModule } from 'ngx-markdown';
 
 import { AppComponent } from './app.component';
@@ -24,9 +24,7 @@ import { PageNotFoundComponent, AboutComponent } from './core/components';
       { path: '404', component: PageNotFoundComponent },
       { path: '**', component: PageNotFoundComponent }
     ]),
-    MarkdownModule.forRoot({
-      loader: HttpClient
-    }),
+    MarkdownModule.forRoot(),
     CoreModule
   ],
   bootstrap: [AppComponent]
