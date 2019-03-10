@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { catchError, tap, concatMap, switchMap } from 'rxjs/operators';
-import { EMPTY } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { tap, switchMap } from 'rxjs/operators';
 
 import { PostService } from 'src/app/core/services';
 
@@ -26,10 +25,15 @@ import { PostService } from 'src/app/core/services';
 export class PostComponent implements OnInit {
   post$ = this.route.paramMap.pipe(
     switchMap(params => 
-      this.postService.getPost(params.get('postId')))
-    );
+      this.postService.getPost(params.get('postId'))
+        .pipe(tap(() => {}, () => {
+          this.router.navigate(['/404']);
+        }))
+    )
+  );
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private postService: PostService
   ) { }

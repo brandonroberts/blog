@@ -8,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 
     Page Not Found
   `,
-  styles: []
+  styles: [
+    `
+    :host {
+      width: 80%;
+    }    
+    `
+  ]
 })
 export class PageNotFoundComponent implements OnInit {
 
