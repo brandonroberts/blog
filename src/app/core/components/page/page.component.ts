@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { tap, switchMap } from 'rxjs/operators';
+import { tap, switchMap, map } from 'rxjs/operators';
 
 import { PageService } from 'src/app/core/services';
 
@@ -23,9 +23,10 @@ import { PageService } from 'src/app/core/services';
   ]
 })
 export class PageComponent implements OnInit {
-  page$ = this.route.paramMap.pipe(
-    switchMap(params => 
-      this.postService.getPageContent(params.get('pageId'))
+  page$ = this.route.url.pipe(
+    map(paths => paths.reduce((curr, path) => curr += `/${path.path}`, '')),
+    switchMap(pagePath => 
+      this.postService.getPageContent(pagePath)
         .pipe(tap(() => {}, () => {
           this.router.navigate(['/404']);
         }))

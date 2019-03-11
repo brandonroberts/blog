@@ -21,7 +21,7 @@ import { PageNotFoundComponent, PageComponent } from './core/components';
       { path: '', redirectTo: '/blog', pathMatch: 'full' },
       { path: 'blog', loadChildren: './blog/blog.module#BlogModule' },
       { path: '404', component: PageNotFoundComponent },
-      { path: ':pageId', component: PageComponent },
+      { path: '**', component: PageComponent },
     ]),
     MarkdownModule.forRoot(),
     CoreModule
