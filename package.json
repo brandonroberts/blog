@@ -8,7 +8,8 @@
     "build:prod": "npm run build -- --prod && cp dist/blog/index.html dist/blog/404.html",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy": "firebase deploy --project brandonroberts-website"
   },
   "private": true,
   "dependencies": {
