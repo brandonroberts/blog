@@ -3,15 +3,16 @@ import { CommonModule } from '@angular/common';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
+import { MarkdownModule } from 'ngx-markdown';
 
-import { LayoutComponent, PageNotFoundComponent, AboutComponent } from './components';
+import { LayoutComponent, PageNotFoundComponent, PageComponent } from './components';
 import { FooterModule } from '../shared/footer';
 
 @NgModule({
   declarations: [
     LayoutComponent,
-    PageNotFoundComponent,
-    AboutComponent
+    PageComponent,
+    PageNotFoundComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +23,8 @@ import { FooterModule } from '../shared/footer';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    FooterModule
+    FooterModule,
+    MarkdownModule.forChild()
   ],
   exports: [
     LayoutComponent

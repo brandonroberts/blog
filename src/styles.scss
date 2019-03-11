@@ -63,3 +63,13 @@ a {
 h2 { 
     font-weight: normal;
 }
+
+
+div.page {
+    width: 80%;
+}
+  
+div.about-page .pic {
+    display: flex;
+    justify-content: space-around;
+}
