@@ -53,10 +53,6 @@ import { map } from 'rxjs/operators';
     </mat-sidenav-container>
   `,
   styles: [`
-    a {
-      color: white;
-    }
-    
     .sidenav-container {
       height: 100%;
     }

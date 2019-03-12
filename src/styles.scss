@@ -21,7 +21,7 @@ $md-blue: (
     700 : #0000ff,
     800 : #0000ff,
     900 : #0000ff,
-    A100 : #ffffff,
+    A100 : #eee,
     A200 : #f2f2ff,
     A400 : #bfbfff,
     A700 : #a6a6ff,
@@ -29,13 +29,13 @@ $md-blue: (
         50 : #000000,
         100 : #000000,
         200 : #000000,
-        300 : #ffffff,
-        400 : #ffffff,
-        500 : #ffffff,
-        600 : #ffffff,
-        700 : #ffffff,
-        800 : #ffffff,
-        900 : #ffffff,
+        300 : #eee,
+        400 : #eee,
+        500 : #eee,
+        600 : #eee,
+        700 : #eee,
+        800 : #eee,
+        900 : #eee,
         A100 : #000000,
         A200 : #000000,
         A400 : #000000,
@@ -58,6 +58,7 @@ $theme: mat-light-theme($primary, $accent);
 
 a {
     text-decoration: none;
+    color: #eee;
 }
 
 h2 { 

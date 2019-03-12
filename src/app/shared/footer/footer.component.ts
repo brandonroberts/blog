@@ -18,11 +18,11 @@ import { Component, OnInit } from '@angular/core';
     :host {
       width: 100%;
       justify-content: space-around;
-      color: white;
+      color: #eee;
     }
 
     a {
-      color: white;
+      color: #eee;
     }
 
     a:after {
