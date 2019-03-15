@@ -59,7 +59,7 @@ import { map } from 'rxjs/operators';
 
     .content {
       display: flex;
-      justify-content: space-evenly;
+      justify-content: center;
       min-height: calc(100% - (63px));
     }
     

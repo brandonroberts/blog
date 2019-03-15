@@ -65,12 +65,12 @@ h2 {
     font-weight: normal;
 }
 
-
-div.page {
-    width: 80%;
+app-post a {
+    color: #000;
+    text-decoration: underline;
 }
   
 div.about-page .pic {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 }
