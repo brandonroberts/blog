@@ -69,6 +69,12 @@ app-post a {
     color: #000;
     text-decoration: underline;
 }
+
+app-post .center {
+    display: block;
+    margin: auto;
+    width: 50%;
+}
   
 div.about-page .pic {
     display: flex;
