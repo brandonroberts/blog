@@ -25,7 +25,6 @@ import { Post } from 'src/app/core/models';
     }
 
     a {
-      font-size: 36px;
       color: black;
       white-space: initial;
     }
