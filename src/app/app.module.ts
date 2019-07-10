@@ -19,7 +19,7 @@ import { PageNotFoundComponent, PageComponent } from './core/components';
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', redirectTo: '/blog', pathMatch: 'full' },
-      { path: 'blog', loadChildren: './blog/blog.module#BlogModule' },
+      { path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule) },
       { path: '404', component: PageNotFoundComponent },
       { path: '**', component: PageComponent },
     ]),
