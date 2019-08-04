@@ -6,14 +6,20 @@ Below are a list of my conference talks, and podcast appearances.
 
 ### Upcoming
 
-* [Automating your Angular projects with Schematics](https://www.angularconnect.com/talks#brandon-roberts)
-* [Building Reactive Applications in Angular](https://connect.tech/)
+#### Angular Connect - September 19-20, 2019
+
+[Automating your Angular projects with Schematics](https://www.angularconnect.com/talks#brandon-roberts)
+
+#### Connect.Tech - October 16-18, 2019
+
+[Building Reactive Applications in Angular](https://connect.tech/)
 
 ### Previous
 
 #### 2019
 
 * [Building Sub-States with NgRx Selectors](https://www.youtube.com/watch?v=RXuSDiLmcN0)
+* [Managing Complexity with NgRx](https://www.recallact.com/presentation/managing-complexity-ngrx)
 * [Contributing to RxJS and NgRx Docs](https://www.youtube.com/watch?v=ug0c1tUegm4)
 * [NgRx Workshop: A Reactive State of Mind, Day 1 (Subscription Required)](https://www.pluralsight.com/courses/ng-conf-19-ngrx-reactive-day-1)
 * [NgRx Workshop: A Reactive State of Mind, Day 2 (Subscription Required)](https://www.pluralsight.com/courses/ng-conf-19-ngrx-reactive-day-2)
