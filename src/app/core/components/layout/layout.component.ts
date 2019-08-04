@@ -12,7 +12,9 @@ import { map } from 'rxjs/operators';
           mode='over'>
         <mat-toolbar>Menu</mat-toolbar>
         <mat-nav-list>
-          <a mat-list-item routerLink="/" (click)="drawer.close()">Posts</a>
+          <a mat-list-item routerLink="/" (click)="drawer.close()">Home</a>
+          <a mat-list-item routerLink="/about" (click)="drawer.close()">About</a>
+          <a mat-list-item routerLink="/talks" (click)="drawer.close()">Talks</a>
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
@@ -30,7 +32,9 @@ import { map } from 'rxjs/operators';
 
           <div class="social">
 
-            <a routerLink="/about">About</a>
+            <a *ngIf="!(isHandset$ | async)" routerLink="/talks">Talks</a>
+
+            <a *ngIf="!(isHandset$ | async)" routerLink="/about">About</a>
 
             <a href="https://twitter.com/brandontroberts" title="Twitter">
               <img src="assets/images/logos/twitter-icon.svg">
