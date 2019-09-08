@@ -66,7 +66,7 @@
                 "src/assets",
                 "src/content",
                 "src/robots.txt"
-              ],              
+              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -140,7 +140,133 @@
           }
         }
       }
+    },
+    "ngrx-facades-selectors": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/ngrx-facades-selectors",
+      "sourceRoot": "projects/ngrx-facades-selectors/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ngrx-facades-selectors",
+            "index": "projects/ngrx-facades-selectors/src/index.html",
+            "main": "projects/ngrx-facades-selectors/src/main.ts",
+            "polyfills": "projects/ngrx-facades-selectors/src/polyfills.ts",
+            "tsConfig": "projects/ngrx-facades-selectors/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/ngrx-facades-selectors/src/favicon.ico",
+              "projects/ngrx-facades-selectors/src/assets"
+            ],
+            "styles": [
+              "projects/ngrx-facades-selectors/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/ngrx-facades-selectors/src/environments/environment.ts",
+                  "with": "projects/ngrx-facades-selectors/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ngrx-facades-selectors:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ngrx-facades-selectors:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ngrx-facades-selectors:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngrx-facades-selectors/src/test.ts",
+            "polyfills": "projects/ngrx-facades-selectors/src/polyfills.ts",
+            "tsConfig": "projects/ngrx-facades-selectors/tsconfig.spec.json",
+            "karmaConfig": "projects/ngrx-facades-selectors/karma.conf.js",
+            "assets": [
+              "projects/ngrx-facades-selectors/src/favicon.ico",
+              "projects/ngrx-facades-selectors/src/assets"
+            ],
+            "styles": [
+              "projects/ngrx-facades-selectors/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngrx-facades-selectors/tsconfig.app.json",
+              "projects/ngrx-facades-selectors/tsconfig.spec.json",
+              "projects/ngrx-facades-selectors/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/ngrx-facades-selectors/e2e/protractor.conf.js",
+            "devServerTarget": "ngrx-facades-selectors:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ngrx-facades-selectors:serve:production"
+            }
+          }
+        }
+      }
     }
   },
-  "defaultProject": "blog"
+  "defaultProject": "blog",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  },
+  "schematics": {
+    "@ngrx/schematics:feature": {
+      "creators": true
+    }
+  }
 }

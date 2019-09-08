@@ -870,6 +870,36 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@ngrx/effects@^8.3.0":
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-8.3.0.tgz#d99a777ab352d4efdf456a7dec307514187ba496"
+  integrity sha512-/DdBqCFpHOJZUAmIpefQ8EVwmJXXkcEdLhsV8aXncCNWkK61sy/MbZZfDAbee6Cd1is33bVXRUKD49Z+Upvw5A==
+
+"@ngrx/entity@^8.3.0":
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/entity/-/entity-8.3.0.tgz#2b6b7b16022ff742acfbc2e94f005e77492d1072"
+  integrity sha512-UBN+mMDJYxklXuJMwVN9lEC9XDPodOsXwczV+kyS7vz3B+i9docwmLM0PqucYIPnmXPcIM+rOa0HfJDacP9ZMA==
+
+"@ngrx/router-store@^8.3.0":
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/router-store/-/router-store-8.3.0.tgz#18462b7901843b3ab212459ffbd6cfe2b71e87e4"
+  integrity sha512-wIWGW3ZyT9+lJEBXVsPx1/NLFQ8KoCbhlEmpmQHniXE3iIMnK25Or2JCNXfgrndQA9SSVlKIPP3uaDJMyoBotQ==
+
+"@ngrx/schematics@^8.3.0":
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/schematics/-/schematics-8.3.0.tgz#0a8dab6ed859e28a9acd06399040e6ac54f04701"
+  integrity sha512-18wyj0bOudF+RW6SCuPBVjMNeUgY9uWD+d481xCQ43VttamRAIsmNPmb9e1N/96Kte/HaotF5LNjw3mj/dU7QQ==
+
+"@ngrx/store-devtools@^8.3.0":
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/store-devtools/-/store-devtools-8.3.0.tgz#c9e9f5bd9fe7e32c605d3a85888d4da91a582b02"
+  integrity sha512-7jsmN8wz6PMKrbqHnUulMvf8OSYUZbXXOwkcXRaGqIjlnEG9RCHQL0cXuF8zB6uX5xencdEXsRVQe3MdZXWQng==
+
+"@ngrx/store@^8.3.0":
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/store/-/store-8.3.0.tgz#f2eaf428ec9e8379801cc37e3f6bffe88c2af472"
+  integrity sha512-QtM5T6/wTYqAlqeW60ptqqrsBwYF7jvQHsh0yE3AnwZIQvSbLFM2t5S2kN+753v4rHiXVRrA5pLaLzjGhAKcSg==
+
 "@ngtools/webpack@8.3.3":
   version "8.3.3"
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-8.3.3.tgz#6dba4ee99074474750fbdd59ef5afc9a2f0c9b9d"
