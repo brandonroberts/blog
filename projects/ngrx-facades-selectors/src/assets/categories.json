@@ -1,0 +1,16 @@
+{
+  "categories": [
+    {
+      "id": 0,
+      "name": "Phone"
+    },
+    { 
+      "id": 1,
+      "name": "Tablet"
+    },
+    { 
+      "id": 2,
+      "name": "Laptop"
+    }
+  ]
+}

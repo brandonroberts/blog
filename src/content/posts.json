@@ -1,6 +1,15 @@
 {
   "posts": [
     {
+      "id": "2019-09-10-ngrx-facades-selectors",
+      "title": "Facades with NgRx Selectors: Create Before You Combine",
+      "dateCreated": "1568350800000",
+      "lastUpdated": "1568350800000",
+      "tags": [
+        "NgRx", "Facades", "Selectors"
+      ]
+    },    
+    {
       "id": "2019-03-27-custom-route-matching-angular-router",
       "title": "Custom Route Matching with the Angular Router",
       "dateCreated": "1553698712708",

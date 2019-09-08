@@ -162,7 +162,8 @@
               "projects/ngrx-facades-selectors/src/assets"
             ],
             "styles": [
-              "projects/ngrx-facades-selectors/src/styles.css"
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "projects/ngrx-facades-selectors/src/styles.scss"
             ],
             "scripts": []
           },
@@ -227,7 +228,7 @@
               "projects/ngrx-facades-selectors/src/assets"
             ],
             "styles": [
-              "projects/ngrx-facades-selectors/src/styles.css"
+              "projects/ngrx-facades-selectors/src/styles.scss"
             ],
             "scripts": []
           }
@@ -267,6 +268,11 @@
   "schematics": {
     "@ngrx/schematics:feature": {
       "creators": true
+    },
+    "@schematics/angular:application": {
+      "minimal": true,
+      "routing": true,
+      "style": "scss"
     }
   }
 }
