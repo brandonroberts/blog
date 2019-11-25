@@ -19,7 +19,7 @@ Below are a list of my conference talks, and podcast appearances.
 * [Contributing to RxJS and NgRx Docs](https://www.youtube.com/watch?v=ug0c1tUegm4)
 * [NgRx Workshop: A Reactive State of Mind, Day 1 (Subscription Required)](https://www.pluralsight.com/courses/ng-conf-19-ngrx-reactive-day-1)
 * [NgRx Workshop: A Reactive State of Mind, Day 2 (Subscription Required)](https://www.pluralsight.com/courses/ng-conf-19-ngrx-reactive-day-2)
-[Automating your Angular projects with Schematics](https://www.youtube.com/watch?v=bdCYZoB_Su4)
+* [Automating your Angular projects with Schematics](https://www.youtube.com/watch?v=bdCYZoB_Su4)
 [Building Reactive Applications in Angular](https://connect.tech/)
 
 #### 2018
