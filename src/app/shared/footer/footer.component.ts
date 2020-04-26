@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
       
       <div class="links">
 
-      © Copyright 2019  
+      © Copyright 2019-2020  
 
       </div>
 
