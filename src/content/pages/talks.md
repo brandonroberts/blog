@@ -6,11 +6,16 @@ Below are a list of my conference talks, and podcast appearances.
 
 ### Upcoming
 
-#### ngToronto Meetup - December 10th, 2019
+#### May 2020
 
-[The Facade of NgRx Facades](https://www.meetup.com/ngToronto-Angular-Meetup-Group/events/265322094/)
+* [State of NgRx w/ThisDot Media](https://www.angularmeetup.com/#/)
 
 ### Previous
+
+#### 2020
+
+[The Facade of NgRx Facades](https://youtu.be/OZam9fNNwSE)
+[Revisiting a Reactive Router with Ivy](https://www.ng-conf.org/2020/sessions/revisiting-a-reactive-router-with-ivy/)
 
 #### 2019
 
