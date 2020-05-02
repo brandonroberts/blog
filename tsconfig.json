@@ -18,6 +18,11 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@blog/router": [
+        "projects/router/src/public-api"
+      ]
+    }
   }
 }
