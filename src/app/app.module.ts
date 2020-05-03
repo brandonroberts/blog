@@ -1,13 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule } from '@blog/router';
 import { HttpClientModule } from '@angular/common/http';
 import { MarkdownModule } from 'ngx-markdown';
 
 import { AppComponent } from './app.component';
-import { CoreModule } from './core/core.module';
-import { PageNotFoundComponent, PageComponent } from './core/components';
+import { LayoutComponentModule } from './core/components';
 
 @NgModule({
   declarations: [
@@ -17,14 +16,9 @@ import { PageNotFoundComponent, PageComponent } from './core/components';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    RouterModule.forRoot([
-      { path: '', redirectTo: '/blog', pathMatch: 'full' },
-      { path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule) },
-      { path: '404', component: PageNotFoundComponent },
-      { path: '**', component: PageComponent },
-    ]),
+    RouterModule.forRoot(),
     MarkdownModule.forRoot(),
-    CoreModule
+    LayoutComponentModule
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
+import { RouterModule } from '@blog/router';
 
 @Component({
   selector: 'app-footer',
@@ -45,3 +49,18 @@ export class FooterComponent implements OnInit {
   }
 
 }
+
+@NgModule({
+  declarations: [
+    FooterComponent
+  ],
+  imports: [
+    CommonModule,
+    MatToolbarModule,
+    RouterModule
+  ],
+  exports: [
+    FooterComponent
+  ]
+})
+export class FooterComponentModule { }

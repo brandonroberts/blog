@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { Router, RouteParams } from '@blog/router';
+import { MarkdownModule } from 'ngx-markdown';
 import { tap, switchMap } from 'rxjs/operators';
 
 import { PostService } from 'src/app/core/services';
@@ -13,7 +16,6 @@ import { PostService } from 'src/app/core/services';
     `
     :host {
       display: flex;
-      width: 80%;
     }
 
     markdown {
@@ -22,19 +24,19 @@ import { PostService } from 'src/app/core/services';
     `
   ]
 })
-export class PostComponent implements OnInit {
-  post$ = this.route.paramMap.pipe(
+export class PostComponent {
+  post$ = this.routeParams$.pipe(
     switchMap(params => 
-      this.postService.getPost(params.get('postId'))
+      this.postService.getPost(params['postId'])
         .pipe(tap(() => {}, () => {
-          this.router.navigate(['/404']);
+          this.router.go('/404');
         }))
     )
   );
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
+    private routeParams$: RouteParams,
     private postService: PostService
   ) { }
 
@@ -42,3 +44,14 @@ export class PostComponent implements OnInit {
   }
 
 }
+
+@NgModule({
+  declarations: [
+    PostComponent
+  ],
+  imports: [
+    CommonModule,
+    MarkdownModule.forChild(),
+  ]
+})
+export class PostComponentModule { }

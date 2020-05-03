@@ -1,7 +1,22 @@
-import { Component } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Component, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { BreakpointObserver, Breakpoints, LayoutModule } from '@angular/cdk/layout';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
+
+import { RouterModule } from '@blog/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { FooterComponentModule } from 'src/app/shared/footer/footer.component';
+
+import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
+import { PageComponent } from '../page/page.component';
+import { RedirectComponent } from '../redirect/redirect.component';
 
 @Component({
   selector: 'app-layout',
@@ -12,9 +27,9 @@ import { map } from 'rxjs/operators';
           mode='over'>
         <mat-toolbar>Menu</mat-toolbar>
         <mat-nav-list>
-          <a mat-list-item routerLink="/" (click)="drawer.close()">Home</a>
-          <a mat-list-item routerLink="/about" (click)="drawer.close()">About</a>
-          <a mat-list-item routerLink="/talks" (click)="drawer.close()">Talks</a>
+          <a mat-list-item linkTo="/" (click)="drawer.close()">Home</a>
+          <a mat-list-item linkTo="/about" (click)="drawer.close()">About</a>
+          <a mat-list-item linkTo="/talks" (click)="drawer.close()">Talks</a>
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
@@ -28,13 +43,13 @@ import { map } from 'rxjs/operators';
             <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
           </button>
           
-          <a routerLink="/">Brandon Roberts</a>
+          <a linkTo="/">Brandon Roberts</a>
 
           <div class="social">
 
-            <a *ngIf="!(isHandset$ | async)" routerLink="/talks">Talks</a>
+            <a *ngIf="!(isHandset$ | async)" linkTo="/talks">Talks</a>
 
-            <a *ngIf="!(isHandset$ | async)" routerLink="/about">About</a>
+            <a *ngIf="!(isHandset$ | async)" linkTo="/about">About</a>
 
             <a href="https://twitter.com/brandontroberts" title="Twitter">
               <img src="assets/images/logos/twitter-icon.svg">
@@ -47,7 +62,14 @@ import { map } from 'rxjs/operators';
         </mat-toolbar>
 
         <div class="content" [class.container]="!(isHandset$ | async)">
-          <router-outlet></router-outlet>
+          <router>
+            <route 
+              *ngFor="let route of routes"
+              [path]="route.path"
+              [component]="route.component"
+              [loadComponent]="route.loadComponent">
+            </route>
+          </router>
         </div>
         
         <app-footer>
@@ -110,6 +132,14 @@ import { map } from 'rxjs/operators';
   `]
 })
 export class LayoutComponent {
+  routes = [
+    { path: '/blog/posts/:postId', loadComponent: () => import('../../../blog/post/post.component').then(m => m.PostComponent) },
+    { path: '/blog', loadComponent: () => import('../../../blog/blog/posts.component').then(m => m.PostsComponent) },
+    { path: '/404', component: PageNotFoundComponent },
+    { path: '/talks', component: PageComponent },
+    { path: '/about', component: PageComponent },
+    { path: '/', component: RedirectComponent }
+  ];
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -117,5 +147,25 @@ export class LayoutComponent {
     );
 
   constructor(private breakpointObserver: BreakpointObserver) {}
-
 }
+
+@NgModule({
+  declarations: [
+    LayoutComponent,
+  ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    FooterComponentModule
+  ],
+  exports: [
+    LayoutComponent
+  ]
+})
+export class LayoutComponentModule { }

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { tap, switchMap, map } from 'rxjs/operators';
+import { Component, OnInit, NgModule } from '@angular/core';
+import { Router } from '@blog/router';
+import { MarkdownModule } from 'ngx-markdown';
+import { tap, switchMap } from 'rxjs/operators';
 
 import { PageService } from 'src/app/core/services';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-page',
@@ -13,7 +15,6 @@ import { PageService } from 'src/app/core/services';
     `
     :host {
       display: flex;
-      width: 80%;
     }
 
     markdown {
@@ -23,19 +24,17 @@ import { PageService } from 'src/app/core/services';
   ]
 })
 export class PageComponent implements OnInit {
-  page$ = this.route.url.pipe(
-    map(paths => paths.reduce((curr, path) => curr += `/${path.path}`, '')),
+  page$ = this.router.url$.pipe(
     switchMap(pagePath => 
       this.postService.getPageContent(pagePath)
         .pipe(tap(() => {}, () => {
-          this.router.navigate(['/404']);
+          this.router.go('/404');
         }))
     )
   );
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     private postService: PageService
   ) { }
 
@@ -43,3 +42,14 @@ export class PageComponent implements OnInit {
   }
 
 }
+
+@NgModule({
+  declarations: [
+    PageComponent,
+  ],
+  imports: [
+    CommonModule,
+    MarkdownModule.forChild()
+  ]
+})
+export class PageComponentModule { }
