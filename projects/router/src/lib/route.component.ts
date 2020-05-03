@@ -8,7 +8,9 @@ import {
   Injector,
   ɵrenderComponent as renderComponent,
   ɵmarkDirty as markDirty,
-  ɵcreateInjector as createInjector
+  ɵcreateInjector as createInjector,
+  ViewContainerRef,
+  ComponentFactoryResolver
 } from "@angular/core";
 
 import { Subject, BehaviorSubject, merge, of } from "rxjs";
@@ -21,9 +23,7 @@ import { RouterComponent } from "./router.component";
 
 @Component({
   selector: "route",
-  template: `
-    <div #outlet></div>
-  `
+  template: ''
 })
 export class RouteComponent implements OnInit {
   private destroy$ = new Subject();
@@ -36,7 +36,12 @@ export class RouteComponent implements OnInit {
   private _routeParams$ = new BehaviorSubject<Params>({});
   routeParams$ = this._routeParams$.asObservable();
 
-  constructor(private injector: Injector, private router: RouterComponent) {}
+  constructor(
+    private injector: Injector,
+    private router: RouterComponent,
+    private resolver: ComponentFactoryResolver,
+    private viewContainerRef: ViewContainerRef
+  ) {}
 
   ngOnInit(): void {
     // account for root level routes, don't add the basePath
@@ -73,7 +78,7 @@ export class RouteComponent implements OnInit {
       .pipe(
         distinctUntilChanged(),
         filter(() => !!this.rendered),
-        tap(() => markDirty(this.rendered))
+        // tap(() => markDirty(this.rendered))
       );
     
     merge(activeRoute$, routeParams$).pipe(
@@ -88,28 +93,31 @@ export class RouteComponent implements OnInit {
   loadAndRenderRoute(route: Route) {
     if (route.loadComponent) {
       return route.loadComponent().then(component => {
-        return this.renderView(component, this.outlet.nativeElement);
+        return this.renderView(component);
       });
     } else {
-      return of(this.renderView(route.component, this.outlet.nativeElement));
+      return of(this.renderView(route.component));
     }
   }
 
-  renderView(component: Type<any>, host: any) {
+  renderView(component: Type<any>) {
     const cmpInjector = createInjector({}, this.injector, [
       { provide: RouteParams, useValue: this.routeParams$ }
     ]);
 
-    this.rendered = renderComponent(component, {
-      host,
-      injector: cmpInjector
-    });
+    // this.rendered = renderComponent(component, {
+    //   host,
+    //   injector: cmpInjector
+    // });
+    const componentFactory = this.resolver.resolveComponentFactory(component);
+    this.rendered = this.viewContainerRef.createComponent(componentFactory, this.viewContainerRef.length, cmpInjector);
 
     return this.rendered;
   }
 
   clearView() {
-    this.outlet.nativeElement.innerHTML = "";
+    // this.outlet.nativeElement.innerHTML = "";
+    this.viewContainerRef.clear();
     this.rendered = null;
 
     return this.rendered;
