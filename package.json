@@ -25,6 +25,7 @@
     "@angular/router": "~9.1.4",
     "core-js": "^2.5.4",
     "ngx-markdown": "^8.1.0",
+    "path-to-regexp": "^6.1.0",
     "prism-themes": "^1.0.1",
     "rxjs": "~6.5.3",
     "tslib": "^1.10.0",
@@ -42,5 +43,8 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "~3.8.3"
+  },
+  "resolutions": {
+    "chokidar": "~3.0.2"
   }
 }
