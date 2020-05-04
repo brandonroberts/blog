@@ -133,12 +133,12 @@ import { RedirectComponent } from '../redirect/redirect.component';
 })
 export class LayoutComponent {
   routes = [
-    { path: '/blog/posts/:postId', loadComponent: () => import('../../../blog/post/post.component').then(m => m.PostComponent) },
-    { path: '/blog', loadComponent: () => import('../../../blog/blog/posts.component').then(m => m.PostsComponent) },
+    { path: '/blog(.*)', loadComponent: () => import('src/app/blog/blog/blog.component').then(m => m.BlogComponent) },
     { path: '/404', component: PageNotFoundComponent },
     { path: '/talks', component: PageComponent },
     { path: '/about', component: PageComponent },
-    { path: '/', component: RedirectComponent }
+    { path: '/', component: RedirectComponent },
+    { path: '/(.*)', component: PageNotFoundComponent }
   ];
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)

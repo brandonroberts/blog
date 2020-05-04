@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PlatformLocation, LocationStrategy } from '@angular/common';
+import { PlatformLocation, Location } from '@angular/common';
 
 import { BehaviorSubject } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
@@ -19,11 +19,11 @@ export class Router {
   hash$ = this._hash$.pipe(distinctUntilChanged());
 
   constructor(
-    private location: LocationStrategy,
+    private location: Location,
     private platformLocation: PlatformLocation,
     private urlParser: UrlParser
   ) {
-    this.location.onPopState(() => {
+    this.location.subscribe(() => {
       this.nextState(this.getLocation());
     });
 
@@ -31,13 +31,13 @@ export class Router {
   }
 
   go(url: string, queryParams: string = '') {
-    this.location.pushState(null, '', this.location.prepareExternalUrl(url), queryParams);
+    this.location.go(url, queryParams);
 
     this.nextState(this.getLocation());
   }
 
   replace(url: string, queryParams?: string) {
-    this.location.replaceState(null, '', this.location.prepareExternalUrl(url), queryParams);
+    this.location.replaceState(url, queryParams);
 
     this.nextState(this.getLocation());
   }

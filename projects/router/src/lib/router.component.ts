@@ -83,13 +83,7 @@ export class RouterComponent {
       return matchedRoute;
     }
 
-    // check to see if a greedy match will find something
-    const secondaryMatch = pathToRegexp(`${route.path}(.*)`);
-    const secondaryMatchedRoute = secondaryMatch.exec(url);
-
-    if (secondaryMatchedRoute) {
-      return secondaryMatchedRoute;
-    }
+    return null;
   }
 
   setRoute(url: string, route: Route, matchedRoute: RegExpExecArray) {

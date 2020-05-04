@@ -21,7 +21,7 @@ import { CommonModule } from '@angular/common';
 export class BlogComponent {
   routes = [
     { path: '/posts/:postId', component: PostComponent },
-    { path: '/', component: PostsComponent }
+    { path: '', component: PostsComponent }
   ];
 }
 

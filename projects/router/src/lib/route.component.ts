@@ -27,7 +27,6 @@ import { RouterComponent } from "./router.component";
 })
 export class RouteComponent implements OnInit {
   private destroy$ = new Subject();
-  @ViewChild("outlet", { read: ElementRef, static: true }) outlet: ElementRef;
   @Input() path: string;
   @Input() component: Type<any>;
   @Input() loadComponent: LoadComponent;
@@ -46,7 +45,7 @@ export class RouteComponent implements OnInit {
   ngOnInit(): void {
     // account for root level routes, don't add the basePath
     const path = this.router.parentRouterComponent
-      ? this.router.basePath + this.path
+      ? this.router.parentRouterComponent.basePath + this.path
       : this.path;
 
     this.route = this.router.registerRoute({
@@ -74,14 +73,14 @@ export class RouteComponent implements OnInit {
         })
       );
 
-    const routeParams$ = this._routeParams$
-      .pipe(
-        distinctUntilChanged(),
-        filter(() => !!this.rendered),
+    // const routeParams$ = this._routeParams$
+    //   .pipe(
+    //     distinctUntilChanged(),
+    //     filter(() => !!this.rendered),
         // tap(() => markDirty(this.rendered))
-      );
+      // );
     
-    merge(activeRoute$, routeParams$).pipe(
+    merge(activeRoute$).pipe(
       takeUntil(this.destroy$),
     ).subscribe();
   }
