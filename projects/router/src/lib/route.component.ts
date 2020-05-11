@@ -3,8 +3,6 @@ import {
   OnInit,
   Input,
   Type,
-  ViewChild,
-  ElementRef,
   Injector,
   ɵrenderComponent as renderComponent,
   ɵmarkDirty as markDirty,
