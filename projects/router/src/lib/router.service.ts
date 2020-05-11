@@ -12,7 +12,7 @@ export class Router {
   private _url$ = new BehaviorSubject<string>(this.getLocation());
   url$ = this._url$.pipe(distinctUntilChanged());
 
-  private _queryParams$ = new BehaviorSubject({});
+  private _queryParams$ = new BehaviorSubject<URLSearchParams>(new URLSearchParams(''));
   queryParams$ = this._queryParams$.pipe(distinctUntilChanged());
 
   private _hash$ = new BehaviorSubject('');
