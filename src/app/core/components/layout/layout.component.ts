@@ -8,7 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 
-import { RouterModule } from '@blog/router';
+import { RouterModule, Route } from '@blog/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -132,7 +132,7 @@ import { RedirectComponent } from '../redirect/redirect.component';
   `]
 })
 export class LayoutComponent {
-  routes = [
+  routes: Route[] = [
     { path: '/blog(.*)', loadComponent: () => import('src/app/blog/blog/blog.component').then(m => m.BlogComponent) },
     { path: '/404', component: PageNotFoundComponent },
     { path: '/talks', component: PageComponent },

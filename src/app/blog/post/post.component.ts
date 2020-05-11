@@ -27,7 +27,7 @@ import { PostService } from 'src/app/core/services';
 export class PostComponent {
   post$ = this.routeParams$.pipe(
     switchMap(params => 
-      this.postService.getPost(params['postId'])
+      this.postService.getPost(params.postId)
         .pipe(tap(() => {}, () => {
           this.router.go('/404');
         }))
@@ -36,7 +36,7 @@ export class PostComponent {
 
   constructor(
     private router: Router,
-    private routeParams$: RouteParams,
+    private routeParams$: RouteParams<{ postId: string }>,
     private postService: PostService
   ) { }
 

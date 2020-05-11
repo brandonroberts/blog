@@ -4,4 +4,4 @@ export interface Params {
   [param: string]: any;
 }
 
-export class RouteParams extends Observable<Params> {}
+export class RouteParams<T extends Params = Params> extends Observable<T> {}

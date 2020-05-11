@@ -5,6 +5,7 @@ import { PostComponent } from '../post/post.component';
 
 import { PostsComponent } from './posts.component';
 import { CommonModule } from '@angular/common';
+import { Route } from '@blog/router';
 
 @Component({
   selector: 'app-blog',
@@ -19,7 +20,7 @@ import { CommonModule } from '@angular/common';
   `
 })
 export class BlogComponent {
-  routes = [
+  routes: Route[] = [
     { path: '/posts/:postId', component: PostComponent },
     { path: '', component: PostsComponent }
   ];
