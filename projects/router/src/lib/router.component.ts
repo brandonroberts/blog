@@ -63,7 +63,7 @@ export class RouterComponent {
             routeToRender = this.findRouteMatch(route, url);
 
             if (routeToRender) {
-              this.setRoute(url, route, routeToRender);
+              this.setRoute(url, route);
               break;
             }
           }
@@ -86,10 +86,9 @@ export class RouterComponent {
     return null;
   }
 
-  setRoute(url: string, route: Route, matchedRoute: RegExpExecArray) {
-    const useRoute = matchedRoute;
+  setRoute(url: string, route: Route) {
     const pathInfo = match(route.path)(url);
-    this.basePath = useRoute[0] || "/";
+    this.basePath = route.path;
 
     const routeParams: Params = pathInfo ? pathInfo.params : {};
     this.setActiveRoute({ route, params: routeParams || {} });
