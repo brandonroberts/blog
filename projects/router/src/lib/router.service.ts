@@ -3,7 +3,11 @@ import { PlatformLocation, Location } from '@angular/common';
 
 import { BehaviorSubject } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
+
+import * as queryString from 'query-string';
+
 import { UrlParser } from './url-parser';
+import { Params } from './route-params.service';
 
 @Injectable({
   providedIn: 'root',
@@ -32,16 +36,24 @@ export class Router {
     this.nextState(this.getLocation());
   }
 
-  go(url: string, queryParams: string = '') {
-    this.location.go(url, queryParams);
+  go(url: string, queryParams?: Params, hash?: string) {
+    this.location.go(this.serializeUrl(url, queryParams, hash));
 
     this.nextState(this.getLocation());
   }
 
-  replace(url: string, queryParams?: string) {
-    this.location.replaceState(url, queryParams);
+  replace(url: string, queryParams?: Params, hash?: string) {
+    this.location.replaceState(this.serializeUrl(url, queryParams, hash));
 
     this.nextState(this.getLocation());
+  }
+
+  serializeUrl(url: string, queryParams?: Params, hash?: string) {
+    return (
+      url +
+      (queryParams ? `?${queryString.stringify(queryParams)}` : '') +
+      `${hash ? '#' + hash : ''}`
+    );
   }
 
   getExternalUrl(url: string) {

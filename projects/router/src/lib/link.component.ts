@@ -7,6 +7,7 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { Router } from './router.service';
+import { Params } from './route-params.service';
 
 /**
  * The LinkTo directive links to routes in your app
@@ -20,22 +21,28 @@ import { Router } from './router.service';
 @Directive({ selector: '[linkTo]' })
 export class LinkTo {
   @Input() target: string;
-  @HostBinding('href') linkHref;
+  @HostBinding('href') linkHref: string;
 
   @Input() set linkTo(href: string) {
     this._href = href;
     this._updateHref();
   }
 
-  @Input() set queryParams(params: string) {
+  @Input() set queryParams(params: Params) {
     this._query = params;
+    this._updateHref();
+  }
+
+  @Input() set fragment(hash: string) {
+    this._hash = hash;
     this._updateHref();
   }
 
   @Output() hrefUpdated: EventEmitter<string> = new EventEmitter<string>();
 
   private _href: string;
-  private _query: string;
+  private _query: Params;
+  private _hash: string;
 
   constructor(private router: Router) {}
 
@@ -44,9 +51,9 @@ export class LinkTo {
    * Prevents default action for non-combination click events without a target
    */
   @HostListener('click', ['$event'])
-  onClick(event) {
+  onClick(event: any) {
     if (!this._comboClick(event) && !this.target) {
-      this.router.go(this._href, this._query);
+      this.router.go(this._href, this._query, this._hash);
 
       event.preventDefault();
     }
@@ -55,7 +62,9 @@ export class LinkTo {
   private _updateHref() {
     let path = this._cleanUpHref(this._href);
 
-    this.linkHref = this.router.getExternalUrl(path);
+    let url = this.router.serializeUrl(path, this._query, this._hash);
+    this.linkHref = url;
+
     this.hrefUpdated.emit(this.linkHref);
   }
 

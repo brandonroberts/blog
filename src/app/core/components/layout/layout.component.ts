@@ -36,7 +36,13 @@ import { PageNotFoundComponentModule } from '../page-not-found/page-not-found.co
         <mat-toolbar>Menu</mat-toolbar>
         <mat-nav-list>
           <a mat-list-item linkTo="/" (click)="drawer.close()">Home</a>
-          <a mat-list-item linkTo="/about" (click)="drawer.close()">About</a>
+          <a
+            mat-list-item
+            linkTo="/about"
+            [queryParams]="{ test: 123 }"
+            (click)="drawer.close()"
+            >About</a
+          >
           <a mat-list-item linkTo="/talks" (click)="drawer.close()">Talks</a>
         </mat-nav-list>
       </mat-sidenav>
@@ -57,7 +63,13 @@ import { PageNotFoundComponentModule } from '../page-not-found/page-not-found.co
           <div class="social">
             <a *ngIf="!(isHandset$ | async)" linkTo="/talks">Talks</a>
 
-            <a *ngIf="!(isHandset$ | async)" linkTo="/about">About</a>
+            <a
+              *ngIf="!(isHandset$ | async)"
+              linkTo="/about"
+              [queryParams]="{ test: 123 }"
+              fragment="bottom"
+              >About</a
+            >
 
             <a href="https://twitter.com/brandontroberts" title="Twitter">
               <img src="assets/images/logos/twitter-icon.svg" />
