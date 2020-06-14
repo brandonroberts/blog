@@ -21,6 +21,7 @@ import { tap, distinctUntilChanged, filter, takeUntil, mergeMap, withLatestFrom 
 import { LoadComponent, Route } from "./route";
 import { RouteParams, Params } from "./route-params.service";
 import { RouterComponent } from "./router.component";
+import { Router } from './router.service';
 
 
 @Component({
@@ -38,6 +39,7 @@ export class RouteComponent implements OnInit {
   @Input() component: Type<any>;
   @Input() loadComponent: LoadComponent;
   @Input() reuse = true;
+  @Input() redirectTo!: string;
   // rendered = null;
   private destroy$ = new Subject();
   private _routeParams$ = new BehaviorSubject<Params>({});
@@ -50,29 +52,35 @@ export class RouteComponent implements OnInit {
 
   constructor(
     // private injector: Injector,
-    private router: RouterComponent,
+    private router: Router,
+    private routerComponent: RouterComponent,
   ) {}
 
   ngOnInit(): void {
     // account for root level routes, don't add the basePath
-    const path = this.router.parentRouterComponent
-      ? this.router.parentRouterComponent.basePath + this.path
+    const path = this.routerComponent.parentRouterComponent
+      ? this.routerComponent.parentRouterComponent.basePath + this.path
       : this.path;
 
-    this.route = this.router.registerRoute({
+    this.route = this.routerComponent.registerRoute({
       path,
       component: this.component,
       loadComponent: this.loadComponent
     });
 
-    const activeRoute$ = this.router.activeRoute$
+    const activeRoute$ = this.routerComponent.activeRoute$
       .pipe(
         filter(ar => ar !== null),
         distinctUntilChanged(),
         withLatestFrom(this.shouldRender$),
         mergeMap(([current, rendered]) => {
-          if (current.route === this.route) {
+          if (current.route === this.route) {           
             this._routeParams$.next(current.params);
+            
+            if (this.redirectTo) {
+              this.router.go(this.redirectTo);
+              return of(null);
+            }
 
             if (!rendered) {
               if (!this.reuse) {
@@ -105,7 +113,7 @@ export class RouteComponent implements OnInit {
     this.destroy$.next();
   }
 
-  loadAndRenderRoute(route: Route) {
+  private loadAndRenderRoute(route: Route) {
     if (route.loadComponent) {
       return route.loadComponent().then(component => {
         return this.renderView(component);
@@ -115,7 +123,7 @@ export class RouteComponent implements OnInit {
     }
   }
 
-  renderView(component: Type<any>) {
+  private renderView(component: Type<any>) {
     // const cmpInjector = createInjector({}, this.injector, [
     //   { provide: RouteParams, useValue: this.routeParams$ }
     // ]);
@@ -124,7 +132,7 @@ export class RouteComponent implements OnInit {
     });
   }
 
-  clearView() {
+  private clearView() {
     this._shouldRender$.next(false);
   }
 }
