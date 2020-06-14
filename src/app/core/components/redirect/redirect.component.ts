@@ -3,7 +3,7 @@ import { Router } from '@blog/router';
 
 @Component({
   selector: 'app-blog-redirect',
-  template: ''
+  template: '',
 })
 export class RedirectComponent {
   constructor(private router: Router) {

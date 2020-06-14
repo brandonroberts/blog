@@ -1,7 +1,7 @@
 import { Directive, Input } from '@angular/core';
 
 @Directive({
-  selector: '[routeComponent]'
+  selector: '[routeComponent]',
 })
 export class RouteComponentTemplate {
   @Input() routeComponent: any;

@@ -9,28 +9,30 @@ import { PostService } from 'src/app/core/services';
 
 @Component({
   selector: 'app-post',
-  template: `
-    <markdown [data]="post$ | async"></markdown>
-  `,
+  template: ` <markdown [data]="post$ | async"></markdown> `,
   styles: [
     `
-    :host {
-      display: flex;
-    }
+      :host {
+        display: flex;
+      }
 
-    markdown {
-      width: 100%;
-    }
-    `
-  ]
+      markdown {
+        width: 100%;
+      }
+    `,
+  ],
 })
 export class PostComponent {
   post$ = this.route.routeParams$.pipe(
-    switchMap(params => 
-      this.postService.getPost(params.postId)
-        .pipe(tap(() => {}, () => {
-          this.router.go('/404');
-        }))
+    switchMap((params) =>
+      this.postService.getPost(params.postId).pipe(
+        tap(
+          () => {},
+          () => {
+            this.router.go('/404');
+          }
+        )
+      )
     )
   );
 
@@ -38,21 +40,14 @@ export class PostComponent {
     private router: Router,
     private route: RouteComponent,
     private postService: PostService
-  ) { }
+  ) {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
 
 @NgModule({
-  declarations: [
-    PostComponent
-  ],
-  imports: [
-    CommonModule,
-    MarkdownModule.forChild(),
-  ],
-  exports: [PostComponent]
+  declarations: [PostComponent],
+  imports: [CommonModule, MarkdownModule.forChild()],
+  exports: [PostComponent],
 })
-export class PostComponentModule { }
+export class PostComponentModule {}

@@ -44,11 +44,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/content"
-            ],
+            "assets": ["src/favicon.ico", "src/assets", "src/content"],
             "styles": [
               "src/styles.scss",
               "node_modules/prism-themes/themes/prism-atom-dark.css"
@@ -67,7 +63,7 @@
                 "src/assets",
                 "src/content",
                 "src/robots.txt"
-              ],              
+              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -126,22 +122,14 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ]
+            "assets": ["src/favicon.ico", "src/assets"]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -179,9 +167,7 @@
               "projects/router/tsconfig.lib.json",
               "projects/router/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }

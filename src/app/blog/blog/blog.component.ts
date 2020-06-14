@@ -17,20 +17,18 @@ import { CommonModule } from '@angular/common';
         <app-posts *routeComponent></app-posts>
       </route>
     </router>
-  `
+  `,
 })
-export class BlogComponent { }
+export class BlogComponent {}
 
 @NgModule({
-  declarations: [
-    BlogComponent
-  ],
+  declarations: [BlogComponent],
   imports: [
     CommonModule,
     RouterModule,
     PostsComponentModule,
-    PostComponentModule
+    PostComponentModule,
   ],
-  exports: [BlogComponent]
+  exports: [BlogComponent],
 })
 export class BlogComponentModule {}

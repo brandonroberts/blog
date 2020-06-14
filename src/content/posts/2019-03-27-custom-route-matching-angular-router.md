@@ -9,9 +9,7 @@ When using the [Angular Router](https://angular.io/guide/router), there are usua
 Let’s start out with a simple route that captures a Twitter handle.
 
 ```ts
-  RouterModule.forRoot([
-    { path: ':username', component: ProfileComponent }
-  ])
+RouterModule.forRoot([{ path: ':username', component: ProfileComponent }]);
 ```
 
 This variable path is what you normally use to define a route. The Angular Router takes this path, applies a [default matcher](https://github.com/angular/angular/blob/7.0.x/packages/router/src/shared.ts#L113), and uses a first match wins strategy to determine whether to load the component or module. A route that matches is returned as a **MatchResult**, made up of the consumed segments of the URL path, whether this is the last match in the segments consumed, and any variable parameters.
@@ -26,16 +24,16 @@ RouterModule.forRoot([
         return {
           consumed: url,
           posParams: {
-            username: new UrlSegment(url[0].path.substr(1), {})
-          }
+            username: new UrlSegment(url[0].path.substr(1), {}),
+          },
         };
       }
 
       return null;
     },
-    component: ProfileComponent
-  }
-])
+    component: ProfileComponent,
+  },
+]);
 ```
 
 The example above checks to see that there is only one segment in the array, then uses regex to make sure the format of the username is a match. When it matches, it returns the entire URL consumed, and defines the username route parameter as a sub-string of the path. If there is no match, it returns null and the router continues to look for other routes that may match the URL. This works just as other routes do, allow you to define child routes, or even lazy loaded routes.
@@ -50,18 +48,15 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  username$ = this.route.paramMap
-    .pipe(
-      map((params: ParamMap) => params.get('username'))
-    );
-  constructor(private route: ActivatedRoute) { }
+  username$ = this.route.paramMap.pipe(
+    map((params: ParamMap) => params.get('username'))
+  );
+  constructor(private route: ActivatedRoute) {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
 ```
 

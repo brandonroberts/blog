@@ -4,31 +4,26 @@ import { Component, OnInit, NgModule } from '@angular/core';
   selector: 'app-page-not-found',
   template: `
     <h2>Whoops...</h2>
-    <hr>
+    <hr />
 
     Page Not Found
   `,
   styles: [
     `
-    :host {
-      width: 80%;
-    }    
-    `
-  ]
+      :host {
+        width: 80%;
+      }
+    `,
+  ],
 })
 export class PageNotFoundComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
 
 @NgModule({
-  declarations: [
-    PageNotFoundComponent
-  ],
-  exports: [PageNotFoundComponent]
+  declarations: [PageNotFoundComponent],
+  exports: [PageNotFoundComponent],
 })
 export class PageNotFoundComponentModule {}

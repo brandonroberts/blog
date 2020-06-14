@@ -1,26 +1,24 @@
-import { Component, SkipSelf, Optional } from "@angular/core";
-import { Location } from "@angular/common";
+import { Component, SkipSelf, Optional } from '@angular/core';
+import { Location } from '@angular/common';
 
-import { combineLatest, Subject, BehaviorSubject } from "rxjs";
+import { combineLatest, Subject, BehaviorSubject } from 'rxjs';
 import {
   tap,
   takeUntil,
   distinctUntilChanged,
   scan,
-  debounceTime
-} from "rxjs/operators";
+  debounceTime,
+} from 'rxjs/operators';
 
-import { pathToRegexp, match } from "path-to-regexp";
+import { pathToRegexp, match } from 'path-to-regexp';
 
 import { Route, ActiveRoute } from './route';
-import { Router } from "./router.service";
-import { Params } from "./route-params.service";
+import { Router } from './router.service';
+import { Params } from './route-params.service';
 
 @Component({
-  selector: "router",
-  template: `
-    <ng-content></ng-content>
-  `
+  selector: 'router',
+  template: ` <ng-content></ng-content> `,
 })
 export class RouterComponent {
   private destroy$ = new Subject();
@@ -36,7 +34,7 @@ export class RouterComponent {
     })
   );
 
-  public basePath = "";
+  public basePath = '';
 
   // support multiple "routers"
   // router (base /)
@@ -50,7 +48,7 @@ export class RouterComponent {
     private router: Router,
     private location: Location,
     @SkipSelf() @Optional() public parentRouterComponent: RouterComponent
-  ) { }
+  ) {}
 
   ngOnInit() {
     combineLatest(this.routes$.pipe(debounceTime(1)), this.router.url$)
@@ -114,8 +112,7 @@ export class RouterComponent {
       return '/(.*)';
     }
 
-    normalizedPath = normalizedPath.replace('/**','(.*)');
-
+    normalizedPath = normalizedPath.replace('/**', '(.*)');
 
     return normalizedPath;
   }

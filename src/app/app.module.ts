@@ -9,17 +9,15 @@ import { AppComponent } from './app.component';
 import { LayoutComponentModule } from './core/components';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(),
     MarkdownModule.forRoot(),
-    LayoutComponentModule
+    LayoutComponentModule,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

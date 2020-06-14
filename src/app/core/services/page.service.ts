@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PageService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getPageContent(pageId: string) {
-    return this.http.get(`/content/pages/${pageId}.md`, { responseType: 'text' });
+    return this.http.get(`/content/pages/${pageId}.md`, {
+      responseType: 'text',
+    });
   }
 }

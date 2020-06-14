@@ -2,7 +2,6 @@
 
 <img src="/content/posts/david-travis-548920-unsplash.jpg" width="100%"/>
 
-
 When building applications with NgRx, one thing you have to be aware of is how to handle error states. Whether this be from submitting a login form, making a request for loading data, or handling user timeouts, errors still need to be displayed to the user in some way. The question arises of where do you put the error information. Should your error state be handled locally in the component, or added to your global state? There are multiple ways to do this, each with different advantages and drawbacks. Let's look at a movies page to walk through the different ways of handling and displaying errors.
 
 #### Handling Errors In Your Component
@@ -12,12 +11,9 @@ With NgRx, we recommend you to keep your smart components responsibilities to ex
 ```ts
 @Component({
   selector: 'app-movies-page',
-  template: `
-    <h1>Movies Page</h1>
-  `
+  template: ` <h1>Movies Page</h1> `,
 })
 export class MoviesPageComponent implements OnInit {
-
   constructor(private store: Store<fromRoot.State>) {}
 
   ngOnInit() {
@@ -50,7 +46,7 @@ export class MoviesPageComponent implements OnInit {
       filter(action => action.type === '[Movies/API] Load Movies Failure'),
     ).subscribe(action => this.error = action.payload);
   }
-    
+
   ngOnInit() {
     this.store.dispatch({ type: '[Movies Page] Load Movies' });
   }
@@ -67,18 +63,15 @@ Using the **ScannedActionSubject** observable is more manual as there are no bui
     <div *ngIf="error">
       {{ error }}
     </div>
-  `
+  `,
 })
 export class MoviesPageComponent implements OnInit {
   error = '';
 
-  constructor(
-    private store: Store<fromRoot.State>,
-    actions$: Actions
-  ) {
-    actions$.pipe(
-      ofType('[Movies/API] Load Movies Failure'),
-    ).subscribe(action => this.error = action.payload);
+  constructor(private store: Store<fromRoot.State>, actions$: Actions) {
+    actions$
+      .pipe(ofType('[Movies/API] Load Movies Failure'))
+      .subscribe((action) => (this.error = action.payload));
   }
 
   ngOnInit() {
@@ -86,7 +79,6 @@ export class MoviesPageComponent implements OnInit {
   }
 }
 ```
-
 
 **Pros:**
 
@@ -117,14 +109,11 @@ export interface State {
 
 export const initialState = {
   items: [],
-  error: null // default error value
-}
+  error: null, // default error value
+};
 
-export function reducer(
-  state = initialState,
-  action: MoviesActions
-) {
-  switch(action.type) {
+export function reducer(state = initialState, action: MoviesActions) {
+  switch (action.type) {
     case '[Movies Page] Load Movies': {
       return initialState; // reset state
     }
@@ -133,15 +122,15 @@ export function reducer(
       return {
         ...state,
         movies: action.payload,
-        error: null // clear error message
-      }
+        error: null, // clear error message
+      };
     }
 
     case '[Movies/API] Load Movies Failure': {
       return {
         ...state,
-        error: action.payload  // capture error message
-      }
+        error: action.payload, // capture error message
+      };
     }
 
     default:
@@ -155,8 +144,8 @@ The **Load Movies Failure** action sets the error message in the global state. T
 ```ts
 export const selectMoviesPageError = createSelector(
   selectMoviesState,
-  state => state.error // return error message
-)
+  (state) => state.error // return error message
+);
 ```
 
 The error state is reset before the component initializes the subscriptions in the template, preventing flickering due to state changes. The updated component uses a selector and the async pipe in the component template.
@@ -169,13 +158,13 @@ The error state is reset before the component initializes the subscriptions in t
     <div *ngIf="error$ | async as errorMessage">
       {{ errorMessage }}
     </div>
-  `
+  `,
 })
 export class MoviesPageComponent implements OnInit {
   error$ = this.store.select(fromRoot.selectMoviesPageError);
-  
+
   constructor(private store: Store<fromRoot.State>) {}
-  
+
   ngOnInit() {
     this.store.dispatch('[Movies Page] Load Movies');
   }

@@ -1,4 +1,11 @@
-import { Directive, HostBinding, HostListener, Input, Output, EventEmitter } from  '@angular/core';
+import {
+  Directive,
+  HostBinding,
+  HostListener,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { Router } from './router.service';
 
 /**
@@ -15,7 +22,7 @@ export class LinkTo {
   @Input() target: string;
   @HostBinding('href') linkHref;
 
-  @Input() set linkTo(href: string){
+  @Input() set linkTo(href: string) {
     this._href = href;
     this._updateHref();
   }
@@ -58,7 +65,7 @@ export class LinkTo {
   private _comboClick(event) {
     let buttonEvent = event.which || event.button;
 
-    return (buttonEvent > 1 || event.ctrlKey || event.metaKey || event.shiftKey);
+    return buttonEvent > 1 || event.ctrlKey || event.metaKey || event.shiftKey;
   }
 
   private _cleanUpHref(href: string = ''): string {

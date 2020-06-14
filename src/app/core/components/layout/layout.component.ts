@@ -1,12 +1,15 @@
 import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BreakpointObserver, Breakpoints, LayoutModule } from '@angular/cdk/layout';
+import {
+  BreakpointObserver,
+  Breakpoints,
+  LayoutModule,
+} from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
 
 import { RouterModule } from '@blog/router';
 import { Observable } from 'rxjs';
@@ -23,9 +26,13 @@ import { PageNotFoundComponentModule } from '../page-not-found/page-not-found.co
   selector: 'app-layout',
   template: `
     <mat-sidenav-container class="sidenav-container">
-      <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
-          [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-          mode='over'>
+      <mat-sidenav
+        #drawer
+        class="sidenav"
+        fixedInViewport="true"
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        mode="over"
+      >
         <mat-toolbar>Menu</mat-toolbar>
         <mat-nav-list>
           <a mat-list-item linkTo="/" (click)="drawer.close()">Home</a>
@@ -40,26 +47,26 @@ import { PageNotFoundComponentModule } from '../page-not-found/page-not-found.co
             aria-label="Toggle sidenav"
             mat-icon-button
             (click)="drawer.toggle()"
-            *ngIf="isHandset$ | async">
+            *ngIf="isHandset$ | async"
+          >
             <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
           </button>
-          
+
           <a linkTo="/">Brandon Roberts</a>
 
           <div class="social">
-
             <a *ngIf="!(isHandset$ | async)" linkTo="/talks">Talks</a>
 
             <a *ngIf="!(isHandset$ | async)" linkTo="/about">About</a>
 
             <a href="https://twitter.com/brandontroberts" title="Twitter">
-              <img src="assets/images/logos/twitter-icon.svg">
+              <img src="assets/images/logos/twitter-icon.svg" />
             </a>
-            
+
             <a href="https://github.com/brandonroberts" title="GitHub">
-              <img src="assets/images/logos/github-icon.svg">
+              <img src="assets/images/logos/github-icon.svg" />
             </a>
-          </div>         
+          </div>
         </mat-toolbar>
 
         <div class="content" [class.container]="!(isHandset$ | async)">
@@ -79,79 +86,76 @@ import { PageNotFoundComponentModule } from '../page-not-found/page-not-found.co
             </route>
           </router>
         </div>
-        
-        <app-footer></app-footer>
 
+        <app-footer></app-footer>
       </mat-sidenav-content>
     </mat-sidenav-container>
   `,
-  styles: [`
-    .sidenav-container {
-      height: 100%;
-    }
-
-    .content {
-      display: flex;
-      justify-content: center;
-      min-height: calc(100% - (63px));
-    }
-    
-    .sidenav {
-      width: 200px;
-    }
-    
-    .sidenav .mat-toolbar {
-      background: inherit;
-    }
-    
-    .mat-toolbar.mat-primary {
-      position: sticky;
-      top: 0;
-      z-index: 1;
-    }
-
-    .social {
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-      justify-content: flex-end;
-    }
-
-    .social a {
-      display: flex;
-      align-items: center;
-      margin-left: 16px;
-    }
-
-    .social a:hover {
-      opacity: 0.8;
-    }
-
-    .social img {
-      height: 24px;
-    }
-
-    @media screen and (max-width: 480px) {
-      .social a {
-        margin-left: 8px;
+  styles: [
+    `
+      .sidenav-container {
+        height: 100%;
       }
-    }
-  `]
+
+      .content {
+        display: flex;
+        justify-content: center;
+        min-height: calc(100% - (63px));
+      }
+
+      .sidenav {
+        width: 200px;
+      }
+
+      .sidenav .mat-toolbar {
+        background: inherit;
+      }
+
+      .mat-toolbar.mat-primary {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+
+      .social {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: flex-end;
+      }
+
+      .social a {
+        display: flex;
+        align-items: center;
+        margin-left: 16px;
+      }
+
+      .social a:hover {
+        opacity: 0.8;
+      }
+
+      .social img {
+        height: 24px;
+      }
+
+      @media screen and (max-width: 480px) {
+        .social a {
+          margin-left: 8px;
+        }
+      }
+    `,
+  ],
 })
 export class LayoutComponent {
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches)
-    );
+  isHandset$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Handset)
+    .pipe(map((result) => result.matches));
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 }
 
 @NgModule({
-  declarations: [
-    LayoutComponent,
-    RedirectComponent,
-  ],
+  declarations: [LayoutComponent, RedirectComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -164,10 +168,8 @@ export class LayoutComponent {
     BlogComponentModule,
     PageComponentModule,
     PageNotFoundComponentModule,
-    FooterComponentModule
+    FooterComponentModule,
   ],
-  exports: [
-    LayoutComponent
-  ]
+  exports: [LayoutComponent],
 })
-export class LayoutComponentModule { }
+export class LayoutComponentModule {}
