@@ -87,7 +87,7 @@ export class RouterComponent {
   }
 
   setRoute(url: string, route: Route) {
-    const pathInfo = match(route.path)(url);
+    const pathInfo = match(this.normalizePath(route.path))(url);
     this.basePath = route.path;
 
     const routeParams: Params = pathInfo ? pathInfo.params : {};
@@ -95,15 +95,29 @@ export class RouterComponent {
   }
 
   registerRoute(route: Route) {
-    const normalizedPath = this.location.normalize(route.path);
+    const normalizedPath = this.normalizePath(route.path);
     const routeRegex = pathToRegexp(normalizedPath);
     route.matcher = route.matcher || routeRegex;
     this._routes$.next([route]);
+
     return route;
   }
 
   setActiveRoute(active: ActiveRoute) {
     this._activeRoute$.next(active);
+  }
+
+  normalizePath(path: string) {
+    let normalizedPath = this.location.normalize(path);
+
+    if (normalizedPath === '**') {
+      return '/(.*)';
+    }
+
+    normalizedPath = normalizedPath.replace('/**','(.*)');
+
+
+    return normalizedPath;
   }
 
   ngOnDestroy() {

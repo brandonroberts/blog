@@ -64,7 +64,7 @@ import { PageNotFoundComponentModule } from '../page-not-found/page-not-found.co
 
         <div class="content" [class.container]="!(isHandset$ | async)">
           <router>
-            <route path="/blog(.*)">
+            <route path="/blog/**">
               <app-blog *routeComponent></app-blog>
             </route>
             <route path="/404">
@@ -74,7 +74,7 @@ import { PageNotFoundComponentModule } from '../page-not-found/page-not-found.co
               <app-page *routeComponent></app-page>
             </route>
             <route path="/" redirectTo="/blog"></route>
-            <route path="/(.*)">
+            <route path="**">
               <app-page-not-found *routeComponent></app-page-not-found>
             </route>
           </router>
