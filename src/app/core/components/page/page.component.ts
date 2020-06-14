@@ -1,5 +1,5 @@
 import { Component, OnInit, NgModule } from '@angular/core';
-import { Router, RouteComponent } from '@blog/router';
+import { Router, RouteParams } from '@blog/router';
 import { MarkdownModule } from 'ngx-markdown';
 import { tap, switchMap } from 'rxjs/operators';
 
@@ -24,7 +24,7 @@ import { CommonModule } from '@angular/common';
   ]
 })
 export class PageComponent implements OnInit {
-  page$ = this.route.routeParams$.pipe(
+  page$ = this.routeParams$.pipe(
     switchMap(params => this.postService.getPageContent(params.pageId)
       .pipe(tap(() => { }, () => {
         this.router.go('/404');
@@ -33,7 +33,7 @@ export class PageComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private route: RouteComponent,
+    private routeParams$: RouteParams<{ pageId: string }>,
     private postService: PageService
   ) { }
 

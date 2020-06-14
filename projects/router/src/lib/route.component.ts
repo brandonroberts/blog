@@ -3,7 +3,6 @@ import {
   OnInit,
   Input,
   Type,
-  Injector,
   ɵrenderComponent as renderComponent,
   ɵmarkDirty as markDirty,
   ɵcreateInjector as createInjector,
@@ -12,17 +11,20 @@ import {
   ContentChild,
   TemplateRef,
   ChangeDetectionStrategy,
-  AfterContentInit
+  Self
 } from "@angular/core";
 
 import { Subject, BehaviorSubject, merge, of } from "rxjs";
-import { tap, distinctUntilChanged, filter, takeUntil, mergeMap, withLatestFrom } from "rxjs/operators";
+import { distinctUntilChanged, filter, takeUntil, mergeMap, withLatestFrom } from "rxjs/operators";
 
 import { LoadComponent, Route } from "./route";
-import { RouteParams, Params } from "./route-params.service";
+import { Params, RouteParams } from "./route-params.service";
 import { RouterComponent } from "./router.component";
 import { Router } from './router.service';
 
+export function getRouteParams(routeComponent: RouteComponent) {
+  return routeComponent.routeParams$;
+}
 
 @Component({
   selector: "route",
@@ -31,7 +33,10 @@ import { Router } from './router.service';
       <ng-container [ngTemplateOutlet]="template"></ng-container>
     </ng-container>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    { provide: RouteParams, useFactory: getRouteParams, deps: [[new Self(), RouteComponent]] }
+  ]
 })
 export class RouteComponent implements OnInit {
   @ContentChild(TemplateRef) template: TemplateRef<any> | null;
@@ -43,11 +48,10 @@ export class RouteComponent implements OnInit {
   // rendered = null;
   private destroy$ = new Subject();
   private _routeParams$ = new BehaviorSubject<Params>({});
+  private _shouldRender$ = new BehaviorSubject<boolean>(false);
 
-  protected _shouldRender$ = new BehaviorSubject<boolean>(false);
   readonly shouldRender$ = this._shouldRender$.asObservable();
-
-  routeParams$ = this._routeParams$.asObservable();
+  readonly routeParams$ = this._routeParams$.asObservable();
   route!: Route;
 
   constructor(
@@ -76,7 +80,7 @@ export class RouteComponent implements OnInit {
         mergeMap(([current, rendered]) => {
           if (current.route === this.route) {           
             this._routeParams$.next(current.params);
-            
+
             if (this.redirectTo) {
               this.router.go(this.redirectTo);
               return of(null);
@@ -124,9 +128,6 @@ export class RouteComponent implements OnInit {
   }
 
   private renderView(component: Type<any>) {
-    // const cmpInjector = createInjector({}, this.injector, [
-    //   { provide: RouteParams, useValue: this.routeParams$ }
-    // ]);
     setTimeout(() => {
       this._shouldRender$.next(true);
     });

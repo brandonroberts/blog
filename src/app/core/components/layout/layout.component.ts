@@ -12,11 +12,11 @@ import { RouterModule } from '@blog/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { FooterComponentModule } from 'src/app/shared/footer/footer.component';
+import { FooterComponentModule } from '../../../shared/footer/footer.component';
 
 import { PageComponentModule } from '../page/page.component';
 import { RedirectComponent } from '../redirect/redirect.component';
-import { BlogComponentModule } from 'src/app/blog/blog/blog.component';
+import { BlogComponentModule } from '../../../blog/blog/blog.component';
 import { PageNotFoundComponentModule } from '../page-not-found/page-not-found.component';
 
 @Component({
