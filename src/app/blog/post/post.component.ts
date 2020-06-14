@@ -1,7 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { Router, RouteParams } from '@blog/router';
+import { Router } from '@blog/router';
 import { MarkdownModule } from 'ngx-markdown';
 import { tap, switchMap } from 'rxjs/operators';
 
@@ -25,9 +25,9 @@ import { PostService } from 'src/app/core/services';
   ]
 })
 export class PostComponent {
-  post$ = this.routeParams$.pipe(
-    switchMap(params => 
-      this.postService.getPost(params.postId)
+  post$ = this.router.url$.pipe(
+    switchMap(url => 
+      this.postService.getPost(url.split('/').pop())
         .pipe(tap(() => {}, () => {
           this.router.go('/404');
         }))
@@ -36,7 +36,6 @@ export class PostComponent {
 
   constructor(
     private router: Router,
-    private routeParams$: RouteParams<{ postId: string }>,
     private postService: PostService
   ) { }
 
@@ -52,6 +51,7 @@ export class PostComponent {
   imports: [
     CommonModule,
     MarkdownModule.forChild(),
-  ]
+  ],
+  exports: [PostComponent]
 })
 export class PostComponentModule { }

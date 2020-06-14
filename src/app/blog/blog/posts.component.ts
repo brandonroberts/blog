@@ -54,6 +54,7 @@ export class PostsComponent implements OnInit {
     CommonModule,
     MatListModule,
     RouterModule
-  ]
+  ],
+  exports: [PostsComponent]
 })
 export class PostsComponentModule {}

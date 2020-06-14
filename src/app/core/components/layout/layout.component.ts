@@ -8,15 +8,15 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 
-import { RouterModule, Route } from '@blog/router';
+import { RouterModule } from '@blog/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { FooterComponentModule } from 'src/app/shared/footer/footer.component';
 
-import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
-import { PageComponent } from '../page/page.component';
+import { PageComponentModule } from '../page/page.component';
 import { RedirectComponent } from '../redirect/redirect.component';
+import { BlogComponentModule } from 'src/app/blog/blog/blog.component';
 
 @Component({
   selector: 'app-layout',
@@ -63,17 +63,28 @@ import { RedirectComponent } from '../redirect/redirect.component';
 
         <div class="content" [class.container]="!(isHandset$ | async)">
           <router>
-            <route 
-              *ngFor="let route of routes"
-              [path]="route.path"
-              [component]="route.component"
-              [loadComponent]="route.loadComponent">
+            <route path="/blog(.*)">
+              <app-blog *routeComponent></app-blog>
+            </route>
+            <route path="/404">
+              <app-notfound *routeComponent></app-notfound>
+            </route>
+            <route path="/talks">
+              <app-page *routeComponent></app-page>
+            </route>
+            <route path="/about">
+              <app-page *routeComponent></app-page>
+            </route>
+            <route path="/">
+              <app-blog-redirect *routeComponent></app-blog-redirect>
+            </route>
+            <route path="/(.*)">
+              <app-notfound *routeComponent></app-notfound>
             </route>
           </router>
         </div>
         
-        <app-footer>
-        </app-footer>
+        <app-footer></app-footer>
 
       </mat-sidenav-content>
     </mat-sidenav-container>
@@ -132,15 +143,6 @@ import { RedirectComponent } from '../redirect/redirect.component';
   `]
 })
 export class LayoutComponent {
-  routes: Route[] = [
-    { path: '/blog(.*)', loadComponent: () => import('src/app/blog/blog/blog.component').then(m => m.BlogComponent) },
-    { path: '/404', component: PageNotFoundComponent },
-    { path: '/talks', component: PageComponent },
-    { path: '/about', component: PageComponent },
-    { path: '/', component: RedirectComponent },
-    { path: '/(.*)', component: PageNotFoundComponent }
-  ];
-
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
@@ -152,6 +154,7 @@ export class LayoutComponent {
 @NgModule({
   declarations: [
     LayoutComponent,
+    RedirectComponent,
   ],
   imports: [
     CommonModule,
@@ -162,6 +165,8 @@ export class LayoutComponent {
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    BlogComponentModule,
+    PageComponentModule,
     FooterComponentModule
   ],
   exports: [

@@ -8,7 +8,9 @@ import {
   ɵmarkDirty as markDirty,
   ɵcreateInjector as createInjector,
   ViewContainerRef,
-  ComponentFactoryResolver
+  ComponentFactoryResolver,
+  ContentChild,
+  TemplateRef
 } from "@angular/core";
 
 import { Subject, BehaviorSubject, merge, of } from "rxjs";
@@ -21,9 +23,15 @@ import { RouterComponent } from "./router.component";
 
 @Component({
   selector: "route",
-  template: ''
+  template: `
+    <ng-container *ngIf="rendered">
+      <ng-container [ngTemplateOutlet]="template"></ng-container>
+    </ng-container>
+  `,
 })
 export class RouteComponent implements OnInit {
+  @ContentChild(TemplateRef) template: TemplateRef<any>;
+
   private destroy$ = new Subject();
   @Input() path: string;
   @Input() component: Type<any>;
@@ -36,8 +44,6 @@ export class RouteComponent implements OnInit {
   constructor(
     private injector: Injector,
     private router: RouterComponent,
-    private resolver: ComponentFactoryResolver,
-    private viewContainerRef: ViewContainerRef
   ) {}
 
   ngOnInit(): void {
@@ -106,15 +112,15 @@ export class RouteComponent implements OnInit {
     //   host,
     //   injector: cmpInjector
     // });
-    const componentFactory = this.resolver.resolveComponentFactory(component);
-    this.rendered = this.viewContainerRef.createComponent(componentFactory, this.viewContainerRef.length, cmpInjector);
-
+    // const componentFactory = this.resolver.resolveComponentFactory(component);
+    // this.rendered = this.viewContainerRef.createComponent(componentFactory, this.viewContainerRef.length, cmpInjector);
+    this.rendered = true;
     return this.rendered;
   }
 
   clearView() {
     // this.outlet.nativeElement.innerHTML = "";
-    this.viewContainerRef.clear();
+    // this.viewContainerRef.clear();
     this.rendered = null;
 
     return this.rendered;

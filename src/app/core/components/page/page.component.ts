@@ -50,6 +50,7 @@ export class PageComponent implements OnInit {
   imports: [
     CommonModule,
     MarkdownModule.forChild()
-  ]
+  ],
+  exports: [PageComponent]
 })
 export class PageComponentModule { }
