@@ -18,7 +18,7 @@ import { Params } from './route-params.service';
  * <a linkTo="/home/page" [queryParams]="{ id: 123 }">Home Page</a>
  * <a [linkTo]="'/pages' + page.id">Page 1</a>
  */
-@Directive({ selector: '[linkTo]' })
+@Directive({ selector: 'a[linkTo]' })
 export class LinkTo {
   @Input() target: string;
   @HostBinding('href') linkHref: string;
