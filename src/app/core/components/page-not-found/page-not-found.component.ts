@@ -28,6 +28,7 @@ export class PageNotFoundComponent implements OnInit {
 @NgModule({
   declarations: [
     PageNotFoundComponent
-  ]
+  ],
+  exports: [PageNotFoundComponent]
 })
 export class PageNotFoundComponentModule {}

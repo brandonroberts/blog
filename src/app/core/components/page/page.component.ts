@@ -1,5 +1,5 @@
 import { Component, OnInit, NgModule } from '@angular/core';
-import { Router } from '@blog/router';
+import { Router, RouteComponent } from '@blog/router';
 import { MarkdownModule } from 'ngx-markdown';
 import { tap, switchMap } from 'rxjs/operators';
 
@@ -24,17 +24,15 @@ import { CommonModule } from '@angular/common';
   ]
 })
 export class PageComponent implements OnInit {
-  page$ = this.router.url$.pipe(
-    switchMap(pagePath => 
-      this.postService.getPageContent(pagePath)
-        .pipe(tap(() => {}, () => {
-          this.router.go('/404');
-        }))
-    )
-  );
+  page$ = this.postService.getPageContent(this.route.path)
+    .pipe(tap(() => { }, () => {
+      this.router.go('/404');
+    }));
+
 
   constructor(
     private router: Router,
+    private route: RouteComponent,
     private postService: PageService
   ) { }
 

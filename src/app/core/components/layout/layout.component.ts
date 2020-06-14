@@ -17,6 +17,7 @@ import { FooterComponentModule } from 'src/app/shared/footer/footer.component';
 import { PageComponentModule } from '../page/page.component';
 import { RedirectComponent } from '../redirect/redirect.component';
 import { BlogComponentModule } from 'src/app/blog/blog/blog.component';
+import { PageNotFoundComponentModule } from '../page-not-found/page-not-found.component';
 
 @Component({
   selector: 'app-layout',
@@ -67,7 +68,7 @@ import { BlogComponentModule } from 'src/app/blog/blog/blog.component';
               <app-blog *routeComponent></app-blog>
             </route>
             <route path="/404">
-              <app-notfound *routeComponent></app-notfound>
+              <app-page-not-found *routeComponent></app-page-not-found>
             </route>
             <route path="/talks">
               <app-page *routeComponent></app-page>
@@ -79,7 +80,7 @@ import { BlogComponentModule } from 'src/app/blog/blog/blog.component';
               <app-blog-redirect *routeComponent></app-blog-redirect>
             </route>
             <route path="/(.*)">
-              <app-notfound *routeComponent></app-notfound>
+              <app-page-not-found *routeComponent></app-page-not-found>
             </route>
           </router>
         </div>
@@ -167,6 +168,7 @@ export class LayoutComponent {
     MatListModule,
     BlogComponentModule,
     PageComponentModule,
+    PageNotFoundComponentModule,
     FooterComponentModule
   ],
   exports: [

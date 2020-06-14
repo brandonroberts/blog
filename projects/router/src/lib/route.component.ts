@@ -10,11 +10,13 @@ import {
   ViewContainerRef,
   ComponentFactoryResolver,
   ContentChild,
-  TemplateRef
+  TemplateRef,
+  ChangeDetectionStrategy,
+  AfterContentInit
 } from "@angular/core";
 
 import { Subject, BehaviorSubject, merge, of } from "rxjs";
-import { tap, distinctUntilChanged, filter, takeUntil, mergeMap } from "rxjs/operators";
+import { tap, distinctUntilChanged, filter, takeUntil, mergeMap, withLatestFrom } from "rxjs/operators";
 
 import { LoadComponent, Route } from "./route";
 import { RouteParams, Params } from "./route-params.service";
@@ -24,25 +26,29 @@ import { RouterComponent } from "./router.component";
 @Component({
   selector: "route",
   template: `
-    <ng-container *ngIf="rendered">
+    <ng-container *ngIf="(shouldRender$ | async) && template">
       <ng-container [ngTemplateOutlet]="template"></ng-container>
     </ng-container>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RouteComponent implements OnInit {
-  @ContentChild(TemplateRef) template: TemplateRef<any>;
-
-  private destroy$ = new Subject();
+  @ContentChild(TemplateRef) template: TemplateRef<any> | null;
   @Input() path: string;
   @Input() component: Type<any>;
   @Input() loadComponent: LoadComponent;
-  route!: Route;
-  rendered = null;
+  // rendered = null;
+  private destroy$ = new Subject();
   private _routeParams$ = new BehaviorSubject<Params>({});
+
+  protected _shouldRender$ = new BehaviorSubject<boolean>(false);
+  readonly shouldRender$ = this._shouldRender$.asObservable();
+
   routeParams$ = this._routeParams$.asObservable();
+  route!: Route;
 
   constructor(
-    private injector: Injector,
+    // private injector: Injector,
     private router: RouterComponent,
   ) {}
 
@@ -62,14 +68,15 @@ export class RouteComponent implements OnInit {
       .pipe(
         filter(ar => ar !== null),
         distinctUntilChanged(),
-        mergeMap(current => {
+        withLatestFrom(this.shouldRender$),
+        mergeMap(([current, rendered]) => {
           if (current.route === this.route) {
             this._routeParams$.next(current.params);
 
-            if (!this.rendered) {
+            if (!rendered) {
               return this.loadAndRenderRoute(current.route);
             }
-          } else if (this.rendered) {
+          } else if (rendered) {
             return of(this.clearView());
           }
 
@@ -104,25 +111,15 @@ export class RouteComponent implements OnInit {
   }
 
   renderView(component: Type<any>) {
-    const cmpInjector = createInjector({}, this.injector, [
-      { provide: RouteParams, useValue: this.routeParams$ }
-    ]);
-
-    // this.rendered = renderComponent(component, {
-    //   host,
-    //   injector: cmpInjector
-    // });
-    // const componentFactory = this.resolver.resolveComponentFactory(component);
-    // this.rendered = this.viewContainerRef.createComponent(componentFactory, this.viewContainerRef.length, cmpInjector);
-    this.rendered = true;
-    return this.rendered;
+    // const cmpInjector = createInjector({}, this.injector, [
+    //   { provide: RouteParams, useValue: this.routeParams$ }
+    // ]);
+    setTimeout(() => {
+      this._shouldRender$.next(true);
+    });
   }
 
   clearView() {
-    // this.outlet.nativeElement.innerHTML = "";
-    // this.viewContainerRef.clear();
-    this.rendered = null;
-
-    return this.rendered;
+    this._shouldRender$.next(false);
   }
 }
