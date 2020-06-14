@@ -24,10 +24,11 @@ import { CommonModule } from '@angular/common';
   ]
 })
 export class PageComponent implements OnInit {
-  page$ = this.postService.getPageContent(this.route.path)
-    .pipe(tap(() => { }, () => {
-      this.router.go('/404');
-    }));
+  page$ = this.route.routeParams$.pipe(
+    switchMap(params => this.postService.getPageContent(params.pageId)
+      .pipe(tap(() => { }, () => {
+        this.router.go('/404');
+      }))));
 
 
   constructor(

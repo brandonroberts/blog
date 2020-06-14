@@ -37,6 +37,7 @@ export class RouteComponent implements OnInit {
   @Input() path: string;
   @Input() component: Type<any>;
   @Input() loadComponent: LoadComponent;
+  @Input() reuse = true;
   // rendered = null;
   private destroy$ = new Subject();
   private _routeParams$ = new BehaviorSubject<Params>({});
@@ -74,6 +75,10 @@ export class RouteComponent implements OnInit {
             this._routeParams$.next(current.params);
 
             if (!rendered) {
+              if (!this.reuse) {
+                this.clearView();
+              }
+
               return this.loadAndRenderRoute(current.route);
             }
           } else if (rendered) {

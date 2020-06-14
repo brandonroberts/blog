@@ -70,13 +70,10 @@ import { PageNotFoundComponentModule } from '../page-not-found/page-not-found.co
             <route path="/404">
               <app-page-not-found *routeComponent></app-page-not-found>
             </route>
-            <route path="/talks">
+            <route path="/:pageId">
               <app-page *routeComponent></app-page>
             </route>
-            <route path="/about">
-              <app-page *routeComponent></app-page>
-            </route>
-            <route path="/">
+            <route path="/" [reuse]="false">
               <app-blog-redirect *routeComponent></app-blog-redirect>
             </route>
             <route path="/(.*)">
