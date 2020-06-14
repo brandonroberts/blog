@@ -78,8 +78,8 @@ export class RouteComponent implements OnInit {
 
     this.route = this.routerComponent.registerRoute({
       path,
-      component: this.component,
-      loadComponent: this.loadComponent,
+      // component: this.component,
+      // loadComponent: this.loadComponent,
     });
 
     const activeRoute$ = this.routerComponent.activeRoute$.pipe(
@@ -125,16 +125,16 @@ export class RouteComponent implements OnInit {
   }
 
   private loadAndRenderRoute(route: Route) {
-    if (route.loadComponent) {
-      return route.loadComponent().then((component) => {
-        return this.renderView(component);
-      });
-    } else {
-      return of(this.renderView(route.component));
-    }
+    // if (route.loadComponent) {
+    //   return route.loadComponent().then((component) => {
+    //     return this.renderView(component);
+    //   });
+    // } else {
+    return of(this.renderView());
+    // }
   }
 
-  private renderView(component: Type<any>) {
+  private renderView() {
     setTimeout(() => {
       this._shouldRender$.next(true);
     });

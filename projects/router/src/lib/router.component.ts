@@ -18,15 +18,16 @@ import { Params } from './route-params.service';
 
 @Component({
   selector: 'router',
-  template: ` <ng-content></ng-content> `,
+  template: '<ng-content></ng-content>',
 })
 export class RouterComponent {
   private destroy$ = new Subject();
+
   private _activeRoute$ = new BehaviorSubject<ActiveRoute>(null);
-  activeRoute$ = this._activeRoute$.pipe(distinctUntilChanged());
+  readonly activeRoute$ = this._activeRoute$.pipe(distinctUntilChanged());
 
   private _routes$ = new BehaviorSubject<Route[]>([]);
-  routes$ = this._routes$.pipe(
+  readonly routes$ = this._routes$.pipe(
     scan((routes, route) => {
       routes = routes.concat(route);
 
