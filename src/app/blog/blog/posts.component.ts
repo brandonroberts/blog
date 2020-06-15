@@ -16,25 +16,25 @@ import { PostService } from 'src/app/core/services';
     <mat-list>
       <mat-list-item *ngFor="let post of posts$ | async">
         <h2 mat-line>
-          <a linkTo="/blog/posts/{{post.id}}">{{post.title}}</a>
+          <a linkTo="/blog/posts/{{ post.id }}">{{ post.title }}</a>
         </h2>
 
-        <p mat-line> {{post.dateCreated | date}} </p>
+        <p mat-line>{{ post.dateCreated | date }}</p>
       </mat-list-item>
     </mat-list>
   `,
   styles: [
     `
-    a {
-      color: black;
-      white-space: initial;
-    }
+      a {
+        color: black;
+        white-space: initial;
+      }
 
-    :host /deep/ .mat-list-item { 
-      font-size: 24px;
-    }
-    `
-  ]
+      :host /deep/ .mat-list-item {
+        font-size: 24px;
+      }
+    `,
+  ],
 })
 export class PostsComponent implements OnInit {
   posts$: Observable<Post[]>;
@@ -43,17 +43,12 @@ export class PostsComponent implements OnInit {
     this.posts$ = this.postServce.getPosts();
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
 
 @NgModule({
   declarations: [PostsComponent],
-  imports: [
-    CommonModule,
-    MatListModule,
-    RouterModule
-  ]
+  imports: [CommonModule, MatListModule, RouterModule],
+  exports: [PostsComponent],
 })
 export class PostsComponentModule {}

@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@blog/router';
 
 @Component({
-  template: ''
+  selector: 'app-blog-redirect',
+  template: '',
 })
 export class RedirectComponent {
   constructor(private router: Router) {

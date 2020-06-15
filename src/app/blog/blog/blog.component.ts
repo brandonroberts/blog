@@ -1,38 +1,34 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule } from '@blog/router';
 
-import { PostComponent } from '../post/post.component';
+import { PostComponentModule } from '../post/post.component';
 
-import { PostsComponent } from './posts.component';
+import { PostsComponentModule } from './posts.component';
 import { CommonModule } from '@angular/common';
-import { Route } from '@blog/router';
 
 @Component({
   selector: 'app-blog',
   template: `
     <router>
-      <route 
-        *ngFor="let route of routes"
-        [path]="route.path"
-        [component]="route.component">
+      <route path="/posts/:postId">
+        <app-post *routeComponent></app-post>
+      </route>
+      <route path="/">
+        <app-posts *routeComponent></app-posts>
       </route>
     </router>
-  `
+  `,
 })
-export class BlogComponent {
-  routes: Route[] = [
-    { path: '/posts/:postId', component: PostComponent },
-    { path: '', component: PostsComponent }
-  ];
-}
+export class BlogComponent {}
 
 @NgModule({
-  declarations: [
-    BlogComponent
-  ],
+  declarations: [BlogComponent],
   imports: [
     CommonModule,
-    RouterModule
-  ]
+    RouterModule,
+    PostsComponentModule,
+    PostComponentModule,
+  ],
+  exports: [BlogComponent],
 })
 export class BlogComponentModule {}

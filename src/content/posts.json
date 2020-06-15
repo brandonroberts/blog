@@ -5,18 +5,14 @@
       "title": "Custom Route Matching with the Angular Router",
       "dateCreated": "1553698712708",
       "lastUpdated": "1553698712708",
-      "tags": [
-        "Angular", "Router"
-      ]
+      "tags": ["Angular", "Router"]
     },
     {
       "id": "2019-03-04-handling-error-states-with-ngrx",
       "title": "Handling Error States with NgRx",
       "dateCreated": "1551657600000",
       "lastUpdated": "1551657600000",
-      "tags": [
-        "NgRx", "Error Handling", "Angular"
-      ]
+      "tags": ["NgRx", "Error Handling", "Angular"]
     }
   ]
 }

@@ -3,120 +3,144 @@ import {
   OnInit,
   Input,
   Type,
-  Injector,
   ɵrenderComponent as renderComponent,
   ɵmarkDirty as markDirty,
   ɵcreateInjector as createInjector,
   ViewContainerRef,
-  ComponentFactoryResolver
-} from "@angular/core";
+  ComponentFactoryResolver,
+  ContentChild,
+  TemplateRef,
+  ChangeDetectionStrategy,
+  Self,
+} from '@angular/core';
 
-import { Subject, BehaviorSubject, merge, of } from "rxjs";
-import { tap, distinctUntilChanged, filter, takeUntil, mergeMap } from "rxjs/operators";
+import { Subject, BehaviorSubject, merge, of } from 'rxjs';
+import {
+  distinctUntilChanged,
+  filter,
+  takeUntil,
+  mergeMap,
+  withLatestFrom,
+} from 'rxjs/operators';
 
-import { LoadComponent, Route } from "./route";
-import { RouteParams, Params } from "./route-params.service";
-import { RouterComponent } from "./router.component";
+import { LoadComponent, Route } from './route';
+import { Params, RouteParams } from './route-params.service';
+import { RouterComponent } from './router.component';
+import { Router } from './router.service';
 
+export function getRouteParams(routeComponent: RouteComponent) {
+  return routeComponent.routeParams$;
+}
 
 @Component({
-  selector: "route",
-  template: ''
+  selector: 'route',
+  template: `
+    <ng-container *ngIf="(shouldRender$ | async) && template">
+      <ng-container [ngTemplateOutlet]="template"></ng-container>
+    </ng-container>
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: RouteParams,
+      useFactory: getRouteParams,
+      deps: [[new Self(), RouteComponent]],
+    },
+  ],
 })
 export class RouteComponent implements OnInit {
-  private destroy$ = new Subject();
+  @ContentChild(TemplateRef) template: TemplateRef<any> | null;
   @Input() path: string;
   @Input() component: Type<any>;
   @Input() loadComponent: LoadComponent;
-  route!: Route;
-  rendered = null;
+  @Input() reuse = true;
+  @Input() redirectTo!: string;
+  // rendered = null;
+  private destroy$ = new Subject();
   private _routeParams$ = new BehaviorSubject<Params>({});
-  routeParams$ = this._routeParams$.asObservable();
+  private _shouldRender$ = new BehaviorSubject<boolean>(false);
+
+  readonly shouldRender$ = this._shouldRender$.asObservable();
+  readonly routeParams$ = this._routeParams$.asObservable();
+  route!: Route;
 
   constructor(
-    private injector: Injector,
-    private router: RouterComponent,
-    private resolver: ComponentFactoryResolver,
-    private viewContainerRef: ViewContainerRef
+    // private injector: Injector,
+    private router: Router,
+    private routerComponent: RouterComponent
   ) {}
 
   ngOnInit(): void {
     // account for root level routes, don't add the basePath
-    const path = this.router.parentRouterComponent
-      ? this.router.parentRouterComponent.basePath + this.path
+    const path = this.routerComponent.parentRouterComponent
+      ? this.routerComponent.parentRouterComponent.basePath + this.path
       : this.path;
 
-    this.route = this.router.registerRoute({
+    this.route = this.routerComponent.registerRoute({
       path,
-      component: this.component,
-      loadComponent: this.loadComponent
+      // component: this.component,
+      // loadComponent: this.loadComponent,
     });
 
-    const activeRoute$ = this.router.activeRoute$
-      .pipe(
-        filter(ar => ar !== null),
-        distinctUntilChanged(),
-        mergeMap(current => {
-          if (current.route === this.route) {
-            this._routeParams$.next(current.params);
+    const activeRoute$ = this.routerComponent.activeRoute$.pipe(
+      filter((ar) => ar !== null),
+      distinctUntilChanged(),
+      withLatestFrom(this.shouldRender$),
+      mergeMap(([current, rendered]) => {
+        if (current.route === this.route) {
+          this._routeParams$.next(current.params);
 
-            if (!this.rendered) {
-              return this.loadAndRenderRoute(current.route);
-            }
-          } else if (this.rendered) {
-            return of(this.clearView());
+          if (this.redirectTo) {
+            this.router.go(this.redirectTo);
+            return of(null);
           }
 
-          return of(null);
-        })
-      );
+          if (!rendered) {
+            if (!this.reuse) {
+              this.clearView();
+            }
+
+            return this.loadAndRenderRoute(current.route);
+          }
+        } else if (rendered) {
+          return of(this.clearView());
+        }
+
+        return of(null);
+      })
+    );
 
     // const routeParams$ = this._routeParams$
     //   .pipe(
     //     distinctUntilChanged(),
     //     filter(() => !!this.rendered),
-        // tap(() => markDirty(this.rendered))
-      // );
-    
-    merge(activeRoute$).pipe(
-      takeUntil(this.destroy$),
-    ).subscribe();
+    // tap(() => markDirty(this.rendered))
+    // );
+
+    merge(activeRoute$).pipe(takeUntil(this.destroy$)).subscribe();
   }
 
   ngOnDestroy() {
     this.destroy$.next();
   }
 
-  loadAndRenderRoute(route: Route) {
-    if (route.loadComponent) {
-      return route.loadComponent().then(component => {
-        return this.renderView(component);
-      });
-    } else {
-      return of(this.renderView(route.component));
-    }
+  private loadAndRenderRoute(route: Route) {
+    // if (route.loadComponent) {
+    //   return route.loadComponent().then((component) => {
+    //     return this.renderView(component);
+    //   });
+    // } else {
+    return of(this.renderView());
+    // }
   }
 
-  renderView(component: Type<any>) {
-    const cmpInjector = createInjector({}, this.injector, [
-      { provide: RouteParams, useValue: this.routeParams$ }
-    ]);
-
-    // this.rendered = renderComponent(component, {
-    //   host,
-    //   injector: cmpInjector
-    // });
-    const componentFactory = this.resolver.resolveComponentFactory(component);
-    this.rendered = this.viewContainerRef.createComponent(componentFactory, this.viewContainerRef.length, cmpInjector);
-
-    return this.rendered;
+  private renderView() {
+    setTimeout(() => {
+      this._shouldRender$.next(true);
+    });
   }
 
-  clearView() {
-    // this.outlet.nativeElement.innerHTML = "";
-    this.viewContainerRef.clear();
-    this.rendered = null;
-
-    return this.rendered;
+  private clearView() {
+    this._shouldRender$.next(false);
   }
 }

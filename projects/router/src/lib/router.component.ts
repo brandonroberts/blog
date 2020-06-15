@@ -1,34 +1,33 @@
-import { Component, SkipSelf, Optional } from "@angular/core";
-import { Location } from "@angular/common";
+import { Component, SkipSelf, Optional } from '@angular/core';
+import { Location } from '@angular/common';
 
-import { combineLatest, Subject, BehaviorSubject } from "rxjs";
+import { combineLatest, Subject, BehaviorSubject } from 'rxjs';
 import {
   tap,
   takeUntil,
   distinctUntilChanged,
   scan,
-  debounceTime
-} from "rxjs/operators";
+  debounceTime,
+} from 'rxjs/operators';
 
-import { pathToRegexp, match } from "path-to-regexp";
+import { pathToRegexp, match } from 'path-to-regexp';
 
 import { Route, ActiveRoute } from './route';
-import { Router } from "./router.service";
-import { Params } from "./route-params.service";
+import { Router } from './router.service';
+import { Params } from './route-params.service';
 
 @Component({
-  selector: "router",
-  template: `
-    <ng-content></ng-content>
-  `
+  selector: 'router',
+  template: '<ng-content></ng-content>',
 })
 export class RouterComponent {
   private destroy$ = new Subject();
+
   private _activeRoute$ = new BehaviorSubject<ActiveRoute>(null);
-  activeRoute$ = this._activeRoute$.pipe(distinctUntilChanged());
+  readonly activeRoute$ = this._activeRoute$.pipe(distinctUntilChanged());
 
   private _routes$ = new BehaviorSubject<Route[]>([]);
-  routes$ = this._routes$.pipe(
+  readonly routes$ = this._routes$.pipe(
     scan((routes, route) => {
       routes = routes.concat(route);
 
@@ -36,7 +35,7 @@ export class RouterComponent {
     })
   );
 
-  public basePath = "";
+  public basePath = '';
 
   // support multiple "routers"
   // router (base /)
@@ -50,13 +49,13 @@ export class RouterComponent {
     private router: Router,
     private location: Location,
     @SkipSelf() @Optional() public parentRouterComponent: RouterComponent
-  ) { }
+  ) {}
 
   ngOnInit() {
     combineLatest(this.routes$.pipe(debounceTime(1)), this.router.url$)
       .pipe(
-        takeUntil(this.destroy$),
         distinctUntilChanged(),
+        takeUntil(this.destroy$),
         tap(([routes, url]: [Route[], string]) => {
           let routeToRender = null;
           for (const route of routes) {
@@ -87,7 +86,7 @@ export class RouterComponent {
   }
 
   setRoute(url: string, route: Route) {
-    const pathInfo = match(route.path)(url);
+    const pathInfo = match(this.normalizePath(route.path))(url);
     this.basePath = route.path;
 
     const routeParams: Params = pathInfo ? pathInfo.params : {};
@@ -95,15 +94,28 @@ export class RouterComponent {
   }
 
   registerRoute(route: Route) {
-    const normalizedPath = this.location.normalize(route.path);
+    const normalizedPath = this.normalizePath(route.path);
     const routeRegex = pathToRegexp(normalizedPath);
     route.matcher = route.matcher || routeRegex;
     this._routes$.next([route]);
+
     return route;
   }
 
   setActiveRoute(active: ActiveRoute) {
     this._activeRoute$.next(active);
+  }
+
+  normalizePath(path: string) {
+    let normalizedPath = this.location.normalize(path);
+
+    if (normalizedPath === '**') {
+      return '/(.*)';
+    }
+
+    normalizedPath = normalizedPath.replace('/**', '(.*)');
+
+    return normalizedPath;
   }
 
   ngOnDestroy() {
