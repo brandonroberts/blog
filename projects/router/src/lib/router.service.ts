@@ -14,15 +14,13 @@ import { Params } from './route-params.service';
 })
 export class Router {
   private _url$ = new BehaviorSubject<string>(this.getLocation());
-  url$ = this._url$.pipe(distinctUntilChanged());
+  readonly url$ = this._url$.pipe(distinctUntilChanged());
 
-  private _queryParams$ = new BehaviorSubject<URLSearchParams>(
-    new URLSearchParams('')
-  );
-  queryParams$ = this._queryParams$.pipe(distinctUntilChanged());
+  private _queryParams$ = new BehaviorSubject<Params>({});
+  readonly queryParams$ = this._queryParams$.pipe(distinctUntilChanged());
 
   private _hash$ = new BehaviorSubject('');
-  hash$ = this._hash$.pipe(distinctUntilChanged());
+  readonly hash$ = this._hash$.pipe(distinctUntilChanged());
 
   constructor(
     private location: Location,
@@ -67,8 +65,18 @@ export class Router {
   private nextState(url: string) {
     const parsedUrl = this._parseUrl(url);
     this._nextUrl(parsedUrl.pathname);
-    this._nextQueryParams(parsedUrl.searchParams);
+    this._nextQueryParams(this.parseSearchParams(parsedUrl.searchParams));
     this._nextHash(parsedUrl.hash ? parsedUrl.hash.split('#')[0] : '');
+  }
+
+  parseSearchParams(searchParams: URLSearchParams) {
+    let queryParams: Params = {};
+
+    searchParams.forEach((value, key) => {
+      queryParams[key] = value;
+    });
+
+    return queryParams;
   }
 
   private _parseUrl(path: string): URL {
@@ -79,7 +87,7 @@ export class Router {
     this._url$.next(url);
   }
 
-  private _nextQueryParams(params: URLSearchParams) {
+  private _nextQueryParams(params: Params) {
     this._queryParams$.next(params);
   }
 

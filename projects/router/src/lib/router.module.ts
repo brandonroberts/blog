@@ -10,6 +10,8 @@ import { RouteComponent } from './route.component';
 import { RouteComponentTemplate } from './route-component.directive';
 import { LinkTo } from './link.component';
 import { UrlParser } from './url-parser';
+import { QueryParams } from './route-params.service';
+import { Router } from './router.service';
 
 const components = [
   RouterComponent,
@@ -17,6 +19,10 @@ const components = [
   LinkTo,
   RouteComponentTemplate,
 ];
+
+export function getQueryParams(router: Router) {
+  return router.queryParams$;
+}
 
 @NgModule({
   imports: [CommonModule],
@@ -30,6 +36,7 @@ export class RouterModule {
       providers: [
         UrlParser,
         { provide: LocationStrategy, useClass: PathLocationStrategy },
+        { provide: QueryParams, deps: [Router], useFactory: getQueryParams }
       ],
     };
   }

@@ -54,8 +54,8 @@ export class RouterComponent {
   ngOnInit() {
     combineLatest(this.routes$.pipe(debounceTime(1)), this.router.url$)
       .pipe(
-        takeUntil(this.destroy$),
         distinctUntilChanged(),
+        takeUntil(this.destroy$),
         tap(([routes, url]: [Route[], string]) => {
           let routeToRender = null;
           for (const route of routes) {

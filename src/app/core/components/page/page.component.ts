@@ -1,5 +1,5 @@
 import { Component, OnInit, NgModule } from '@angular/core';
-import { Router, RouteParams } from '@blog/router';
+import { Router, RouteParams, QueryParams } from '@blog/router';
 import { MarkdownModule } from 'ngx-markdown';
 import { tap, switchMap } from 'rxjs/operators';
 
@@ -38,10 +38,13 @@ export class PageComponent implements OnInit {
   constructor(
     private router: Router,
     private routeParams$: RouteParams<{ pageId: string }>,
+    private queryParams$: QueryParams<{ test: number }>,
     private postService: PageService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.queryParams$.subscribe(console.log);
+  }
 }
 
 @NgModule({
