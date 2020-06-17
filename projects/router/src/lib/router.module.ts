@@ -36,7 +36,7 @@ export class RouterModule {
       providers: [
         UrlParser,
         { provide: LocationStrategy, useClass: PathLocationStrategy },
-        { provide: QueryParams, deps: [Router], useFactory: getQueryParams }
+        { provide: QueryParams, deps: [Router], useFactory: getQueryParams },
       ],
     };
   }

@@ -52,7 +52,7 @@ export class RouteComponent implements OnInit {
   @Input() loadComponent: LoadComponent;
   @Input() reuse = true;
   @Input() redirectTo!: string;
-  
+
   private destroy$ = new Subject();
   private _routeParams$ = new BehaviorSubject<Params>({});
   private _shouldRender$ = new BehaviorSubject<boolean>(false);
@@ -128,7 +128,11 @@ export class RouteComponent implements OnInit {
     const componentFactory = this.resolver.resolveComponentFactory(component);
 
     this.showTemplate();
-    this.viewContainerRef.createComponent(componentFactory, this.viewContainerRef.length, this.viewContainerRef.injector);
+    this.viewContainerRef.createComponent(
+      componentFactory,
+      this.viewContainerRef.length,
+      this.viewContainerRef.injector
+    );
 
     return of(true);
   }

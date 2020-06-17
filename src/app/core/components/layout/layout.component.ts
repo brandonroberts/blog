@@ -82,8 +82,7 @@ import { PageNotFoundComponentModule } from '../page-not-found/page-not-found.co
 
         <div class="content" [class.container]="!(isHandset$ | async)">
           <router>
-            <route path="/blog/**" [loadComponent]="components.blog">
-            </route>
+            <route path="/blog/**" [loadComponent]="components.blog"> </route>
             <route path="/404">
               <app-page-not-found *routeComponent></app-page-not-found>
             </route>
@@ -158,7 +157,8 @@ import { PageNotFoundComponentModule } from '../page-not-found/page-not-found.co
 })
 export class LayoutComponent {
   components = {
-    blog: () => import('../../../blog/blog/blog.component').then(m => m.BlogComponent)
+    blog: () =>
+      import('../../../blog/blog/blog.component').then((m) => m.BlogComponent),
   };
 
   isHandset$: Observable<boolean> = this.breakpointObserver
