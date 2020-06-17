@@ -7,7 +7,7 @@ export type LoadComponent = () => Promise<Type<any>>;
 export interface Route {
   path: string;
   // component?: Type<any>;
-  // loadComponent?: LoadComponent;
+  loadComponent?: LoadComponent;
   matcher?: RegExp;
 }
 

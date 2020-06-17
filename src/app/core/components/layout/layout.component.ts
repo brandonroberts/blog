@@ -19,7 +19,6 @@ import { FooterComponentModule } from '../../../shared/footer/footer.component';
 
 import { PageComponentModule } from '../page/page.component';
 import { RedirectComponent } from '../redirect/redirect.component';
-import { BlogComponentModule } from '../../../blog/blog/blog.component';
 import { PageNotFoundComponentModule } from '../page-not-found/page-not-found.component';
 
 @Component({
@@ -83,8 +82,7 @@ import { PageNotFoundComponentModule } from '../page-not-found/page-not-found.co
 
         <div class="content" [class.container]="!(isHandset$ | async)">
           <router>
-            <route path="/blog/**">
-              <app-blog *routeComponent></app-blog>
+            <route path="/blog/**" [loadComponent]="components.blog">
             </route>
             <route path="/404">
               <app-page-not-found *routeComponent></app-page-not-found>
@@ -159,6 +157,10 @@ import { PageNotFoundComponentModule } from '../page-not-found/page-not-found.co
   ],
 })
 export class LayoutComponent {
+  components = {
+    blog: () => import('../../../blog/blog/blog.component').then(m => m.BlogComponent)
+  };
+
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(map((result) => result.matches));
@@ -177,7 +179,6 @@ export class LayoutComponent {
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    BlogComponentModule,
     PageComponentModule,
     PageNotFoundComponentModule,
     FooterComponentModule,

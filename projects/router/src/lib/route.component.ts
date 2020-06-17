@@ -3,9 +3,6 @@ import {
   OnInit,
   Input,
   Type,
-  ɵrenderComponent as renderComponent,
-  ɵmarkDirty as markDirty,
-  ɵcreateInjector as createInjector,
   ViewContainerRef,
   ComponentFactoryResolver,
   ContentChild,
@@ -55,7 +52,7 @@ export class RouteComponent implements OnInit {
   @Input() loadComponent: LoadComponent;
   @Input() reuse = true;
   @Input() redirectTo!: string;
-  // rendered = null;
+  
   private destroy$ = new Subject();
   private _routeParams$ = new BehaviorSubject<Params>({});
   private _shouldRender$ = new BehaviorSubject<boolean>(false);
@@ -65,9 +62,10 @@ export class RouteComponent implements OnInit {
   route!: Route;
 
   constructor(
-    // private injector: Injector,
     private router: Router,
-    private routerComponent: RouterComponent
+    private routerComponent: RouterComponent,
+    private resolver: ComponentFactoryResolver,
+    private viewContainerRef: ViewContainerRef
   ) {}
 
   ngOnInit(): void {
@@ -78,8 +76,7 @@ export class RouteComponent implements OnInit {
 
     this.route = this.routerComponent.registerRoute({
       path,
-      // component: this.component,
-      // loadComponent: this.loadComponent,
+      loadComponent: this.loadComponent,
     });
 
     const activeRoute$ = this.routerComponent.activeRoute$.pipe(
@@ -100,7 +97,7 @@ export class RouteComponent implements OnInit {
               this.clearView();
             }
 
-            return this.loadAndRenderRoute(current.route);
+            return this.loadAndRender(current.route);
           }
         } else if (rendered) {
           return of(this.clearView());
@@ -110,13 +107,6 @@ export class RouteComponent implements OnInit {
       })
     );
 
-    // const routeParams$ = this._routeParams$
-    //   .pipe(
-    //     distinctUntilChanged(),
-    //     filter(() => !!this.rendered),
-    // tap(() => markDirty(this.rendered))
-    // );
-
     merge(activeRoute$).pipe(takeUntil(this.destroy$)).subscribe();
   }
 
@@ -124,23 +114,45 @@ export class RouteComponent implements OnInit {
     this.destroy$.next();
   }
 
-  private loadAndRenderRoute(route: Route) {
-    // if (route.loadComponent) {
-    //   return route.loadComponent().then((component) => {
-    //     return this.renderView(component);
-    //   });
-    // } else {
-    return of(this.renderView());
-    // }
+  private loadAndRender(route: Route) {
+    if (route.loadComponent) {
+      return route.loadComponent().then((component) => {
+        return this.renderComponent(component);
+      });
+    } else {
+      return of(this.showTemplate());
+    }
   }
 
-  private renderView() {
+  private renderComponent(component: Type<any>) {
+    const componentFactory = this.resolver.resolveComponentFactory(component);
+
+    this.showTemplate();
+    this.viewContainerRef.createComponent(componentFactory, this.viewContainerRef.length, this.viewContainerRef.injector);
+
+    return of(true);
+  }
+
+  private clearComponent() {
+    this.viewContainerRef.clear();
+    this.hideTemplate();
+  }
+
+  private showTemplate() {
     setTimeout(() => {
       this._shouldRender$.next(true);
     });
   }
 
-  private clearView() {
+  private hideTemplate() {
     this._shouldRender$.next(false);
+  }
+
+  private clearView() {
+    if (this.loadComponent) {
+      this.clearComponent();
+    } else {
+      this.hideTemplate();
+    }
   }
 }
