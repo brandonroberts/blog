@@ -55,22 +55,22 @@ export class RouterComponent {
     combineLatest(this.routes$.pipe(debounceTime(1)), this.router.url$)
       .pipe(
         distinctUntilChanged(),
-        takeUntil(this.destroy$),
         tap(([routes, url]: [Route[], string]) => {
           let routeToRender = null;
           for (const route of routes) {
             routeToRender = this.findRouteMatch(route, url);
-
+            
             if (routeToRender) {
               this.setRoute(url, route);
               break;
             }
           }
-
+          
           if (!routeToRender) {
             this.setActiveRoute({ route: null, params: {} });
           }
-        })
+        }),
+        takeUntil(this.destroy$)
       )
       .subscribe();
   }
