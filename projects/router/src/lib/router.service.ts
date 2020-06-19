@@ -13,7 +13,7 @@ import { Params } from './route-params.service';
   providedIn: 'root',
 })
 export class Router {
-  private _url$ = new BehaviorSubject<string>(this.getLocation());
+  private _url$ = new BehaviorSubject<string>(this.location.path());
   readonly url$ = this._url$.pipe(distinctUntilChanged());
 
   private _queryParams$ = new BehaviorSubject<Params>({});

@@ -11,7 +11,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { RouterModule } from '@blog/router';
+import { RouterModule, Router } from '@blog/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -60,11 +60,12 @@ import { PageNotFoundComponentModule } from '../page-not-found/page-not-found.co
           <a linkTo="/">Brandon Roberts</a>
 
           <div class="social">
-            <a *ngIf="!(isHandset$ | async)" linkTo="/talks">Talks</a>
+            <a *ngIf="!(isHandset$ | async)" linkTo="/talks" linkActive="active">Talks</a>
 
             <a
               *ngIf="!(isHandset$ | async)"
               linkTo="/about"
+              linkActive="active"
               [queryParams]="{ test: 123 }"
               fragment="bottom"
               >About</a
@@ -139,7 +140,7 @@ import { PageNotFoundComponentModule } from '../page-not-found/page-not-found.co
         margin-left: 16px;
       }
 
-      .social a:hover {
+      .social a:hover, a.active {
         opacity: 0.8;
       }
 
@@ -165,7 +166,10 @@ export class LayoutComponent {
     .observe(Breakpoints.Handset)
     .pipe(map((result) => result.matches));
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    public router: Router
+  ) {}
 }
 
 @NgModule({
