@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/blog",
+    "public": "dist/static",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {

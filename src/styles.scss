@@ -66,6 +66,10 @@ h2 {
   font-weight: normal;
 }
 
+app-posts {
+  width: 80%;
+}
+
 app-post a {
   color: #000;
   text-decoration: underline;
@@ -74,10 +78,12 @@ app-post a {
 app-post .center {
   display: block;
   margin: auto;
-  width: 100%;
+  width: 50%;
 }
 
-router {
+app-posts,
+app-page,
+app-post {
   width: 80%;
 }
 
