@@ -8,9 +8,10 @@ publishedDate: 2020-05-14
 
 ## Mixing Action Styles In NgRx State
 
-<a href="https://unsplash.com/@franckinjapan?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" title="Photo by Franck V. on Unsplash" class="center">
-  <img src="/assets/posts/franck-v-miWGZ02CLKI-unsplash.jpg" class="center" width="100%"/>
+<a href="https://unsplash.com/@franckinjapan?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" title="Photo by Franck V. on Unsplash">
+  <img src="/assets/posts/franck-v-miWGZ02CLKI-unsplash.jpg" width="100%"/>
 </a>
+
 
 Prior to version 8 of the NgRx platform, actions were created using enums, classes, and union types. Many people thought this approach was too noisy, and refer to it as [boilerplate](https://www.youtube.com/watch?v=t3jx0EC-Y3c&t=325s) 😉. In [version 8](https://medium.com/ngrx/announcing-ngrx-version-8-ngrx-data-create-functions-runtime-checks-and-mock-selectors-a44fac112627), we introduced the new creator functions for actions, reducers, and effects. Recently, the question was asked, if you have an existing application, can you use the old syntax with the new syntax? Let's mix things up.
 
