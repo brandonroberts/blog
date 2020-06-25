@@ -1,0 +1,38 @@
+[
+  {
+    "route": "/about",
+    "title": "About Me",
+    "description": "About Me",
+    "published": true,
+    "slug": "about",
+    "sourceFile": "about.md"
+  },
+  {
+    "route": "/talks",
+    "title": "Tech Talks and Appearances",
+    "description": "Stuff",
+    "published": true,
+    "slug": "talks",
+    "sourceFile": "talks.md"
+  },
+  {
+    "route": "/blog/posts/2019-03-04-handling-error-states-with-ngrx",
+    "title": "Handling Error States with NgRx",
+    "description": "Handling Error States with NgRx",
+    "published": true,
+    "slug": "2019-03-04-handling-error-states-with-ngrx",
+    "publishedDate": "2019-03-04T00:00:00.000Z",
+    "sourceFile": "2019-03-04-handling-error-states-with-ngrx.md"
+  },
+  {
+    "route": "/blog/posts/2019-03-27-custom-route-matching-angular-router",
+    "title": "Custom Route Matching with the Angular Router",
+    "description": "Custom Route Matching with the Angular Router",
+    "published": true,
+    "slug": "2019-03-27-custom-route-matching-angular-router",
+    "publishedDate": "2019-03-27T00:00:00.000Z",
+    "sourceFile": "2019-03-27-custom-route-matching-angular-router.md"
+  },
+  { "route": "/blog" },
+  { "route": "/" }
+]

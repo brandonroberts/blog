@@ -10,7 +10,9 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "deploy": "yarn build:prod && firebase deploy --project brandonroberts-website",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "scully": "scully",
+    "scully:serve": "scully serve"
   },
   "private": true,
   "dependencies": {
@@ -24,6 +26,10 @@
     "@angular/platform-browser": "~9.1.4",
     "@angular/platform-browser-dynamic": "~9.1.4",
     "@angular/router": "~9.1.4",
+    "@scullyio/init": "^0.0.28",
+    "@scullyio/ng-lib": "latest",
+    "@scullyio/scully": "latest",
+    "prismjs": "^1.20.0",
     "core-js": "^2.5.4",
     "ngx-markdown": "^8.1.0",
     "path-to-regexp": "^6.1.0",
