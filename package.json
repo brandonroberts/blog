@@ -12,6 +12,7 @@
     "deploy": "yarn build --prod && yarn scully && firebase deploy --project brandonroberts-website",
     "format": "prettier --write .",
     "scully": "scully",
+    "scully:watch": "scully --watch",
     "scully:serve": "scully serve"
   },
   "private": true,

@@ -9,13 +9,13 @@ yarn
 ## Serve
 
 ```sh
-ng serve
+yarn scully:watch
 ```
 
-Navigate to `http://localhost:4200/`.
+Navigate to `http://localhost:1668/`.
 
 ## Build
 
 ```sh
-ng build
+yarn build
 ```
