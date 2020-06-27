@@ -11,7 +11,7 @@ publishedDate: '2020-06-26 02:00 PM CST'
 In another episode of Angular Unfiltered, me and [Bryan Wilhite](https://twitter.com/BryanWilhite) talked about Physics, coming up in a Microsoft ecosystem, building a blog in Angular without losing your SEO, and more!
 
 <div class="center">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/T2FzczZ744c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe width="100%" height="640" src="https://www.youtube.com/embed/T2FzczZ744c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 ### Links

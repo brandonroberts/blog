@@ -11,7 +11,7 @@ publishedDate: '2020-06-19 02:00 PM CST'
 In another episode of Angular Unfiltered, me and [Luke Howell](https://twitter.com/LukeHowellDev), a personal friend, and UI Architect talked about marketing for the Army, challenges with Angular styling packages, interacting with designers, and more!.
 
 <div class="center">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/jufm4PoLgUs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe width="100%" height="640" src="https://www.youtube.com/embed/jufm4PoLgUs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 ### Links

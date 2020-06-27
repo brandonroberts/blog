@@ -11,7 +11,7 @@ publishedDate: '2020-05-15 02:00 PM CST'
 In another episode of Angular Unfiltered, me and [Zack DeRose](https://twitter.com/zackderose), a Senior Angular Engineer at Nrwl continued the conversation about forms in Angular.
 
 <div class="center">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/FGg9E27KBtk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe width="100%" height="640" src="https://www.youtube.com/embed/FGg9E27KBtk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 ### Links
