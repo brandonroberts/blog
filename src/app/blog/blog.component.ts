@@ -36,25 +36,21 @@ import { map } from 'rxjs/operators';
   ],
 })
 export class BlogComponent {
-  posts$: Observable<ScullyRoute[]>;
+  posts$ = this.routesService.available$.pipe(
+    map((routes) => routes.filter((route) => route.route.startsWith('/blog'))),
+    map((filteredRoutes) =>
+      filteredRoutes
+        .slice()
+        .sort((a, b) =>
+          new Date(a.publishedDate).getTime() >
+          new Date(b.publishedDate).getTime()
+            ? -1
+            : 0
+        )
+    )
+  );
 
-  constructor(private routesService: ScullyRoutesService) {
-    this.posts$ = this.routesService.available$.pipe(
-      map((routes) =>
-        routes.filter((route) => route.route.startsWith('/blog'))
-      ),
-      map((filteredRoutes) =>
-        filteredRoutes
-          .slice()
-          .sort((a, b) =>
-            new Date(a.publishedDate).getTime() >
-            new Date(b.publishedDate).getTime()
-              ? -1
-              : 0
-          )
-      )
-    );
-  }
+  constructor(private routesService: ScullyRoutesService) {}
 }
 
 @NgModule({

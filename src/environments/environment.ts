@@ -3,6 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  disqusConfig: {
+    url: 'http://locahost:1668',
+    shortname: 'brandonroberts-dev-local',
+  },
   production: false,
 };
 

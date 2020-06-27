@@ -12,13 +12,11 @@ publishedDate: '2020-05-14 02:00 PM CST'
   <img src="/assets/posts/franck-v-miWGZ02CLKI-unsplash.jpg" width="100%"/>
 </a>
 
-
 Prior to version 8 of the NgRx platform, actions were created using enums, classes, and union types. Many people thought this approach was too noisy, and refer to it as [boilerplate](https://www.youtube.com/watch?v=t3jx0EC-Y3c&t=325s) 😉. In [version 8](https://medium.com/ngrx/announcing-ngrx-version-8-ngrx-data-create-functions-runtime-checks-and-mock-selectors-a44fac112627), we introduced the new creator functions for actions, reducers, and effects. Recently, the question was asked, if you have an existing application, can you use the old syntax with the new syntax? Let's mix things up.
 
 <iframe src="https://giphy.com/embed/RLPtfIGR5YoKQhHUSA" width="100%" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/rastamouse-cooking-masterchef-baking-RLPtfIGR5YoKQhHUSA">via GIPHY</a></p>
 
 For this example, I'll start with the [counter example](https://ngrx.io/generated/live-examples/store/stackblitz.html) using StackBlitz from the [NgRx docs](https://ngrx.io).
-
 
 ### Using with Reducers
 
@@ -27,9 +25,7 @@ To separate the two action styles, put them in different files. In the `counter.
 ```ts
 import { createAction } from '@ngrx/store';
 
-export const increment = createAction(
-  '[Counter Component] Increment'
-);
+export const increment = createAction('[Counter Component] Increment');
 ```
 
 Create a new file named `legacy-counter.actions.ts`. In the actions file, define an Increment action using the action class syntax.
@@ -38,7 +34,7 @@ Create a new file named `legacy-counter.actions.ts`. In the actions file, define
 import { Action } from '@ngrx/store';
 
 export enum CounterActionTypes {
-  Increment = '[Counter Component] Legacy Increment'
+  Increment = '[Counter Component] Legacy Increment',
 }
 
 export class Increment {
@@ -49,7 +45,6 @@ export type Union = Increment;
 ```
 
 The action type is different than the modern action using the creator function. In the counter.reducer.ts file, import the legacy actions. Before mixing the types of the legacy and modern syntax together, you need to create a union type of the two. The `@ngrx/store` package contains a helper utility function named `union` for returning the types of a dictionary of creator functions.
-
 
 - Import the actions from `counter.actions.ts` using module import syntax
 - Pass the object to the union function using the spread operator
@@ -65,9 +60,7 @@ const CounterActionsUnion = union({...CounterActions});
 This returns you the return types of the action creators. You already have an existing union of legacy counter actions, so you create a superset of the unions.
 
 ```ts
-type Actions = 
- | LegacyCounterActions.Union
- | typeof CounterActionsUnion;
+type Actions = LegacyCounterActions.Union | typeof CounterActionsUnion;
 ```
 
 The reducer creation function handles action creators, but you still need a way to handle action classes. Use a simple switch case to handle this scenario. The switch case handles your legacy actions, and the default uses the created reducer function.
@@ -81,18 +74,17 @@ export const initialState = 0;
 
 type State = number;
 
-const counterReducer = createReducer(initialState,
-  on(CounterActions.increment, state => state + 1)
+const counterReducer = createReducer(
+  initialState,
+  on(CounterActions.increment, (state) => state + 1)
 );
 
-const CounterActionsUnion = union({...CounterActions});
+const CounterActionsUnion = union({ ...CounterActions });
 
-type Actions = 
-  | LegacyCounterActions.Union
-  | typeof CounterActionsUnion;
+type Actions = LegacyCounterActions.Union | typeof CounterActionsUnion;
 
 export function reducer(state: State | undefined, action: Actions) {
-  switch(action.type) {
+  switch (action.type) {
     case LegacyCounterActions.CounterActionTypes.Increment:
       return state + 1;
     default:
@@ -130,15 +122,18 @@ import * as CounterActions from './counter.actions';
 
 @Injectable()
 export class CounterEffects {
-  increment$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(
-        LegacyCounterActions.CounterActionTypes.Increment,
-        CounterActions.increment
-      ),
-      tap(count => console.log('incremented'))
-    )
-  }, { dispatch: false });
+  increment$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(
+          LegacyCounterActions.CounterActionTypes.Increment,
+          CounterActions.increment
+        ),
+        tap((count) => console.log('incremented'))
+      );
+    },
+    { dispatch: false }
+  );
   constructor(private actions$: Actions) {}
 }
 ```

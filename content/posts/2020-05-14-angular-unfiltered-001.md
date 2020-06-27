@@ -10,11 +10,15 @@ publishedDate: '2020-05-14 02:00 PM CST'
 
 In the first episode of Angular Unfiltered, I had a rather impromptu chat with my friend [Mike Ryan](https://twitter.com/MikeRyanDev). The discussion was prompted by a tweet asking which Angular Forms library is best:
 
-<blockquote class="twitter-tweet center"><p lang="en" dir="ltr">Just wrapping up the section on Template-Driven forms for my new <a href="https://twitter.com/angular?ref_src=twsrc%5Etfw">@angular</a> course on <a href="https://twitter.com/GoThinkster?ref_src=twsrc%5Etfw">@GoThinkster</a>. It&#39;s like 90 minutes long....(although about a third of that is hands on challenges)<br><br>So it&#39;s grudge match time. In Angular which Forms is best?</p>&mdash; Joe Eames #blacklivesmatter (@josepheames) <a href="https://twitter.com/josepheames/status/1260980002092351488?ref_src=twsrc%5Etfw">May 14, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<div class="center">
+  <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Just wrapping up the section on Template-Driven forms for my new <a href="https://twitter.com/angular?ref_src=twsrc%5Etfw">@angular</a> course on <a href="https://twitter.com/GoThinkster?ref_src=twsrc%5Etfw">@GoThinkster</a>. It&#39;s like 90 minutes long....(although about a third of that is hands on challenges)<br><br>So it&#39;s grudge match time. In Angular which Forms is best?</p>&mdash; Joe Eames #blacklivesmatter (@josepheames) <a href="https://twitter.com/josepheames/status/1260980002092351488?ref_src=twsrc%5Etfw">May 14, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
 
 And Mike's response:
 
-<blockquote class="twitter-tweet center"><p lang="en" dir="ltr">Both kind of make me sad.</p>&mdash; Mike Ryan (@MikeRyanDev) <a href="https://twitter.com/MikeRyanDev/status/1260980682387599360?ref_src=twsrc%5Etfw">May 14, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<div>
+  <blockquote class="twitter-tweet center"><p lang="en" dir="ltr">Both kind of make me sad.</p>&mdash; Mike Ryan (@MikeRyanDev) <a href="https://twitter.com/MikeRyanDev/status/1260980682387599360?ref_src=twsrc%5Etfw">May 14, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
 
 We talk about the state of template-driven, and reactive forms in Angular, what improvements could be made, and the possibility of a building a new forms library.
 

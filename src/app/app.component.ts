@@ -53,7 +53,13 @@ import { map } from 'rxjs/operators';
               <img src="assets/images/logos/github-icon.svg" />
             </a>
 
-            <iframe src="https://github.com/sponsors/brandonroberts/button" title="Sponsor brandonroberts" height="35" width="107" style="border: 0;margin-left: 16px;"></iframe>
+            <iframe
+              src="https://github.com/sponsors/brandonroberts/button"
+              title="Sponsor brandonroberts"
+              height="35"
+              width="107"
+              style="border: 0;margin-left: 16px;"
+            ></iframe>
           </div>
         </mat-toolbar>
 

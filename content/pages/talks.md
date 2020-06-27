@@ -13,8 +13,6 @@ Below are a list of my conference talks, and podcast appearances.
 
 ### Upcoming
 
-
-
 ### Previous
 
 #### 2020
