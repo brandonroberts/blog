@@ -13,14 +13,13 @@ Below are a list of my conference talks, and podcast appearances.
 
 ### Upcoming
 
-#### May 2020
 
-- [State of NgRx w/ThisDot Media](https://www.angularmeetup.com/#/)
 
 ### Previous
 
 #### 2020
 
+[State of NgRx w/ThisDot Media](https://www.youtube.com/watch?v=w_Ar4DAYS9o)
 [The Facade of NgRx Facades](https://youtu.be/OZam9fNNwSE)
 [Revisiting a Reactive Router with Ivy](https://www.ng-conf.org/2020/sessions/revisiting-a-reactive-router-with-ivy/)
 
