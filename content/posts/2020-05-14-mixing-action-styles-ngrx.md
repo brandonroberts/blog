@@ -3,7 +3,7 @@ title: Mixing Action Styles in NgRx State
 description: 'Mixing Action Styles in NgRx State'
 published: true
 slug: 2020-05-14-mixing-action-styles-ngrx
-publishedDate: 2020-05-14
+publishedDate: '2020-05-14 02:00 PM CST'
 ---
 
 ## Mixing Action Styles In NgRx State
