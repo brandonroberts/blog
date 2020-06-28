@@ -30,22 +30,15 @@ export const WINDOW_TOKEN = new InjectionToken<WindowDisqus>('Window', {
   },
 });
 
-export const DISQUS_TOKEN = new InjectionToken<Disqus>('DISQUS', {
-  providedIn: 'root',
-  factory: () => {
-    return (window as any).DISQUS;
-  },
-});
-
 @Injectable({
   providedIn: 'root',
 })
 export class CommentsService {
   readonly containerId = 'comments_thread';
+  private readonly scriptId = 'disqus-src';
 
   constructor(
-    @Inject(WINDOW_TOKEN) private window: WindowDisqus,
-    @Inject(DISQUS_TOKEN) private disqus: Disqus
+    @Inject(WINDOW_TOKEN) private window: WindowDisqus
   ) {}
 
   initialize(
@@ -71,14 +64,42 @@ export class CommentsService {
   reset(page: DisqusConfig) {
     const config = this.getConfig(page);
 
-    this.disqus.reset({
+    this.window.DISQUS.reset({
       reload: true,
       config,
     });
   }
 
+  /**
+   * Cleans up the Disqus script and comments,
+   * so switching between posts loads the correct comments.
+   * Code adapted from disqus-react:
+   * 
+   * https://github.com/disqus/disqus-react/blob/master/src/DiscussionEmbed.jsx#L53
+   * 
+   * @param el ElementRef that contains the Disqus comments
+   */
+  cleanupComments(el: ElementRef) {
+    const disqusScript = document.getElementById(this.scriptId);
+
+    el.nativeElement.removeChild(disqusScript);
+    this.window.DISQUS.reset({});
+
+    try {
+      delete this.window.DISQUS;
+    } catch (error) {
+      this.window.DISQUS = undefined;
+    }
+
+    const thread = document.getElementById(this.containerId);
+
+    while(thread.hasChildNodes()) {
+      thread.removeChild(thread.firstChild);
+    }
+  }
+
   private initialized() {
-    return !!this.disqus;
+    return !!this.window.DISQUS;
   }
 
   private initializeComments(
@@ -86,9 +107,10 @@ export class CommentsService {
     renderer: Renderer2,
     element: ElementRef
   ) {
-    this.getConfig(page);
+    this.window.disqus_config = this.getConfig(page);
 
     const disqusScript = renderer.createElement('script');
+    disqusScript.id = this.scriptId;
     disqusScript.src = `//${environment.disqusConfig.shortname}.disqus.com/embed.js`;
     disqusScript.async = true;
     disqusScript.type = 'text/javascript';
@@ -102,10 +124,8 @@ export class CommentsService {
   }
 
   private getConfig(page: DisqusConfig) {
-    this.window.disqus_config = function () {
+    return function () {
       this.page = page;
     };
-
-    return this.window.disqus_config;
   }
 }

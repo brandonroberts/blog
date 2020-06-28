@@ -41,6 +41,10 @@ export class PostCommentsComponent implements AfterViewInit {
         this.commentsService.initialize(config, this.renderer, this.el);
       });
   }
+
+  ngOnDestroy() {
+    this.commentsService.cleanupComments(this.el);
+  }
 }
 
 @NgModule({
