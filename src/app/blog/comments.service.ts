@@ -37,9 +37,7 @@ export class CommentsService {
   readonly containerId = 'comments_thread';
   private readonly scriptId = 'disqus-src';
 
-  constructor(
-    @Inject(WINDOW_TOKEN) private window: WindowDisqus
-  ) {}
+  constructor(@Inject(WINDOW_TOKEN) private window: WindowDisqus) {}
 
   initialize(
     page: { url: string; title: string },
@@ -74,9 +72,9 @@ export class CommentsService {
    * Cleans up the Disqus script and comments,
    * so switching between posts loads the correct comments.
    * Code adapted from disqus-react:
-   * 
+   *
    * https://github.com/disqus/disqus-react/blob/master/src/DiscussionEmbed.jsx#L53
-   * 
+   *
    * @param el ElementRef that contains the Disqus comments
    */
   cleanupComments(el: ElementRef) {
@@ -93,7 +91,7 @@ export class CommentsService {
 
     const thread = document.getElementById(this.containerId);
 
-    while(thread.hasChildNodes()) {
+    while (thread.hasChildNodes()) {
       thread.removeChild(thread.firstChild);
     }
   }
