@@ -32,6 +32,12 @@ import { map } from 'rxjs/operators';
       :host /deep/ .mat-list-item {
         font-size: 24px;
       }
+
+      @media screen and (max-width: 480px) {
+        :host /deep/ .mat-list-item {
+          font-size: 16px;
+        }
+      }
     `,
   ],
 })
