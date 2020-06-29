@@ -92,8 +92,13 @@ export class CommentsService {
     const thread = document.getElementById(this.containerId);
 
     while (thread.hasChildNodes()) {
-      thread.removeChild(thread.firstChild);
+      if (thread.firstChild instanceof Node) {
+        thread.removeChild(thread.firstChild);
+      }
     }
+
+    document.querySelectorAll('iframe[id^="dsq"]')
+      .forEach(node => document.body.removeChild(node));
   }
 
   private initialized() {
