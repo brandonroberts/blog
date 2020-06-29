@@ -97,8 +97,9 @@ export class CommentsService {
       }
     }
 
-    document.querySelectorAll('iframe[id^="dsq"]')
-      .forEach(node => document.body.removeChild(node));
+    document
+      .querySelectorAll('iframe[id^="dsq"]')
+      .forEach((node) => document.body.removeChild(node));
   }
 
   private initialized() {

@@ -23,7 +23,7 @@ And Mike's response:
 We talk about the state of template-driven, and reactive forms in Angular, what improvements could be made, and the possibility of a building a new forms library.
 
 <div class="center">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/xAQr3migepw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe width="100%" height="640" src="https://www.youtube.com/embed/xAQr3migepw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 Follow me on [Twitter](https://twitter.com/brandontroberts), [YouTube](https://youtube.com/brandonrobertsdev), [Twitch](https://twitch.tv/brandontroberts), and consider [sponsoring me on GitHub](https://github.com/sponsors/brandonroberts).
