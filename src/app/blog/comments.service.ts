@@ -37,7 +37,7 @@ export class CommentsService {
   readonly containerId = 'comments_thread';
   private readonly scriptId = 'disqus-src';
 
-  constructor(@Inject(WINDOW_TOKEN) private window: WindowDisqus) {}
+  constructor(@Inject(WINDOW_TOKEN) private window: WindowDisqus) { }
 
   initialize(
     page: { url: string; title: string },
@@ -80,20 +80,27 @@ export class CommentsService {
   cleanupComments(el: ElementRef) {
     const disqusScript = document.getElementById(this.scriptId);
 
-    el.nativeElement.removeChild(disqusScript);
-    this.window.DISQUS.reset({});
+    if (disqusScript) {
+      el.nativeElement.removeChild(disqusScript);
+    }
 
-    try {
-      delete this.window.DISQUS;
-    } catch (error) {
-      this.window.DISQUS = undefined;
+    if (this.window.DISQUS) {
+      this.window.DISQUS.reset({});
+
+      try {
+        delete this.window.DISQUS;
+      } catch (error) {
+        this.window.DISQUS = undefined;
+      }
     }
 
     const thread = document.getElementById(this.containerId);
 
-    while (thread.hasChildNodes()) {
-      if (thread.firstChild instanceof Node) {
-        thread.removeChild(thread.firstChild);
+    if (thread) {
+      while (thread.hasChildNodes()) {
+        if (thread.firstChild instanceof Node) {
+          thread.removeChild(thread.firstChild);
+        }
       }
     }
 

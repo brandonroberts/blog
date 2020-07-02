@@ -35,7 +35,7 @@ export class PostCommentsComponent implements AfterViewInit {
       .subscribe((route) => {
         const config = {
           url: this.router.url,
-          title: `Brandon Roberts - ${route.title}`,
+          title: `Brandon Roberts${route ? ` - ${route.title}` : ''}`,
         };
 
         this.commentsService.initialize(config, this.renderer, this.el);
