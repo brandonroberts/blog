@@ -17,13 +17,13 @@ import { map } from 'rxjs/operators';
       >
         <mat-toolbar>Menu</mat-toolbar>
         <mat-nav-list>
-          <a mat-list-item routerLink="/" (click)="drawer.close()">Home</a>
-          <a mat-list-item routerLink="/blog" (click)="drawer.close()">Posts</a>
-          <a mat-list-item routerLink="/live" (click)="drawer.close()">Live Stream</a>
-          <a mat-list-item routerLink="/about" (click)="drawer.close()"
+          <a mat-list-item linkTo="/" (click)="drawer.close()">Home</a>
+          <a mat-list-item linkTo="/blog" (click)="drawer.close()">Posts</a>
+          <a mat-list-item linkTo="/live" (click)="drawer.close()">Live Stream</a>
+          <a mat-list-item linkTo="/about" (click)="drawer.close()"
             >About</a
           >
-          <a mat-list-item routerLink="/talks" (click)="drawer.close()"
+          <a mat-list-item linkTo="/talks" (click)="drawer.close()"
             >Talks</a
           >
         </mat-nav-list>
@@ -40,16 +40,16 @@ import { map } from 'rxjs/operators';
             <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
           </button>
 
-          <a routerLink="/">Brandon Roberts</a>
+          <a linkTo="/">Brandon Roberts</a>
 
           <div class="social">
-            <a *ngIf="!(isHandset$ | async)" routerLink="/blog">Posts</a>
+            <a *ngIf="!(isHandset$ | async)" linkTo="/blog">Posts</a>
 
-            <a *ngIf="!(isHandset$ | async)" routerLink="/live">Live Stream</a>
+            <a *ngIf="!(isHandset$ | async)" linkTo="/live">Live Stream</a>
 
-            <a *ngIf="!(isHandset$ | async)" routerLink="/talks">Talks</a>
+            <a *ngIf="!(isHandset$ | async)" linkTo="/talks">Talks</a>
 
-            <a *ngIf="!(isHandset$ | async)" routerLink="/about">About</a>
+            <a *ngIf="!(isHandset$ | async)" linkTo="/about">About</a>
 
             <a href="https://twitter.com/brandontroberts" title="Twitter">
               <img src="assets/images/logos/twitter-icon.svg" />
@@ -62,7 +62,14 @@ import { map } from 'rxjs/operators';
         </mat-toolbar>
 
         <div class="content" [class.container]="!(isHandset$ | async)">
-          <router-outlet></router-outlet>
+          <router>
+            <route path="/blog" [exact]="false" [load]="components.blog"></route>
+            <route path="/live" [load]="components.live"></route>
+            <route path="/:pageId">
+              <app-page *routeComponent></app-page>
+            </route>
+            <route path="/" redirectTo="/blog"></route>
+          </router>
         </div>
 
         <app-footer></app-footer>
@@ -125,6 +132,10 @@ import { map } from 'rxjs/operators';
   ],
 })
 export class AppComponent {
+  components = {
+    blog: () => import('./blog/blog.module').then((m) => m.BlogModule),
+    live: () => import('./live/live.component').then((m) => m.LiveComponent),
+  }
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(map((result) => result.matches));

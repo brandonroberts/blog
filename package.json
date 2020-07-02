@@ -31,6 +31,7 @@
     "@scullyio/init": "1.0.1",
     "@scullyio/ng-lib": "1.0.0",
     "@scullyio/scully": "1.0.2",
+    "angular-routing": "0.3.1",
     "core-js": "^3.6.5",
     "ngx-markdown": "^10.1.1",
     "path-to-regexp": "^6.1.0",

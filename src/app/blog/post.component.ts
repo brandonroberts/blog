@@ -43,6 +43,7 @@ export class PostComponent implements AfterViewChecked {
 
 @NgModule({
   declarations: [PostComponent],
+  exports: [PostComponent],
   imports: [CommonModule, ScullyLibModule, PostCommentsComponentModule],
 })
 export class PostComponentModule {}

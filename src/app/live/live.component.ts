@@ -1,20 +1,21 @@
 import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
-import { RouterModule } from '@angular/router';
+import { RoutingModule } from 'angular-routing';
 
 import { ScullyRoutesService, ScullyRoute } from '@scullyio/ng-lib';
 import { map } from 'rxjs/operators';
 
+
 @Component({
-  selector: 'app-posts',
+  selector: 'app-live',
   template: `
     <h2>Live Stream</h2>
 
     <mat-list>
       <mat-list-item *ngFor="let post of posts$ | async">
         <h2 mat-line>
-          <a routerLink="{{ post.route }}">{{ post.title }}</a>
+          <a linkTo="{{ post.route }}">{{ post.title }}</a>
         </h2>
 
         <p mat-line>{{ post.publishedDate | date:'longDate' }}</p>
@@ -64,6 +65,6 @@ export class LiveComponent {
 
 @NgModule({
   declarations: [LiveComponent],
-  imports: [CommonModule, MatListModule, RouterModule],
+  imports: [CommonModule, MatListModule, RoutingModule],
 })
 export class LiveComponentModule {}
