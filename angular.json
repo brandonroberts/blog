@@ -137,6 +137,109 @@
           }
         }
       }
+    },
+    "observable-load-children": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "inlineTemplate": true,
+          "inlineStyle": true,
+          "style": "sass",
+          "skipTests": true
+        },
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        },
+        "@schematics/angular:interceptor": {
+          "skipTests": true
+        },
+        "@schematics/angular:module": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        }
+      },
+      "root": "apps/observable-load-children",
+      "sourceRoot": "apps/observable-load-children/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/observable-load-children",
+            "index": "apps/observable-load-children/src/index.html",
+            "main": "apps/observable-load-children/src/main.ts",
+            "polyfills": "apps/observable-load-children/src/polyfills.ts",
+            "tsConfig": "apps/observable-load-children/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/observable-load-children/src/favicon.ico",
+              "apps/observable-load-children/src/assets"
+            ],
+            "styles": [
+              "apps/observable-load-children/src/styles.sass"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/observable-load-children/src/environments/environment.ts",
+                  "with": "apps/observable-load-children/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "observable-load-children:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "observable-load-children:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "observable-load-children:build"
+          }
+        }
+      }
     }
   },
   "defaultProject": "blog"

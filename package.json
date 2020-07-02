@@ -9,11 +9,12 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "yarn build --prod && yarn scully && firebase deploy --project brandonroberts-website",
+    "deploy": "yarn build --prod && yarn run embed:snippets && yarn scully && firebase deploy --project brandonroberts-website",
     "format": "prettier --write .",
-    "scully": "scully",
-    "scully:watch": "scully --watch",
-    "scully:serve": "scully serve"
+    "scully": "yarn run embed:snippets && scully",
+    "scully:watch": "yarn run embed:snippets && scully --watch",
+    "scully:serve": "scully serve",
+    "embed:snippets": "embedme content/posts/*.md --source-root ."
   },
   "private": true,
   "dependencies": {
@@ -30,11 +31,11 @@
     "@scullyio/init": "^0.0.28",
     "@scullyio/ng-lib": "latest",
     "@scullyio/scully": "latest",
-    "prismjs": "^1.20.0",
     "core-js": "^2.5.4",
     "ngx-markdown": "^8.1.0",
     "path-to-regexp": "^6.1.0",
     "prism-themes": "^1.0.1",
+    "prismjs": "^1.20.0",
     "rxjs": "~6.5.3",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
@@ -47,6 +48,7 @@
     "@angular/language-service": "~9.1.4",
     "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
+    "embedme": "^1.21.0",
     "firebase-tools": "^8.4.2",
     "ng-packagr": "^9.0.0",
     "prettier": "^2.0.5",
