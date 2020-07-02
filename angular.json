@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
+  "newProjectRoot": "apps",
   "projects": {
     "blog": {
       "root": "",
@@ -9,6 +9,11 @@
       "projectType": "application",
       "prefix": "app",
       "schematics": {
+        "@schematics/angular:application": {
+          "minimal": true,
+          "style": "sass",
+          "routing": true
+        },
         "@schematics/angular:component": {
           "style": "sass",
           "skipTests": true,
