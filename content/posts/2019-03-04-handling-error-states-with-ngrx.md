@@ -8,7 +8,9 @@ publishedDate: 2019-03-04
 
 ## Handling Error States with NgRx
 
-<img src="/assets/posts/david-travis-548920-unsplash.jpg" width="100%"/>
+<a href="https://unsplash.com/@soymeraki?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" title="Photo by David Travis on Unsplash">
+  <img src="/assets/posts/david-travis-548920-unsplash.jpg" width="100%"/>
+</a>
 
 When building applications with NgRx, one thing you have to be aware of is how to handle error states. Whether this be from submitting a login form, making a request for loading data, or handling user timeouts, errors still need to be displayed to the user in some way. The question arises of where do you put the error information. Should your error state be handled locally in the component, or added to your global state? There are multiple ways to do this, each with different advantages and drawbacks. Let's look at a movies page to walk through the different ways of handling and displaying errors.
 

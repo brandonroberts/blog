@@ -9,7 +9,7 @@ publishedDate: 2019-03-27
 ## Custom Route Matching with the Angular Router
 
 <a href="https://unsplash.com/@soymeraki?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" title="Photo by Javier Allegue Barros on Unsplash">
-  <img src="/assets/posts/javier-allegue-barros-761133-unsplash.jpg" class="center"/>
+  <img src="/assets/posts/javier-allegue-barros-761133-unsplash.jpg" width="100%"/>
 </a>
 
 When using the [Angular Router](https://angular.io/guide/router), there are usually only a few types of routes you need to create. A static route with no parameters, a variable route for dynamic parameters, and catchall routes for [404 pages](https://bobrov.dev/blog/angular-smart-404-page/). The Angular Router can handle all these scenarios with its powerful [route matching strategy](https://blog.angularindepth.com/angular-routing-series-pillar-1-router-states-and-url-matching-12520e62d0fc). The Angular Router also supports custom pattern matching for URL paths for more complex URLs. You've seen this before on Medium where it uses your Twitter handle in the URL. If you were building this route in your own application, you want to use this handle in your application as a route parameter but you don't want to parse out the `@` symbol every time.
