@@ -2,48 +2,33 @@ import {
   Component,
   NgModule,
   Renderer2,
-  ElementRef,
-  AfterViewInit,
+  OnInit
 } from '@angular/core';
-import { ScullyRoutesService } from '@scullyio/ng-lib';
-
-import { Router } from '@angular/router';
-import { first } from 'rxjs/operators';
-
-import { CommentsService } from './comments.service';
 
 @Component({
   selector: 'app-post-comments',
-  template: ` <div id="{{ containerId }}"></div> `,
+  template: ` <div id="commento"></div> `,
   styles: [''],
 })
-export class PostCommentsComponent implements AfterViewInit {
-  containerId = this.commentsService.containerId;
+export class PostCommentsComponent implements OnInit {  
+  constructor(private renderer: Renderer2) {}
 
-  constructor(
-    private renderer: Renderer2,
-    private el: ElementRef,
-    private router: Router,
-    private routeService: ScullyRoutesService,
-    private commentsService: CommentsService
-  ) {}
+  ngOnInit() {
+    this.loadComments();
+  }
 
-  ngAfterViewInit() {
-    this.routeService
-      .getCurrent()
-      .pipe(first())
-      .subscribe((route) => {
-        const config = {
-          url: this.router.url,
-          title: `Brandon Roberts - ${route.title}`,
-        };
+  loadComments() {
+    const commentoScript = this.renderer.createElement('script');
+    commentoScript.id = 'commento-script';
+    commentoScript.src = `https://cdn.commento.io/js/commento.js`;
+    commentoScript.type = 'text/javascript';
 
-        this.commentsService.initialize(config, this.renderer, this.el);
-      });
+    this.renderer.appendChild(document.body, commentoScript);
   }
 
   ngOnDestroy() {
-    this.commentsService.cleanupComments(this.el);
+    const cs = document.getElementById('commento-script');
+    this.renderer.removeChild(document.body, cs);
   }
 }
 
