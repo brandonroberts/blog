@@ -5,8 +5,9 @@ published: true
 slug: 2020-05-14-mixing-action-styles-ngrx
 publishedDate: '2020-05-14 02:00 PM CST'
 ---
+<div id="post-info"></div>
 
-## Mixing Action Styles In NgRx State
+<br/>
 
 <a href="https://unsplash.com/@franckinjapan?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" title="Photo by Franck V. on Unsplash">
   <img src="/assets/posts/franck-v-miWGZ02CLKI-unsplash.jpg" width="100%"/>

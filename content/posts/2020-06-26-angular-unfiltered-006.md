@@ -5,8 +5,9 @@ published: true
 slug: 2020-06-26-angular-unfiltered-006
 publishedDate: '2020-06-26 02:00 PM CST'
 ---
+<div id="post-info"></div>
 
-## Angular Unfiltered Episode 006: Quick Chat
+<br/>
 
 In another episode of Angular Unfiltered, me and [Bryan Wilhite](https://twitter.com/BryanWilhite) talked about Physics, coming up in a Microsoft ecosystem, building a blog in Angular without losing your SEO, and more!
 

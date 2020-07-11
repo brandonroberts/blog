@@ -5,8 +5,9 @@ published: true
 slug: 2020-05-22-angular-unfiltered-003
 publishedDate: '2020-05-22 02:00 PM CST'
 ---
+<div id="post-info"></div>
 
-## Angular Unfiltered Episode 003: Quick Chat
+<br/>
 
 In another episode of Angular Unfiltered, me and [Austin Akers](https://twitter.com/tweetmonster999), a Senior Software Engineer at Allstate talked about contributing to open source, mentorship, breakdancing, and more!
 

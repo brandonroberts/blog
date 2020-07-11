@@ -1,17 +1,23 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   AfterViewChecked,
   ViewEncapsulation,
   NgModule,
 } from '@angular/core';
-import { ScullyLibModule } from '@scullyio/ng-lib';
+import { ScullyLibModule, ScullyRoutesService } from '@scullyio/ng-lib';
 
 import { HighlightService } from '../highlight.service';
 import { PostCommentsComponentModule } from './comments.component';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-post',
   template: `
+    <h2>{{ title$ | async }}</h2>
+
+    <span>{{ publishedDate$ | async | date:'longDate' }} - {{ readingTime$ | async }} min read</span>
+
     <!-- This is where Scully will inject the static HTML -->
     <scully-content></scully-content>
 
@@ -22,7 +28,15 @@ import { PostCommentsComponentModule } from './comments.component';
   encapsulation: ViewEncapsulation.Emulated,
 })
 export class PostComponent implements AfterViewChecked {
-  constructor(private highlightService: HighlightService) {}
+  current$ = this.routes.getCurrent();
+  title$ = this.current$.pipe(map(route => route.title));
+  publishedDate$ = this.current$.pipe(map(route => route.publishedDate));
+  readingTime$ = this.current$.pipe(map(route => route.readingTime));
+
+  constructor(
+    private highlightService: HighlightService,
+    private routes: ScullyRoutesService
+  ) {}
 
   ngAfterViewChecked() {
     this.highlightService.highlightAll();
@@ -31,6 +45,6 @@ export class PostComponent implements AfterViewChecked {
 
 @NgModule({
   declarations: [PostComponent],
-  imports: [ScullyLibModule, PostCommentsComponentModule],
+  imports: [CommonModule, ScullyLibModule, PostCommentsComponentModule],
 })
 export class PostComponentModule {}

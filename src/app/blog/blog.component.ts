@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 
-import { ScullyRoutesService, ScullyRoute } from '@scullyio/ng-lib';
-import { Observable } from 'rxjs';
+import { ScullyRoutesService } from '@scullyio/ng-lib';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -18,7 +17,7 @@ import { map } from 'rxjs/operators';
           <a routerLink="{{ post.route }}">{{ post.title }}</a>
         </h2>
 
-        <p mat-line>{{ post.publishedDate | date }}</p>
+        <p mat-line>{{ post.publishedDate | date:'longDate' }} - {{ post.readingTime }} min read</p>
       </mat-list-item>
     </mat-list>
   `,
@@ -43,7 +42,7 @@ import { map } from 'rxjs/operators';
 })
 export class BlogComponent {
   posts$ = this.routesService.available$.pipe(
-    map((routes) => routes.filter((route) => route.route.startsWith('/blog'))),
+    map((routes) => routes.filter((route) => route.route.startsWith('/blog/posts'))),
     map((filteredRoutes) =>
       filteredRoutes
         .slice()

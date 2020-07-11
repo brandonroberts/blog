@@ -1,3 +1,4 @@
+require('./scully-plugins/post-info.plugin.js');
 import { ScullyConfig } from '@scullyio/scully';
 
 export const config: ScullyConfig = {

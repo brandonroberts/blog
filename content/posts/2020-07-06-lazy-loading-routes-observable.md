@@ -1,11 +1,13 @@
 ---
-title: 'Lazy Loading Routes using Observables with the Angular Router'
+title: 'Lazy Loading Routes using an Observable with the Angular Router'
 description: 'Describes how to use an Observable when lazy loading routes with the Angular Router'
 published: true
 slug: 2020-07-06-lazy-loading-routes-observable
 publishedDate: '2020-07-06 02:00 PM CST'
 ---
-## Lazy Loading Routes using an Observable with the Angular Router
+<div id="post-info"></div>
+
+<br/>
 
 <a href="https://unsplash.com/@kevin_butz?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" title="Photo by Kevin Butz on Unsplash">
   <img src="/assets/posts/kevin-butz-4xZTX1CZBVE-unsplash.jpg" width="100%"/>

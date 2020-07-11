@@ -5,8 +5,9 @@ published: true
 slug: 2020-05-15-angular-unfiltered-002
 publishedDate: '2020-05-15 02:00 PM CST'
 ---
+<div id="post-info"></div>
 
-## Angular Unfiltered Episode 002: Angular Forms Quick Chat
+<br/>
 
 In another episode of Angular Unfiltered, me and [Zack DeRose](https://twitter.com/zackderose), a Senior Angular Engineer at Nrwl continued the conversation about forms in Angular.
 

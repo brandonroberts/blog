@@ -5,8 +5,9 @@ published: true
 slug: 2020-05-22-angular-unfiltered-004
 publishedDate: '2020-06-12 02:00 PM CST'
 ---
+<div id="post-info"></div>
 
-## Angular Unfiltered Episode 004: Quick Chat
+<br/>
 
 In another episode of Angular Unfiltered, me and [Devin Shoemaker](https://twitter.com/paranoidcoder) talked about contributing to open source, using React with Nx, Nx plugin development, and more!.
 
