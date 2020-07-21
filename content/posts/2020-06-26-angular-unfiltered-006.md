@@ -5,14 +5,12 @@ published: true
 slug: 2020-06-26-angular-unfiltered-006
 publishedDate: '2020-06-26 02:00 PM CST'
 ---
-<div id="post-info"></div>
-
 <br/>
 
 In another episode of Angular Unfiltered, me and [Bryan Wilhite](https://twitter.com/BryanWilhite) talked about Physics, coming up in a Microsoft ecosystem, building a blog in Angular without losing your SEO, and more!
 
 <div class="center">
-  <iframe width="100%" height="640" src="https://www.youtube.com/embed/T2FzczZ744c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe width="500" height="315" src="https://www.youtube.com/embed/T2FzczZ744c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 ### Links
@@ -21,3 +19,4 @@ In another episode of Angular Unfiltered, me and [Bryan Wilhite](https://twitter
 - [Bryan's Blog platform](https://github.com/BryanWilhite)
 
 Follow me on [Twitter](https://twitter.com/brandontroberts), [YouTube](https://youtube.com/brandonrobertsdev), [Twitch](https://twitch.tv/brandontroberts), and consider [sponsoring me on GitHub](https://github.com/sponsors/brandonroberts).
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YZmD8gy7ycI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

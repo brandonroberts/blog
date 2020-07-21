@@ -5,8 +5,6 @@ published: true
 slug: 2019-03-27-custom-route-matching-angular-router
 publishedDate: 2019-03-27
 ---
-<div id="post-info"></div>
-
 <br/>
 
 <a href="https://unsplash.com/@soymeraki?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" title="Photo by Javier Allegue Barros on Unsplash">

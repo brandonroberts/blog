@@ -5,8 +5,6 @@ published: true
 slug: 2020-07-06-lazy-loading-routes-observable
 publishedDate: '2020-07-06 02:00 PM CST'
 ---
-<div id="post-info"></div>
-
 <br/>
 
 <a href="https://unsplash.com/@kevin_butz?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" title="Photo by Kevin Butz on Unsplash">

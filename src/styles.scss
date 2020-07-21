@@ -76,9 +76,16 @@ app-post a {
   text-decoration: underline;
 }
 
-app-post .center {
+app-post div.center {
   display: block;
-  margin: auto;
+  margin: 0 25%;
+}
+
+@media screen and (max-width: 480px) {
+  app-post div.center {
+    display: block;
+    margin: auto;
+  }
 }
 
 app-posts,
