@@ -49,7 +49,11 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "assets": ["src/favicon.ico", "src/assets", "src/content"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/content"
+            ],
             "styles": [
               "src/styles.scss",
               "node_modules/prism-themes/themes/prism-atom-dark.css"
@@ -57,8 +61,7 @@
             "scripts": [
               "node_modules/prismjs/prism.js",
               "node_modules/prismjs/components/prism-typescript.min.js"
-            ],
-            "es5BrowserSupport": true
+            ]
           },
           "configurations": {
             "production": {
