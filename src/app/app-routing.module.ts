@@ -7,6 +7,10 @@ const routes: Routes = [
     path: 'blog',
     loadChildren: () => import('./blog/blog.module').then((m) => m.BlogModule),
   },
+  {
+    path: 'live',
+    loadChildren: () => import('./live/live.module').then(m => m.LiveModule)
+  },
   { path: ':pageId', component: PageComponent },
   { path: '', redirectTo: '/blog', pathMatch: 'full' },
 ];

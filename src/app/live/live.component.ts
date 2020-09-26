@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-posts',
   template: `
-    <h2>Posts</h2>
+    <h2>Live Stream</h2>
 
     <mat-list>
       <mat-list-item *ngFor="let post of posts$ | async">
@@ -17,7 +17,7 @@ import { map } from 'rxjs/operators';
           <a routerLink="{{ post.route }}">{{ post.title }}</a>
         </h2>
 
-        <p mat-line>{{ post.publishedDate | date:'longDate' }} - {{ post.readingTime }} min read</p>
+        <p mat-line>{{ post.publishedDate | date:'longDate' }}</p>
       </mat-list-item>
     </mat-list>
   `,
@@ -40,7 +40,7 @@ import { map } from 'rxjs/operators';
     `,
   ],
 })
-export class BlogComponent {
+export class LiveComponent {
   posts$ = this.routesService.available$.pipe(
     map((routes) => routes.filter(route => this.isPost(route))),
     map((filteredRoutes) =>
@@ -56,14 +56,14 @@ export class BlogComponent {
   );
 
   isPost(route: ScullyRoute) {
-    return route.route.startsWith('/blog/posts') && !route.route.includes('angular-unfiltered');
+    return route.route.includes('angular-unfiltered');
   }
 
   constructor(private routesService: ScullyRoutesService) {}
 }
 
 @NgModule({
-  declarations: [BlogComponent],
+  declarations: [LiveComponent],
   imports: [CommonModule, MatListModule, RouterModule],
 })
-export class BlogComponentModule {}
+export class LiveComponentModule {}

@@ -18,6 +18,8 @@ import { map } from 'rxjs/operators';
         <mat-toolbar>Menu</mat-toolbar>
         <mat-nav-list>
           <a mat-list-item routerLink="/" (click)="drawer.close()">Home</a>
+          <a mat-list-item routerLink="/blog" (click)="drawer.close()">Posts</a>
+          <a mat-list-item routerLink="/live" (click)="drawer.close()">Live Stream</a>
           <a mat-list-item routerLink="/about" (click)="drawer.close()"
             >About</a
           >
@@ -41,6 +43,10 @@ import { map } from 'rxjs/operators';
           <a routerLink="/">Brandon Roberts</a>
 
           <div class="social">
+            <a *ngIf="!(isHandset$ | async)" routerLink="/blog">Posts</a>
+
+            <a *ngIf="!(isHandset$ | async)" routerLink="/live">Live Stream</a>
+
             <a *ngIf="!(isHandset$ | async)" routerLink="/talks">Talks</a>
 
             <a *ngIf="!(isHandset$ | async)" routerLink="/about">About</a>
