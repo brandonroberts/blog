@@ -20,8 +20,6 @@ import { map } from 'rxjs/operators';
 
     <!-- This is where Scully will inject the static HTML -->
     <scully-content></scully-content>
-
-    <app-post-comments></app-post-comments>
   `,
   styles: [''],
   preserveWhitespaces: true,
