@@ -1,12 +1,12 @@
-# Blog
+# Blog:
 
-## Setup
+## Setup:
 
 ```sh
 yarn
 ```
 
-## Serve
+## Serve:
 
 ```sh
 yarn scully:watch
@@ -14,7 +14,7 @@ yarn scully:watch
 
 Navigate to `http://localhost:1668/`.
 
-## Build
+## Build:
 
 ```sh
 yarn build
