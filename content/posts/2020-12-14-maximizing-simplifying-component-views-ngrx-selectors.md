@@ -199,9 +199,40 @@ In this example, when the returned value is updated whenever either of the loade
 
 ## Building View Models
 
-When you are consuming many observables in your components, a good pattern to follow is to build a view model of the combined observables into one single observable that’s exposed to your template. This view model pattern is very popular in AngularJS, and Angular. In Angular, you only have to deal with unwrapping a single observable with the async pipe, and you’re able to work with the view model properties throughout the rest of your template. Building on top of composable selectors, you can achieve this same pattern, and keep the same efficiency in selecting data from the Store.
+When you are consuming many observables in your components, a good pattern to follow is to build a view model of the combined observables into one single observable that’s exposed to your template. This view model pattern is very popular in AngularJS, and Angular. In Angular, you only have to deal with unwrapping a single observable with the async pipe, and you’re able to work with the view model properties throughout the rest of your template. 
 
-In the previous selectors, there is a value for when the view is ready, and the list of products. Use these two selectors to build a view model selector for the product list component.
+A common pattern is to combine multiple observables using the `combineLatest` operator from RxJS in the component class.
+
+```ts
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import * as ProductListSelectors from './product-list.selectors';
+import * as ProductsListActions from './product-list.actions';
+
+@Component({
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.css']
+})
+export class ProductListComponent {
+  ready$ = this.store.select(ProductListSelectors.selectIsViewReady);
+  products$ = this.store.select(ProductListSelectors.selectProductsList);
+  vm$ = combineLatest([this.ready, this.products$]).pipe(
+    map(([ready, products]) => ({ ready, products }))
+  );
+
+  constructor(private store: Store) {}
+
+  ngOnInit() {
+    this.store.dispatch(ProductsListActions.enter());
+  }
+}
+```
+
+Combining observables in RxJS using `combineLatest` or other combination operators have their place, but both observables are getting data from the _same_ global state object. And the combined observable will emit a value any time _either_ one of the observables emits a value after the first combined emission. This causes extra computations that aren't necessary when multiple pieces of state you are combining are updated at the same time. The more observables added to the `combineLatest` array results in more computations when multiple pieces of state are updated. 
+
+Building on top of composable selectors, you can achieve this same pattern, and keep the same efficiency in selecting data from the Store. In the previous selectors, there is a value for when the view is ready, and the list of products. Use these two selectors to build a view model selector for the product list component.
 
 ```ts
 export const selectProductListViewModel = createSelector(
@@ -211,7 +242,7 @@ export const selectProductListViewModel = createSelector(
 );
 ```
 
-Now instead of having two different observables for ready status and the product list, there is a single view model observable.
+A combined selector gives you less observables to manage, a single emission even when multiple slices of state used in the selector are updated in one state change event, and a clean view model to use in your component. Now instead of having multiple observables for ready status and the product list, there is a single view model observable.
 
 ```ts
 import { Component } from '@angular/core';
@@ -266,11 +297,7 @@ In the template, use the async pipe to subcribe to and assign the variable to th
 </ng-template>
 ```
 
-In case you have more data for a view model, selectors can take up to 8 inputs to combine data. If you exceed that limit, break down your selectors into smaller units, and compose them back together into a single one. 
-
-NOTE: In the examples above, the collections are managed in the state by using simple arrays. In practice, the @ngrx/entity library would be used to manage these collections consistently, efficiently, and predictably using an adapter with provided selectors.
-
-The component remains thin, and takes full advantage of observables through selectors provided through the Store. You can maximize and simplify component views with NgRx Selectors by deriving new data from existing data, composing selectors together, and building reactive view models for your component to consume.
+In case you have more data for a view model, selectors can take up to 8 inputs to combine data. If you exceed that limit, break down your selectors into smaller units, and compose them back together into a single one. The component remains thin, and takes full advantage of observables through selectors provided through the Store. You can maximize and simplify component views with NgRx Selectors by deriving new data from existing data, composing selectors together, and building reactive view models for your component to consume.
 
 To see a full working example that builds on top of the Angular Getting Started tutorial, check out this [repository](https://github.com/brandonroberts/maximize-simplify-ngrx-selectors).
 
