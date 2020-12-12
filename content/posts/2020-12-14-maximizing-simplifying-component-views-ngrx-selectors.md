@@ -42,7 +42,7 @@ So what are some things you can derive, and transform this data? Here are a few 
 Selecting the total number of products in the collection.
 
 ```ts
-const selectAllProducts = createSelector(
+const selectTotalProducts = createSelector(
   selectProductsState,
   state => state.collection.length
 );
@@ -104,7 +104,7 @@ const selectFirstFiveProducts = createSelector(
 );
 ```
 
-A big benefit you gain by using selectors to build other selectors is that selectors only recompute when they’re inputs change. By only listening to the collection instead of the entire state, the composed selectors will only re-run the projector function if the collection changes. The other benefit is that if a selector inputs do change, but it’s computed value is the same, the previous value is returned, along with the same reference. This is where you get the added efficiency when using OnPush change detection. If the reference hasn’t changed, change detection doesn’t need to run again. To learn more about the ins and outs of change detection, read [Everything you need to know about change detection in Angular](https://indepth.dev/posts/1053/everything-you-need-to-know-about-change-detection-in-angular) over at [inDepthDev](https://indepth.dev).
+A benefit you gain by using selectors to build other selectors is that selectors only recompute when they’re inputs change. By only listening to the collection instead of the entire state, the composed selectors will only re-run the projector function if the collection changes. The other benefit is that if a selector inputs do change, but it’s computed value is the same, the previous value is returned, along with the same reference. This is where you get the added efficiency when using OnPush change detection. If the reference hasn’t changed, change detection doesn’t need to run again. To learn more about the ins and outs of change detection, read [Everything you need to know about change detection in Angular](https://indepth.dev/posts/1053/everything-you-need-to-know-about-change-detection-in-angular) over at [inDepthDev](https://indepth.dev).
 
 To drive the composability of selectors even further, modify the products state to add a categoryId to each product.
 
@@ -176,6 +176,8 @@ const selectProductsList = createSelector(
       };
     });
 ```
+
+**NgRx Tip:** The [@ngrx/entity](https://ngrx.io/guide/entity) package creates dictionaries of collections for you, and provides an adapter with methods, and selectors for working with collections out of the box.
 
 <video width="100%" height="480" loop autoplay controls>
   <source src="/assets/posts/another-one.mp4" type="video/mp4">
