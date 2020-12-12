@@ -42,7 +42,7 @@ So what are some things we can derive, and ways we can transform this data? Here
 Selecting the total number of products in the collection.
 
 ```ts
-const selectAll = createSelector(
+const selectAllProducts = createSelector(
   selectProductsState,
   state => state.collection.length
 );
@@ -51,7 +51,7 @@ const selectAll = createSelector(
 Select the top 5 products from the collection:
 
 ```ts
-const topFiveProducts = createSelector(
+const selectTopFiveProducts = createSelector(
   selectProductsState,
   state => state.collection.slice(0, 4)
 );
@@ -60,7 +60,7 @@ const topFiveProducts = createSelector(
 Create a dictionary of products by id:
 
 ```ts
-const productsDictionary = createSelector(
+const selectProductsDictionary = createSelector(
   selectProductsState,
   state => {
     return state.collection
@@ -98,7 +98,7 @@ const selectTotalProducts = createSelector(
 Along with selecting the top 5 products from the collection.
 
 ```ts
-const topFiveProducts = createSelector(
+const selectTopFiveProducts = createSelector(
   selectAllProducts,
   products => products.slice(0, 4)
 );
