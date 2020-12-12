@@ -8,7 +8,7 @@ publishedDate: '2020-12-14 02:00 PM CST'
 
 <br/>
 
-<a href="hhttps://unsplash.com/@siora18?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" title="Siora Photography on Unsplash">
+<a href="https://unsplash.com/@siora18?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" title="Siora Photography on Unsplash">
   <img src="/assets/posts/siora-photography-L06-OsgvNoM-unsplash.jpg" width="100%"/>
 </a>
  
@@ -37,7 +37,7 @@ interface ProductsState {
 }
 ```
 
-So what are some things we can derive, and ways we can transform this data? Here are a few examples.
+So what are some things you can derive, and transform this data? Here are a few examples.
 
 Selecting the total number of products in the collection.
 
@@ -48,12 +48,12 @@ const selectAllProducts = createSelector(
 );
 ```
 
-Select the top 5 products from the collection:
+Select the first 5 products from the collection:
 
 ```ts
-const selectTopFiveProducts = createSelector(
+const selectFirstFiveProducts = createSelector(
   selectProductsState,
-  state => state.collection.slice(0, 4)
+  state => state.collection.slice(0, 5)
 );
 ```
 
@@ -95,12 +95,12 @@ const selectTotalProducts = createSelector(
 );
 ```
 
-Along with selecting the top 5 products from the collection.
+Along with selecting the first 5 products from the collection.
 
 ```ts
-const selectTopFiveProducts = createSelector(
+const selectFirstFiveProducts = createSelector(
   selectAllProducts,
-  products => products.slice(0, 4)
+  products => products.slice(0, 5)
 );
 ```
 
