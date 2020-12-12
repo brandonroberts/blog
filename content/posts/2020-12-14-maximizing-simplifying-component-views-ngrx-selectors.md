@@ -9,7 +9,7 @@ publishedDate: '2020-12-14 02:00 PM CST'
 <br/>
 
 <a href="https://unsplash.com/@siora18?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" title="Siora Photography on Unsplash">
-  <img src="/assets/posts/siora-photography-L06-OsgvNoM-unsplash.jpg" width="100%"/>
+  <img src="/assets/posts/siora-photography-L06-OsgvNoM-unsplash.jpg" width="100%" height/>
 </a>
  
 When building applications with NgRx for state management, one area that provides a lot of power and flexibility is in the usage of selectors. At a high level, selectors provide a few benefits to querying data in the store: efficient querying of data through memoization, composability to build up new data models, and synchronous access to operate with state. When reviewing projects and their usage of NgRx along with selectors, there are a few common trends that stick out including under-utilizing selectors for combining data, storing data that can be derived, and minimal usage of composed selectors to build view models. This post provides some practical examples in these areas to show how you can maximize and simplify your components using selectors by deriving state, combining and composing selectors together, and building view models from selectors for your components.
@@ -64,9 +64,9 @@ const selectProductsDictionary = createSelector(
   selectProductsState,
   state => {
     return state.collection
-      .reduce((productDictionary, product) => {
+      .reduce((productsDictionary, product) => {
         return {
-          ...productDictionary,
+          ...productsDictionary,
           [product.id]: product
         };
       }, {});
@@ -145,18 +145,34 @@ const selectAllCategories = createSelector(
 );
 ```
 
+Create a dictionary of categories by id:
+
+```ts
+const selectCategoriesDictionary = createSelector(
+  selectAllCategories,
+  categories => {
+    return categories
+      .reduce((categoriesDictionary, category) => {
+        return {
+          ...categoriesDictionary,
+          [category.id]: category
+        };
+      }, {});
+  });
+```
+
 Build on the same idea that selectors are composable to build a new dataset of products along with their associated category and title.
 
 ```ts
 const selectProductsList = createSelector(
   selectAllProducts,
-  selectAllCategories,
-  (products, categories) => {
+  selectCategoriesDictionary,
+  (products, categoriesDictionary) => {
     return products.map(product => {
       return {
         ...product,
-       title: `${product.name} details`,
-       category: categories.find(category => category.id === product.categoryId) || ‘’;
+        title: `${product.name} details`,
+        category: categoriesDictionary[product.categoryId] ? categoriesDictionary[product.categoryId].name : '';
       };
     });
 ```
