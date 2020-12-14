@@ -61,16 +61,16 @@ Create a dictionary of products by id:
 
 ```ts
 const selectProductsDictionary = createSelector(
-  selectProductsState,
-  state => {
-    return state.collection
-      .reduce((productsDictionary, product) => {
-        return {
-          ...productsDictionary,
-          [product.id]: product
-        };
-      }, {});
-  });
+  selectAllProducts,
+  products => {
+    let productsDictionary: { [id: number]: Product } = {};
+    
+    products.forEach(product => {
+      productsDictionary[product.id] = product;
+    });
+
+  return productsDictionary;
+});
 ```
 
 These are just a few ways of deriving new data from the existing state, but you have many options depending on datasets you need to build.
@@ -151,14 +151,14 @@ Create a dictionary of categories by id:
 const selectCategoriesDictionary = createSelector(
   selectAllCategories,
   categories => {
-    return categories
-      .reduce((categoriesDictionary, category) => {
-        return {
-          ...categoriesDictionary,
-          [category.id]: category
-        };
-      }, {});
-  });
+    let categoriesDictionary: { [id: number]: Category } = {};
+    
+    categories.forEach(category => {
+      categoriesDictionary[category.id] = category;
+    });
+
+  return categoriesDictionary;
+});
 ```
 
 Build on the same idea that selectors are composable to build a new dataset of products along with their associated category and title.
