@@ -12,7 +12,7 @@ publishedDate: '2020-12-14 02:00 PM CST'
   <img src="/assets/posts/siora-photography-L06-OsgvNoM-unsplash.jpg" width="100%" height/>
 </a>
  
-When building applications with NgRx for state management, one area that provides a lot of power and flexibility is in the usage of selectors. At a high level, selectors provide a few benefits to querying data in the store: efficient querying of data through memoization, composability to build up new data models, and synchronous access to operate with state. When reviewing projects and their usage of NgRx along with selectors, there are a few common trends that stick out including under-utilizing selectors for combining data, storing data that can be derived, and minimal usage of composed selectors to build view models. This post provides some practical examples in these areas to show how you can maximize and simplify your components using selectors by deriving state, combining and composing selectors together, and building view models from selectors for your components.
+When building Angular applications with NgRx for state management, one area that provides a lot of power and flexibility is in the usage of selectors. At a high level, selectors provide a few benefits to querying data in the store: efficient querying of data through memoization, composability to build up new data models, and synchronous access to operate with state. When reviewing projects and their usage of NgRx along with selectors, there are a few common trends that stick out including under-utilizing selectors for combining data, storing data that can be derived, and minimal usage of composed selectors to build view models. This post provides some practical examples in these areas to show how you can maximize and simplify your components using selectors by deriving state, combining and composing selectors together, and building view models from selectors for your components.
 
 ## Deriving State
 
@@ -77,7 +77,7 @@ These are just a few ways of deriving new data from the existing state, but you 
 
 ## Composing Selectors
 
-In the previous examples, selectors were built by accessing each property on the state, and returning a different set of data. Selectors are composable, in that you use selectors to build using other selectors, providing them as inputs. These input selectors can come from many different areas, even ones outside your immediate state. Taking the products example from above, the products collection in many different ways, and should be extracted into its own selector.
+In the previous examples, selectors were built by accessing each property on the state, and returning a different set of data. Selectors are composable, in that you use selectors to build using other selectors, providing them as inputs. These input selectors can come from many different areas, even ones outside your immediate state. Taking the products example from above, the products collection is used in many different ways, and should be extracted into its own selector.
 
 ```ts
 const selectAllProducts = createSelector(
@@ -104,7 +104,7 @@ const selectFirstFiveProducts = createSelector(
 );
 ```
 
-A benefit you gain by using selectors to build other selectors is that selectors only recompute when they’re inputs change. By only listening to the collection instead of the entire state, the composed selectors will only re-run the projector function if the collection changes. The other benefit is that if a selector inputs do change, but it’s computed value is the same, the previous value is returned, along with the same reference. This is where you get the added efficiency when using OnPush change detection. If the reference hasn’t changed, change detection doesn’t need to run again. To learn more about the ins and outs of change detection, read [Everything you need to know about change detection in Angular](https://indepth.dev/posts/1053/everything-you-need-to-know-about-change-detection-in-angular) over at [inDepthDev](https://indepth.dev).
+A benefit you gain by using selectors to build other selectors is that selectors only recompute when they’re inputs change. By only listening to the collection instead of the entire state, the composed selectors will only re-run the projector function if the collection changes. The other benefit is that if a selector's inputs do change, but its computed value is the same, the previous value is returned, along with the same reference. This is where you get the added efficiency when using OnPush change detection. If the reference hasn’t changed, change detection doesn’t need to run again. To learn more about the ins and outs of change detection, read [Everything you need to know about change detection in Angular](https://indepth.dev/posts/1053/everything-you-need-to-know-about-change-detection-in-angular) over at [inDepthDev](https://indepth.dev).
 
 To drive the composability of selectors even further, modify the products state to add a categoryId to each product.
 
@@ -260,7 +260,7 @@ export const selectProductListViewModel = createSelector(
 );
 ```
 
-A combined selector gives you less observables to manage, a single emission even when multiple slices of state used in the selector are updated in one state change event, and a clean view model to use in your component. Now instead of having multiple observables for ready status and the product list, there is a single view model observable.
+A combined selector gives you fewer observables to manage, a single emission even when multiple slices of state used in the selector are updated in one state change event, and a clean view model to use in your component. Now instead of having multiple observables for ready status and the product list, there is a single view model observable.
 
 ```ts
 import { Component } from '@angular/core';
