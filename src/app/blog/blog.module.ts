@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule, Component } from '@angular/core';
 import { RoutingModule, ModuleWithRoute } from 'angular-routing';
 
-import { NavigationEndDirectiveModule } from '../shared/navigation-end.directive';
 import { BlogComponentModule } from './blog.component';
 import { PostComponentModule } from './post.component';
 
@@ -10,10 +9,10 @@ import { PostComponentModule } from './post.component';
   template: `
     <router>
       <route path="/posts/:id">
-        <app-post *routeComponent [navigationEnd]></app-post>
+        <app-post *routeComponent></app-post>
       </route>
       <route path="/">
-        <app-posts *routeComponent [navigationEnd]></app-posts>
+        <app-posts *routeComponent></app-posts>
       </route>
     </router>
   `
@@ -26,8 +25,7 @@ export class PostsComponent { }
     CommonModule,
     BlogComponentModule,
     PostComponentModule,
-    RoutingModule,
-    NavigationEndDirectiveModule
+    RoutingModule
   ],
 })
 export class BlogModule implements ModuleWithRoute {

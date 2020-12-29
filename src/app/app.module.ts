@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,21 +14,22 @@ import { ScullyLibModule } from '@scullyio/ng-lib';
 import { AppComponent } from './app.component';
 import { FooterComponentModule } from './footer.component';
 import { PageComponentModule } from './pages/page.component';
-import { provideAngularRouter } from './angular-router.service';
-import { NavigationEndDirectiveModule } from './shared/navigation-end.directive';
 
 @Component({
-  selector: 'app-empty',
-  template: ''
+  template: '<scully-content></scully-content>'
 })
-export class EmptyComponent {}
+export class ContentComponent {}
 
 @NgModule({
-  declarations: [AppComponent, EmptyComponent],
+  declarations: [AppComponent, ContentComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RoutingModule.forRoot(),
+    RouterModule.forRoot([
+      { path: 'blog/posts/:id', component: ContentComponent },
+      { path: ':pageId', component: ContentComponent }
+    ], { initialNavigation: false }),
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
@@ -36,10 +38,8 @@ export class EmptyComponent {}
     MatListModule,
     FooterComponentModule,
     PageComponentModule,
-    ScullyLibModule,
-    NavigationEndDirectiveModule
+    ScullyLibModule
   ],
-  providers: [provideAngularRouter()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
