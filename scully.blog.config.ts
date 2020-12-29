@@ -19,8 +19,12 @@ import { readdirSync } from 'fs';
 // });
 
 const getRoutes = new Promise<string[]>((res) => {
-  const posts = readdirSync('./content/posts').map(post => `/blog/posts/${post.split('.md')[0]}`);
-  const pages = readdirSync('./content/pages').map(page => `/${page.split('.md')[0]}`);
+  const posts = readdirSync('./content/posts').map(
+    (post) => `/blog/posts/${post.split('.md')[0]}`
+  );
+  const pages = readdirSync('./content/pages').map(
+    (page) => `/${page.split('.md')[0]}`
+  );
   const otherPages = ['/live'];
 
   res([...posts, ...pages, ...otherPages]);
@@ -35,17 +39,14 @@ export const config: ScullyConfig = {
       type: 'contentFolder',
       id: {
         folder: './content/posts',
-      }
+      },
     },
     '/:pageId': {
       type: 'contentFolder',
       pageId: {
         folder: './content/pages',
-      }
-    }
+      },
+    },
   },
-  extraRoutes: [
-    '/blog',
-    '/live'
-  ]
+  extraRoutes: ['/blog', '/live'],
 };

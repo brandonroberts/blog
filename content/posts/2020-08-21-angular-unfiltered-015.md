@@ -5,6 +5,7 @@ published: true
 slug: 2020-08-21-angular-unfiltered-015
 publishedDate: '2020-08-21 02:00 PM CST'
 ---
+
 <br/>
 
 In another episode of Angular Unfiltered, [L.E. Nichols](https://twitter.com/lenicholsdev) joins me to chat about Angular and other topics.

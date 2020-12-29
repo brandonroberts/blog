@@ -44,16 +44,15 @@ Selecting the total number of products in the collection.
 ```ts
 const selectTotalProducts = createSelector(
   selectProductsState,
-  state => state.collection.length
+  (state) => state.collection.length
 );
 ```
 
 Select the first 5 products from the collection:
 
 ```ts
-const selectFirstFiveProducts = createSelector(
-  selectProductsState,
-  state => state.collection.slice(0, 5)
+const selectFirstFiveProducts = createSelector(selectProductsState, (state) =>
+  state.collection.slice(0, 5)
 );
 ```
 
@@ -62,15 +61,16 @@ Create a dictionary of products by id:
 ```ts
 const selectProductsDictionary = createSelector(
   selectAllProducts,
-  products => {
+  (products) => {
     let productsDictionary: { [id: number]: Product } = {};
-    
-    products.forEach(product => {
+
+    products.forEach((product) => {
       productsDictionary[product.id] = product;
     });
 
-  return productsDictionary;
-});
+    return productsDictionary;
+  }
+);
 ```
 
 These are just a few ways of deriving new data from the existing state, but you have many options depending on datasets you need to build.
@@ -82,7 +82,7 @@ In the previous examples, selectors were built by accessing each property on the
 ```ts
 const selectAllProducts = createSelector(
   selectProductsState,
-  state => state.collection
+  (state) => state.collection
 );
 ```
 
@@ -91,16 +91,15 @@ Now the total products selector use this selector as an input.
 ```ts
 const selectTotalProducts = createSelector(
   selectAllProducts,
-  products => products.length
+  (products) => products.length
 );
 ```
 
 Along with selecting the first 5 products from the collection.
 
 ```ts
-const selectFirstFiveProducts = createSelector(
-  selectAllProducts,
-  products => products.slice(0, 5)
+const selectFirstFiveProducts = createSelector(selectAllProducts, (products) =>
+  products.slice(0, 5)
 );
 ```
 
@@ -123,7 +122,7 @@ Along with products, add a slice of state to manage categories. The model for a 
 interface Category {
   id: string;
   name: string;
-  description: string
+  description: string;
 }
 ```
 
@@ -141,7 +140,7 @@ Apply the same approach to selecting all categories.
 ```ts
 const selectAllCategories = createSelector(
   selectCategoriesState,
-  state => state.collection
+  (state) => state.collection
 );
 ```
 
@@ -150,15 +149,16 @@ Create a dictionary of categories by id:
 ```ts
 const selectCategoriesDictionary = createSelector(
   selectAllCategories,
-  categories => {
+  (categories) => {
     let categoriesDictionary: { [id: number]: Category } = {};
-    
-    categories.forEach(category => {
+
+    categories.forEach((category) => {
       categoriesDictionary[category.id] = category;
     });
 
-  return categoriesDictionary;
-});
+    return categoriesDictionary;
+  }
+);
 ```
 
 Build on the same idea that selectors are composable to build a new dataset of products along with their associated category and title.
@@ -191,7 +191,7 @@ Select if the collection is loaded:
 ```ts
 const selectProductsLoaded = createSelector(
   selectProductsState,
-  state => state.loaded
+  (state) => state.loaded
 );
 ```
 
@@ -200,7 +200,7 @@ And select if the categories are loaded:
 ```ts
 const selectCategoriesLoaded = createSelector(
   selectCategoriesState,
-  state => state.loaded
+  (state) => state.loaded
 );
 ```
 
@@ -217,7 +217,7 @@ In this example, when the returned value is updated whenever either of the loade
 
 ## Building View Models
 
-When you are consuming many observables in your components, a good pattern to follow is to build a view model of the combined observables into one single observable that’s exposed to your template. This view model pattern is very popular in AngularJS, and Angular. In Angular, you only have to deal with unwrapping a single observable with the async pipe, and you’re able to work with the view model properties throughout the rest of your template. 
+When you are consuming many observables in your components, a good pattern to follow is to build a view model of the combined observables into one single observable that’s exposed to your template. This view model pattern is very popular in AngularJS, and Angular. In Angular, you only have to deal with unwrapping a single observable with the async pipe, and you’re able to work with the view model properties throughout the rest of your template.
 
 A common pattern is to combine multiple observables using the `combineLatest` operator from RxJS in the component class.
 
@@ -231,7 +231,7 @@ import * as ProductsListActions from './product-list.actions';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent {
   ready$ = this.store.select(ProductListSelectors.selectIsViewReady);
@@ -248,7 +248,7 @@ export class ProductListComponent {
 }
 ```
 
-Combining observables in RxJS using `combineLatest` or other combination operators have their place, but both observables are getting data from the _same_ global state object. And the combined observable will emit a value any time _either_ one of the observables emits a value after the first combined emission. This causes extra computations that aren't necessary when multiple pieces of state you are combining are updated at the same time. The more observables added to the `combineLatest` array results in more computations when multiple pieces of state are updated. 
+Combining observables in RxJS using `combineLatest` or other combination operators have their place, but both observables are getting data from the _same_ global state object. And the combined observable will emit a value any time _either_ one of the observables emits a value after the first combined emission. This causes extra computations that aren't necessary when multiple pieces of state you are combining are updated at the same time. The more observables added to the `combineLatest` array results in more computations when multiple pieces of state are updated.
 
 Building on top of composable selectors, you can achieve this same pattern, and keep the same efficiency in selecting data from the Store. In the previous selectors, there is a value for when the view is ready, and the list of products. Use these two selectors to build a view model selector for the product list component.
 
@@ -272,7 +272,7 @@ import * as ProductsListActions from './product-list.actions';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent {
   vm$ = this.store.select(ProductListSelectors.selectProductListViewModel);
@@ -293,26 +293,19 @@ In the template, use the async pipe to subcribe to and assign the variable to th
 <ng-container *ngIf="vm$ | async as vm">
   <ng-container *ngIf="vm.ready;else loading">
     <div *ngFor="let product of vm.products">
-
       <h3>
         <a [title]="product.title" [routerLink]="['/products', product.id]">
           {{ product.name }}
         </a>
       </h3>
-      <p *ngIf="product.description">
-        Description: {{ product.description }}
-      </p>
+      <p *ngIf="product.description">Description: {{ product.description }}</p>
 
-      <p *ngIf="product.category">
-        Category: {{ product.category }}
-      </p>
+      <p *ngIf="product.category">Category: {{ product.category }}</p>
     </div>
   </ng-container>
 </ng-container>
 
-<ng-template #loading>
-  Loading ...
-</ng-template>
+<ng-template #loading> Loading ... </ng-template>
 ```
 
 In case you have more data for a view model, selectors can take up to 8 inputs to combine data. If you exceed that limit, break down your selectors into smaller units, and compose them back together into a single one. The component remains thin, and takes full advantage of observables through selectors provided through the Store. You can maximize and simplify component views with NgRx Selectors by deriving new data from existing data, composing selectors together, and building reactive view models for your component to consume.

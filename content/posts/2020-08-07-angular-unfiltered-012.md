@@ -5,6 +5,7 @@ published: true
 slug: 2020-08-07-angular-unfiltered-012
 publishedDate: '2020-08-07 02:00 PM CST'
 ---
+
 <br/>
 
 In another episode of Angular Unfiltered, I'm chatting with [Bram Borggreve aka Beeman](https://twitter.com/beeman_nl) about Open Source, living a nomadic lifestyle, Angular and Nx.

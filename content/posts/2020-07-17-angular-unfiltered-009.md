@@ -5,6 +5,7 @@ published: true
 slug: 2020-07-17-angular-unfiltered-009
 publishedDate: '2020-07-17 02:00 PM CST'
 ---
+
 <br/>
 
 In another episode of Angular Unfiltered, Angular Dev Twitter is on fire! [Mike Hartington](https://twitter.com/mhartington), [Lance Finney](https://twitter.com/lmfinneycoder), and I discuss it.

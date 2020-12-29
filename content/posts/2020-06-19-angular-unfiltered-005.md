@@ -5,6 +5,7 @@ published: true
 slug: 2020-06-19-angular-unfiltered-005
 publishedDate: '2020-06-19 02:00 PM CST'
 ---
+
 <br/>
 
 In another episode of Angular Unfiltered, me and [Luke Howell](https://twitter.com/LukeHowellDev), a personal friend, and UI Architect talked about marketing for the Army, challenges with Angular styling packages, interacting with designers, and more!.

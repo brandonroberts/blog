@@ -5,6 +5,7 @@ published: true
 slug: 2020-07-02-angular-unfiltered-007
 publishedDate: '2020-07-02 02:00 PM CST'
 ---
+
 <br/>
 
 In another episode of Angular Unfiltered, [Josh Van Allen](https://twitter.com/BryanWilhite), [Nicholas Cunningham](https://twitter.com/ndcunningham) and I talked at length about Ben Lesh's blog post, including getting started with RxJS, learning RxJS before NgRx, and more.

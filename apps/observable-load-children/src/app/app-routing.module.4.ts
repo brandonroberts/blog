@@ -6,21 +6,24 @@ import { map, tap } from 'rxjs/operators';
 
 const routes: Routes = [
   {
-    path: 'lazy', loadChildren: () => from(import('./lazy/lazy.module')).pipe(
-      map(m => m.LazyModule),
-      tap(() => {
-        console.log('Lazy Module Loaded');
-      }, () => {
-        console.log('Lazy Module Load Failed');
-      })
-    )
+    path: 'lazy',
+    loadChildren: () =>
+      from(import('./lazy/lazy.module')).pipe(
+        map((m) => m.LazyModule),
+        tap(
+          () => {
+            console.log('Lazy Module Loaded');
+          },
+          () => {
+            console.log('Lazy Module Load Failed');
+          }
+        )
+      ),
   },
-  { path: '', redirectTo: 'lazy', pathMatch: 'full' }
+  { path: '', redirectTo: 'lazy', pathMatch: 'full' },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes)
-  ],
+  imports: [RouterModule.forRoot(routes)],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

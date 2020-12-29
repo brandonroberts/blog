@@ -1,10 +1,9 @@
 import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
-import { RoutingModule } from 'angular-routing';
-
 import { ScullyRoutesService, ScullyRoute } from '@scullyio/ng-lib';
 import { map } from 'rxjs/operators';
+import { RoutingModule } from 'angular-routing';
 
 @Component({
   selector: 'app-posts',
@@ -17,7 +16,10 @@ import { map } from 'rxjs/operators';
           <a linkTo="{{ post.route }}">{{ post.title }}</a>
         </h2>
 
-        <p mat-line>{{ post.publishedDate | date:'longDate' }} - {{ post.readingTime }} min read</p>
+        <p mat-line>
+          {{ post.publishedDate | date: 'longDate' }} -
+          {{ post.readingTime }} min read
+        </p>
       </mat-list-item>
     </mat-list>
   `,
@@ -40,9 +42,9 @@ import { map } from 'rxjs/operators';
     `,
   ],
 })
-export class BlogComponent {
+export class PostsComponent {
   posts$ = this.routesService.available$.pipe(
-    map((routes) => routes.filter(route => this.isPost(route))),
+    map((routes) => routes.filter((route) => this.isPost(route))),
     map((filteredRoutes) =>
       filteredRoutes
         .slice()
@@ -56,15 +58,18 @@ export class BlogComponent {
   );
 
   isPost(route: ScullyRoute) {
-    return route.route.startsWith('/blog/posts') && !route.route.includes('angular-unfiltered');
+    return (
+      route.route.startsWith('/blog/posts') &&
+      !route.route.includes('angular-unfiltered')
+    );
   }
 
   constructor(private routesService: ScullyRoutesService) {}
 }
 
 @NgModule({
-  declarations: [BlogComponent],
-  exports: [BlogComponent],
+  declarations: [PostsComponent],
+  exports: [PostsComponent],
   imports: [CommonModule, MatListModule, RoutingModule],
 })
-export class BlogComponentModule {}
+export class PostsComponentModule {}

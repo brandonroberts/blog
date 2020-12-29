@@ -5,6 +5,7 @@ published: true
 slug: 2020-08-24-angular-unfiltered-016
 publishedDate: '2020-08-24 02:00 PM CST'
 ---
+
 <br/>
 
 In another episode of Angular Unfiltered, [Shahar Kazaz](https://twitter.com/ShaharKazaz) from the Akita/ngneat org joins me to talk about @Angular open source projects, and more!

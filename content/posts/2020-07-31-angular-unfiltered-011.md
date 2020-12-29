@@ -5,6 +5,7 @@ published: true
 slug: 2020-07-31-angular-unfiltered-011
 publishedDate: '2020-07-31 02:00 PM CST'
 ---
+
 <br/>
 
 In another episode of Angular Unfiltered, Chatting with Stephen and Jules from the Angular team at Google. We're here to discuss some of the recent rumblings around the Angular ecosystem.

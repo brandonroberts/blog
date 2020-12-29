@@ -5,6 +5,7 @@ published: true
 slug: 2020-07-24-angular-unfiltered-010
 publishedDate: '2020-07-24 02:00 PM CST'
 ---
+
 <br/>
 
 In another episode of Angular Unfiltered, [Ben Lesh](https://twitter.com/benlesh) joins me to discuss burnout, working at Google, and Netflix, and RxJS.

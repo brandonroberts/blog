@@ -6,7 +6,6 @@ import { RoutingModule } from 'angular-routing';
 import { ScullyRoutesService, ScullyRoute } from '@scullyio/ng-lib';
 import { map } from 'rxjs/operators';
 
-
 @Component({
   selector: 'app-live',
   template: `
@@ -18,7 +17,7 @@ import { map } from 'rxjs/operators';
           <a linkTo="{{ post.route }}">{{ post.title }}</a>
         </h2>
 
-        <p mat-line>{{ post.publishedDate | date:'longDate' }}</p>
+        <p mat-line>{{ post.publishedDate | date: 'longDate' }}</p>
       </mat-list-item>
     </mat-list>
   `,
@@ -43,7 +42,7 @@ import { map } from 'rxjs/operators';
 })
 export class LiveComponent {
   posts$ = this.routesService.available$.pipe(
-    map((routes) => routes.filter(route => this.isPost(route))),
+    map((routes) => routes.filter((route) => this.isPost(route))),
     map((filteredRoutes) =>
       filteredRoutes
         .slice()

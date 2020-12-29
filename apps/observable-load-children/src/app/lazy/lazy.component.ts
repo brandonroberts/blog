@@ -2,19 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-lazy',
-  template: `
-    <p>
-      lazy works!
-    </p>
-  `,
-  styles: [
-  ]
+  template: ` <p>lazy works!</p> `,
+  styles: [],
 })
 export class LazyComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

@@ -1,16 +1,17 @@
 /** import from scully the register plugin function */
-const {registerPlugin} = require('@scullyio/scully');
+const { registerPlugin } = require('@scullyio/scully');
 const fs = require('fs');
 const readingTime = require('reading-time');
 
 /** import from scully the register plugin function */
 const postInfo = async (routes) => {
-  routes.forEach(route => {
+  routes.forEach((route) => {
     if (route.route.startsWith('/blog/posts')) {
       const content = fs.readFileSync(route.templateFile).toString('utf-8');
       const stats = readingTime(content);
 
-      route.data.readingTime = stats.minutes > 1 ? parseInt(stats.minutes, 10) : 1
+      route.data.readingTime =
+        stats.minutes > 1 ? parseInt(stats.minutes, 10) : 1;
     }
   });
 
@@ -19,7 +20,7 @@ const postInfo = async (routes) => {
 /**
   You can add extra validator for your custom plugin
 */
-const validator = async conf => [];
+const validator = async (conf) => [];
 /**
   registerPlugin(TypeOfPlugin, name of the plugin, plugin function, validator)
 */

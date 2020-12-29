@@ -1,16 +1,11 @@
-import {
-  Component,
-  NgModule,
-  Renderer2,
-  OnInit
-} from '@angular/core';
+import { Component, NgModule, Renderer2, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-post-comments',
   template: ` <div id="commento"></div> `,
   styles: [''],
 })
-export class PostCommentsComponent implements OnInit {  
+export class PostCommentsComponent implements OnInit {
   constructor(private renderer: Renderer2) {}
 
   ngOnInit() {

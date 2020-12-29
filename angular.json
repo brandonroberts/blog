@@ -49,11 +49,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/content"
-            ],
+            "assets": ["src/favicon.ico", "src/assets", "src/content"],
             "styles": [
               "src/styles.scss",
               "node_modules/prism-themes/themes/prism-atom-dark.css"
@@ -189,9 +185,7 @@
               "apps/observable-load-children/src/favicon.ico",
               "apps/observable-load-children/src/assets"
             ],
-            "styles": [
-              "apps/observable-load-children/src/styles.sass"
-            ],
+            "styles": ["apps/observable-load-children/src/styles.sass"],
             "scripts": []
           },
           "configurations": {

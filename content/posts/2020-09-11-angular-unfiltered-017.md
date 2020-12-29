@@ -5,6 +5,7 @@ published: true
 slug: 2020-09-11-angular-unfiltered-018
 publishedDate: '2020-09-11 02:00 PM CST'
 ---
+
 <br/>
 
 In another episode of Angular Unfiltered, [Jordan Powell](https://twitter.com/JordanPowell88) joins me to talk about topics in the Angular ecosystem including big components, contributing to NgRx, and more!

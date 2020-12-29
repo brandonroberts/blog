@@ -16,7 +16,7 @@ import { FooterComponentModule } from './footer.component';
 import { PageComponentModule } from './pages/page.component';
 
 @Component({
-  template: '<scully-content></scully-content>'
+  template: '<scully-content></scully-content>',
 })
 export class ContentComponent {}
 
@@ -26,10 +26,13 @@ export class ContentComponent {}
     BrowserModule,
     BrowserAnimationsModule,
     RoutingModule.forRoot(),
-    RouterModule.forRoot([
-      { path: 'blog/posts/:id', component: ContentComponent },
-      { path: ':pageId', component: ContentComponent }
-    ], { initialNavigation: false }),
+    RouterModule.forRoot(
+      [
+        { path: 'blog/posts/:id', component: ContentComponent },
+        { path: ':pageId', component: ContentComponent },
+      ],
+      { initialNavigation: false }
+    ),
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
@@ -38,7 +41,7 @@ export class ContentComponent {}
     MatListModule,
     FooterComponentModule,
     PageComponentModule,
-    ScullyLibModule
+    ScullyLibModule,
   ],
   bootstrap: [AppComponent],
 })

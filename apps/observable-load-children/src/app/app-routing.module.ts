@@ -3,21 +3,19 @@ import { Routes, RouterModule } from '@angular/router';
 import { defer } from 'rxjs';
 import { map, retry, tap } from 'rxjs/operators';
 
-
 const routes: Routes = [
   {
     path: 'lazy',
-    loadChildren: () => defer(() => import('./lazy/lazy.module')).pipe(
-      map(m => m.LazyModule),
-      retry(2)
-    )
+    loadChildren: () =>
+      defer(() => import('./lazy/lazy.module')).pipe(
+        map((m) => m.LazyModule),
+        retry(2)
+      ),
   },
-  { path: '', redirectTo: 'lazy', pathMatch: 'full' }
+  { path: '', redirectTo: 'lazy', pathMatch: 'full' },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes)
-  ]
+  imports: [RouterModule.forRoot(routes)],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

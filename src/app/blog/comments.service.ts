@@ -37,7 +37,7 @@ export class CommentsService {
   readonly containerId = 'comments_thread';
   private readonly scriptId = 'disqus-src';
 
-  constructor(@Inject(WINDOW_TOKEN) private window: WindowDisqus) { }
+  constructor(@Inject(WINDOW_TOKEN) private window: WindowDisqus) {}
 
   initialize(
     page: { url: string; title: string },

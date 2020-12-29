@@ -19,13 +19,11 @@ import { map } from 'rxjs/operators';
         <mat-nav-list>
           <a mat-list-item linkTo="/blog" (click)="drawer.close()">Home</a>
           <a mat-list-item linkTo="/blog" (click)="drawer.close()">Posts</a>
-          <a mat-list-item linkTo="/live" (click)="drawer.close()">Live Stream</a>
-          <a mat-list-item linkTo="/about" (click)="drawer.close()"
-            >About</a
+          <a mat-list-item linkTo="/live" (click)="drawer.close()"
+            >Live Stream</a
           >
-          <a mat-list-item linkTo="/talks" (click)="drawer.close()"
-            >Talks</a
-          >
+          <a mat-list-item linkTo="/about" (click)="drawer.close()">About</a>
+          <a mat-list-item linkTo="/talks" (click)="drawer.close()">Talks</a>
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
@@ -63,7 +61,11 @@ import { map } from 'rxjs/operators';
 
         <div class="content" [class.container]="!(isHandset$ | async)">
           <router>
-            <route path="/blog" [exact]="false" [load]="components.blog"></route>
+            <route
+              path="/blog"
+              [exact]="false"
+              [load]="components.blog"
+            ></route>
             <route path="/live" [load]="components.live"></route>
             <route path="/:pageId">
               <app-page *routeComponent></app-page>
@@ -135,7 +137,7 @@ export class AppComponent {
   components = {
     blog: () => import('./blog/blog.module').then((m) => m.BlogModule),
     live: () => import('./live/live.component').then((m) => m.LiveComponent),
-  }
+  };
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(map((result) => result.matches));

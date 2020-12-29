@@ -5,6 +5,7 @@ published: true
 slug: 2020-08-12-angular-unfiltered-013
 publishedDate: '2020-08-12 02:00 PM CST'
 ---
+
 <br/>
 
 In another episode of Angular Unfiltered, Me and [Lars Gyrup Brink Nielsen](https://twitter.com/LayZeeDK) will be discussing the recently released and much anticipated Angular Roadmap.

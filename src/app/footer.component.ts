@@ -6,9 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   selector: 'app-footer',
   template: `
     <mat-toolbar color="primary">
-      <div class="links">
-        © Copyright 2019-2020
-      </div>
+      <div class="links">© Copyright 2019-2020</div>
     </mat-toolbar>
   `,
   styles: [

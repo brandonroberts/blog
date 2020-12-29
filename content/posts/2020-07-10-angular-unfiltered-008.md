@@ -5,6 +5,7 @@ published: true
 slug: 2020-07-10-angular-unfiltered-008
 publishedDate: '2020-07-10 02:00 PM CST'
 ---
+
 <br/>
 
 In another episode of Angular Unfiltered, me and [Kate Sky](https://twitter.com/katesky8) talked about SpongeBob as the only cartoon character with a job, clean code, side projects, NgRx, and more!

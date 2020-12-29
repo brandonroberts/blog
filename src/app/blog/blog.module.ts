@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule, Component } from '@angular/core';
 import { RoutingModule, ModuleWithRoute } from 'angular-routing';
 
-import { BlogComponentModule } from './blog.component';
+import { PostsComponentModule } from './posts.component';
 import { PostComponentModule } from './post.component';
 
 @Component({
@@ -15,17 +15,17 @@ import { PostComponentModule } from './post.component';
         <app-posts *routeComponent></app-posts>
       </route>
     </router>
-  `
+  `,
 })
-export class PostsComponent { }
+export class PostsComponent {}
 
 @NgModule({
   declarations: [PostsComponent],
   imports: [
     CommonModule,
-    BlogComponentModule,
+    PostsComponentModule,
     PostComponentModule,
-    RoutingModule
+    RoutingModule,
   ],
 })
 export class BlogModule implements ModuleWithRoute {

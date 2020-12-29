@@ -5,6 +5,7 @@ published: true
 slug: 2020-08-14-angular-unfiltered-014
 publishedDate: '2020-08-14 02:00 PM CST'
 ---
+
 <br/>
 
 In another episode of Angular Unfiltered, NgRx team member [Alex Okrushko](https://twtiter.com/AlexOkrushko) joins me to talk about the latest release of NgRx and the new ComponentStore package.
