@@ -17,7 +17,7 @@ import { map } from 'rxjs/operators';
       >
         <mat-toolbar>Menu</mat-toolbar>
         <mat-nav-list>
-          <a mat-list-item linkTo="/" (click)="drawer.close()">Home</a>
+          <a mat-list-item linkTo="/blog" (click)="drawer.close()">Home</a>
           <a mat-list-item linkTo="/blog" (click)="drawer.close()">Posts</a>
           <a mat-list-item linkTo="/live" (click)="drawer.close()">Live Stream</a>
           <a mat-list-item linkTo="/about" (click)="drawer.close()"
@@ -40,7 +40,7 @@ import { map } from 'rxjs/operators';
             <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
           </button>
 
-          <a linkTo="/">Brandon Roberts</a>
+          <a linkTo="/blog">Brandon Roberts</a>
 
           <div class="social">
             <a *ngIf="!(isHandset$ | async)" linkTo="/blog">Posts</a>
@@ -66,7 +66,7 @@ import { map } from 'rxjs/operators';
             <route path="/blog" [exact]="false" [load]="components.blog"></route>
             <route path="/live" [load]="components.live"></route>
             <route path="/:pageId">
-              <app-page *routeComponent></app-page>
+              <app-page *routeComponent [navigationEnd]></app-page>
             </route>
             <route path="/" redirectTo="/blog"></route>
           </router>
@@ -127,6 +127,10 @@ import { map } from 'rxjs/operators';
         .social a {
           margin-left: 8px;
         }
+      }
+
+      router {
+        width: 80%;
       }
     `,
   ],

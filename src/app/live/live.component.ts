@@ -1,17 +1,18 @@
 import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
-import { RoutingModule } from 'angular-routing';
-
 import { ScullyRoutesService, ScullyRoute } from '@scullyio/ng-lib';
 import { map } from 'rxjs/operators';
+import { RoutingModule } from 'angular-routing';
+
+import { NavigationEndDirectiveModule } from '../shared/navigation-end.directive';
 
 
 @Component({
   selector: 'app-live',
   template: `
     <h2>Live Stream</h2>
-
+    <div navigationEnd></div>
     <mat-list>
       <mat-list-item *ngFor="let post of posts$ | async">
         <h2 mat-line>
@@ -65,6 +66,11 @@ export class LiveComponent {
 
 @NgModule({
   declarations: [LiveComponent],
-  imports: [CommonModule, MatListModule, RoutingModule],
+  imports: [
+    CommonModule,
+    MatListModule,
+    RoutingModule,
+    NavigationEndDirectiveModule
+  ],
 })
 export class LiveComponentModule {}
