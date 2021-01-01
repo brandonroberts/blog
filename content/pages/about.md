@@ -5,11 +5,13 @@ published: true
 slug: about
 ---
 
-<div class="page about-page">
+<div class="flex flex-col justify-around px-8 text-xl max-w-2xl">
 
-## About Me
+<div class="text-2xl py-4">
+  About Me
+</div>
 
-<div class="pic">
+<div class="flex justify-center">
   <img src="/assets/images/brandonroberts.jpg" width="300" height="300"/>
 </div>
 

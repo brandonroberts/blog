@@ -14,15 +14,17 @@ import { PostCommentsComponentModule } from './comments.component';
 @Component({
   selector: 'app-post',
   template: `
-    <h2>{{ title$ | async }}</h2>
+    <div class="w-screen max-w-4xl text-2xl py-4">
+      <h2 class="text-gray-600 text-2xl">{{ title$ | async }}</h2>
 
-    <span
-      >{{ publishedDate$ | async | date: 'longDate' }} -
-      {{ readingTime$ | async }} min read</span
-    >
+      <span class="font-light text-sm">
+        {{ publishedDate$ | async | date: 'longDate' }} -
+        {{ readingTime$ | async }} min read
+      </span>
 
-    <!-- This is where Scully will inject the static HTML -->
-    <scully-content></scully-content>
+      <!-- This is where Scully will inject the static HTML -->
+      <scully-content></scully-content>
+    </div>
   `,
   styles: [''],
   preserveWhitespaces: true,
