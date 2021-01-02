@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <app-header></app-header>
 
-    <main class="flex flex-grow justify-center min-h-screen">
+    <main class="flex flex-grow justify-center min-h-screen px-4">
       <router>
         <route path="/blog" [exact]="false" [load]="components.blog"></route>
         <route path="/live" [load]="components.live"></route>

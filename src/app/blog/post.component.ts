@@ -14,7 +14,7 @@ import { PostCommentsComponentModule } from './comments.component';
 @Component({
   selector: 'app-post',
   template: `
-    <div class="w-screen max-w-4xl text-2xl py-4">
+    <div class="w-screen max-w-4xl text-2xl p-4">
       <h2 class="text-gray-600 text-2xl">{{ title$ | async }}</h2>
 
       <span class="font-light text-sm">
