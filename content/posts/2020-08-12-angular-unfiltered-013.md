@@ -10,7 +10,7 @@ publishedDate: '2020-08-12 02:00 PM CST'
 
 In another episode of Angular Unfiltered, Me and [Lars Gyrup Brink Nielsen](https://twitter.com/LayZeeDK) will be discussing the recently released and much anticipated Angular Roadmap.
 
-<div class="center">
+<div class="flex justify-center">
   <iframe width="500" height="315" src="https://www.youtube.com/embed/U1S61NKiOGc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 

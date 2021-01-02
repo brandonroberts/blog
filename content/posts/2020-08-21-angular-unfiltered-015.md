@@ -10,7 +10,7 @@ publishedDate: '2020-08-21 02:00 PM CST'
 
 In another episode of Angular Unfiltered, [L.E. Nichols](https://twitter.com/lenicholsdev) joins me to chat about Angular and other topics.
 
-<div class="center">
+<div class="flex justify-center">
   <iframe width="500" height="315" src="https://www.youtube.com/embed/AETm8JktnTc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 

@@ -10,7 +10,7 @@ publishedDate: '2020-09-25 02:00 PM CST'
 
 In another episode of Angular Unfiltered, [Santosh Yadav](https://twitter.com/SantoshYadavDev) joins me to talk about topics in the Angular ecosystem including Angular Builders, giving back to the community, and more!
 
-<div class="center">
+<div class="flex justify-center">
   <iframe width="500" height="315" src="https://www.youtube.com/embed/EELKmhjR6ew" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 

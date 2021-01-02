@@ -10,7 +10,7 @@ publishedDate: '2020-06-12 02:00 PM CST'
 
 In another episode of Angular Unfiltered, me and [Devin Shoemaker](https://twitter.com/paranoidcoder) talked about contributing to open source, using React with Nx, Nx plugin development, and more!.
 
-<div class="center">
+<div class="flex justify-center">
   <iframe width="500" height="315" src="https://www.youtube.com/embed/itCw_Esr12Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 

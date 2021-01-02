@@ -12,12 +12,12 @@ In another episode of Angular Unfiltered, Angular Dev Twitter is on fire! [Mike 
 
 The latest tweet that set it off.
 
-<div class="center">
+<div class="flex justify-center">
   <blockquote class="twitter-tweet" data-partner="tweetdeck"><p lang="en" dir="ltr">Breaking <a href="https://twitter.com/angular?ref_src=twsrc%5Etfw">@angular</a> news: <br>April - Rob Wormald (Dev Rel, Angular) was forced to quit.<br>June - Kara Erickson (Technical Lead, Angular) quit. <br>July - Matias Niemala (Animations Lead, Angular) has been forced to quit the Angular team. Others soon... What the hell is going on at Google?</p>&mdash; Thomas Burleson (@ThomasBurleson) <a href="https://twitter.com/ThomasBurleson/status/1283902169226280960?ref_src=twsrc%5Etfw">July 16, 2020</a></blockquote>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
 
-<div class="center">
+<div class="flex justify-center">
   <iframe width="500" height="315" src="https://www.youtube.com/embed/mJHy6YzZIbc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
