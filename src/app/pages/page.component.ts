@@ -7,7 +7,6 @@ import { ScullyLibModule } from '@scullyio/ng-lib';
     <!-- This is where Scully will inject the static HTML -->
     <scully-content></scully-content>
   `,
-  styles: [''],
 })
 export class PageComponent {}
 

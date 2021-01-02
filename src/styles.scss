@@ -1,105 +1,22 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 /* You can add global styles to this file, and also import other style files */
 
 html,
 body {
   height: 100%;
-}
-body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
   font-size: 18px;
 }
 
-// Import library functions for theme creation.
-@import '~@angular/material/theming';
-
-// Theme colors generated using http://mcg.mbitson.com/#!?black=%23eeeff4&blue=%233f51b5&themename=mcgtheme
-$md-blue: (
-  50: #e0e0ff,
-  100: #b3b3ff,
-  200: #8080ff,
-  300: #4d4dff,
-  400: #2626ff,
-  500: #0000ff,
-  600: #0000ff,
-  700: #0000ff,
-  800: #0000ff,
-  900: #0000ff,
-  A100: #eee,
-  A200: #f2f2ff,
-  A400: #bfbfff,
-  A700: #a6a6ff,
-  contrast: (
-    50: #000000,
-    100: #000000,
-    200: #000000,
-    300: #eee,
-    400: #eee,
-    500: #eee,
-    600: #eee,
-    700: #eee,
-    800: #eee,
-    900: #eee,
-    A100: #000000,
-    A200: #000000,
-    A400: #000000,
-    A700: #000000,
-  ),
-);
-
-// Include non-theme styles for core.
-@include mat-core();
-
-// Define your application's custom theme.
-$primary: mat-palette($md-blue);
-$accent: mat-palette($mat-grey, A200, A100, A400);
-$theme: mat-light-theme($primary, $accent);
-
-// Include theme styles for Angular Material components.
-@include angular-material-theme($theme);
-
-a {
-  text-decoration: none;
-  color: #eee;
-}
-
-h2 {
-  font-weight: normal;
-}
-
-app-posts {
-  width: 80%;
+li {
+  @apply list-disc;
+  @apply list-inside;
 }
 
 app-post a {
-  color: #000;
-  text-decoration: underline;
-}
-
-app-post div.center {
-  display: block;
-  margin: 0 25%;
-}
-
-@media screen and (max-width: 480px) {
-  app-post div.center {
-    display: block;
-    margin: auto;
-  }
-}
-
-app-posts,
-app-page,
-app-post {
-  width: 80%;
-}
-
-div.about-page .pic {
-  display: flex;
-  justify-content: center;
-}
-
-.about-page a,
-.talks-page a {
-  color: blue;
+  @apply bg-blue-400;
+  @apply underline;
 }
