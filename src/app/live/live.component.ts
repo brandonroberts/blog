@@ -1,8 +1,9 @@
 import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ComponentRouterModule } from '@angular-component/router';
 import { ScullyRoutesService, ScullyRoute } from '@scullyio/ng-lib';
 import { map } from 'rxjs/operators';
-import { RoutingModule } from 'angular-routing';
+
 
 @Component({
   selector: 'app-live',
@@ -42,6 +43,6 @@ export class LiveComponent {
 
 @NgModule({
   declarations: [LiveComponent],
-  imports: [CommonModule, RoutingModule],
+  imports: [CommonModule, ComponentRouterModule],
 })
 export class LiveComponentModule {}

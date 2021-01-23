@@ -1,5 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { RoutingModule } from 'angular-routing';
+import { ComponentRouterModule } from '@angular-component/router';
 
 @Component({
   selector: 'app-header',
@@ -91,7 +91,7 @@ export class HeaderComponent {}
 
 @NgModule({
   declarations: [HeaderComponent],
-  imports: [RoutingModule],
+  imports: [ComponentRouterModule],
   exports: [HeaderComponent],
 })
 export class HeaderComponentModule {}

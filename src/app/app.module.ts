@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { RoutingModule } from 'angular-routing';
+import { ComponentRouterModule } from '@angular-component/router';
 import { ScullyLibModule } from '@scullyio/ng-lib';
 
 import { AppComponent } from './app.component';
@@ -20,7 +20,7 @@ export class ContentComponent {}
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    RoutingModule.forRoot(),
+    ComponentRouterModule.forRoot(),
     RouterModule.forRoot(
       [
         { path: 'blog/posts/:id', component: ContentComponent },
@@ -32,6 +32,7 @@ export class ContentComponent {}
     HeaderComponentModule,
     PageComponentModule,
     ScullyLibModule,
+    ComponentRouterModule.forRoot(),
   ],
   bootstrap: [AppComponent],
 })

@@ -14,6 +14,13 @@
     ts-node "^9.0.0"
     webpack-merge "^5.7.3"
 
+"@angular-component/router@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@angular-component/router/-/router-0.4.0.tgz#40daf2cf55923b24662015d66f9f3ba00d17a0b9"
+  integrity sha512-+FNwqzPEuprg7bH3JlzLH7QFYHkC3rbOUVUByjPBTx3W9emf2S8sLq8eo6kH8W0EwpvD9cBkDqM8cSMTpfpJOg==
+  dependencies:
+    tslib "^1.10.0"
+
 "@angular-devkit/architect@0.1001.3":
   version "0.1001.3"
   resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.1001.3.tgz#168aa424be9d0dad90d1a03129c3999fbf76a1cc"

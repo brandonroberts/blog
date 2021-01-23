@@ -1,8 +1,8 @@
 import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ComponentRouterModule } from '@angular-component/router';
 import { ScullyRoutesService, ScullyRoute } from '@scullyio/ng-lib';
 import { map } from 'rxjs/operators';
-import { RoutingModule } from 'angular-routing';
 
 @Component({
   selector: 'app-posts',
@@ -49,6 +49,6 @@ export class PostsComponent {
 @NgModule({
   declarations: [PostsComponent],
   exports: [PostsComponent],
-  imports: [CommonModule, RoutingModule],
+  imports: [CommonModule, ComponentRouterModule],
 })
 export class PostsComponentModule {}

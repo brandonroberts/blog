@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, Component } from '@angular/core';
-import { RoutingModule, ModuleWithRoute } from 'angular-routing';
+import { ComponentRouterModule, ModuleWithRoute } from '@angular-component/router';
 
 import { PostsComponentModule } from './posts.component';
 import { PostComponentModule } from './post.component';
@@ -25,7 +25,7 @@ export class PostsComponent {}
     CommonModule,
     PostsComponentModule,
     PostComponentModule,
-    RoutingModule,
+    ComponentRouterModule,
   ],
 })
 export class BlogModule implements ModuleWithRoute {
