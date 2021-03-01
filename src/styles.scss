@@ -16,6 +16,10 @@ li {
   @apply list-inside;
 }
 
+h2 {
+  font-weight: 500;
+}
+
 app-post a {
   @apply bg-blue-400;
   @apply underline;
