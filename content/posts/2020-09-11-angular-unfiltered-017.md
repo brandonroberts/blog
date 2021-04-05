@@ -1,8 +1,8 @@
 ---
-title: 'Angular Unfiltered Episode 018: Quick Chat w/Jordan Powell'
+title: 'Angular Unfiltered Episode 017: Quick Chat w/Jordan Powell'
 description: 'Chatting with Jordan Powell'
 published: true
-slug: 2020-09-11-angular-unfiltered-018
+slug: 2020-09-11-angular-unfiltered-017
 publishedDate: '2020-09-11 02:00 PM CST'
 ---
 

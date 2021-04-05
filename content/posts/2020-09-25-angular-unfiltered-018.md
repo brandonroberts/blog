@@ -1,8 +1,8 @@
 ---
-title: 'Angular Unfiltered Episode 019: Quick Chat w/Santosh Yadav'
+title: 'Angular Unfiltered Episode 018: Quick Chat w/Santosh Yadav'
 description: 'Chatting with Santosh Yadav'
 published: true
-slug: 2020-09-25-angular-unfiltered-019
+slug: 2020-09-25-angular-unfiltered-018
 publishedDate: '2020-09-25 02:00 PM CST'
 ---
 
