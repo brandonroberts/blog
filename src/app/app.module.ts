@@ -26,7 +26,7 @@ export class ContentComponent {}
         { path: 'blog/posts/:id', component: ContentComponent },
         { path: ':pageId', component: ContentComponent },
       ],
-      { initialNavigation: 'disabled', relativeLinkResolution: 'legacy' }
+      { initialNavigation: 'disabled' }
     ),
     FooterComponentModule,
     HeaderComponentModule,
