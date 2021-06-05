@@ -13,9 +13,6 @@
     "importHelpers": true,
     "target": "es2015",
     "typeRoots": ["node_modules/@types"],
-    "lib": ["es2018", "dom"],
-    "paths": {
-      "@blog/router": ["projects/router/src/public-api"]
-    }
+    "lib": ["es2018", "dom"]
   }
 }
