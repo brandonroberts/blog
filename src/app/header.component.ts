@@ -51,6 +51,7 @@ import { ComponentRouterModule } from '@angular-component/router';
           <img
             class="rounded-full h-48 w-48 mx-auto border-8 border-blue-400"
             src="assets/images/brandonroberts.jpg"
+            alt="Brandon Roberts headshot rounded"
           />
         </div>
         <div class="p-8 my-auto">
