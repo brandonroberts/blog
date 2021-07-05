@@ -15,11 +15,25 @@ slug: talks
 
 ### Upcoming
 
+- [Reliable Web Summit - Aug 26-27th, 2021](https://reliablewebsummit.com/)
+- [Nx Conf - September 16-17th, 2021](https://nx.dev/conf)
+- [All Things Open - October 17-19, 2021](https://www.allthingsopen.org/)
+
 </div>
 
 <div class="py-4">
 
 ### Previous
+
+</div>
+
+<div class="py-4">
+
+### 2021
+
+- [Nx + Capacitor = Cross-platform Plugin Development](https://ionic.io/ioniconf)
+- [Global Maintainer Summit: All PR's welcome! ... for now](https://youtu.be/FbGbU0I9izs)
+- [ng-conf 2021 Friday Keynote](https://youtu.be/8ZZmkJnfb54?t=3540)
 
 </div>
 
