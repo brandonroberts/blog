@@ -32,7 +32,6 @@ export class ContentComponent {}
     HeaderComponentModule,
     PageComponentModule,
     ScullyLibModule,
-    ComponentRouterModule.forRoot(),
   ],
   bootstrap: [AppComponent],
 })
