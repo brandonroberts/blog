@@ -70,6 +70,11 @@ import { ComponentRouterModule } from '@angular-component/router';
               </a>
             </div>
             <div class="w-8">
+              <a href="https://youtube.com/brandonrobertsdev" title="YouTube">
+                <img src="assets/images/logos/youtube-logo.png" />
+              </a>
+            </div>            
+            <div class="w-8">
               <a href="https://twitch.tv/brandontroberts" title="Twitch">
                 <svg width="43" height="50" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <defs>
