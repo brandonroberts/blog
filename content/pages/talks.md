@@ -31,7 +31,9 @@ slug: talks
 
 ### 2021
 
-- [Nx + Capacitor = Cross-platform Plugin Development](https://ionic.io/ioniconf)
+- [Learn With Jason - Reactive State Management using NgRx and Angular](https://www.youtube.com/watch?v=gVOwffv4_hA)
+- [Frontend Heroes - Agents of A.N.G.U.L.A.R.](https://www.youtube.com/watch?v=dKMyx4KJYCg)
+- [Nx + Capacitor = Cross-platform Plugin Development](https://www.youtube.com/watch?v=0E1l2UgXh5k)
 - [Global Maintainer Summit: All PR's welcome! ... for now](https://youtu.be/FbGbU0I9izs)
 - [ng-conf 2021 Friday Keynote](https://youtu.be/8ZZmkJnfb54?t=3540)
 
