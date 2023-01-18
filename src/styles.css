@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+@import './themes/prism-atom-dark.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-size: 18px;
+}
+
+li {
+  @apply list-disc;
+  @apply list-inside;
+}
+
+h2 {
+  font-weight: 500;
+}
+
+article a {
+  @apply bg-blue-400;
+  @apply underline;
+}
+
+article > h2 {
+  margin: 4px 0px 4px 0px;
+}
+
+.analog-markdown:has(.about) {
+  display: flex;
+  justify-content: center;
+}

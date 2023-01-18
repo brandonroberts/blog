@@ -1,27 +1,21 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+
+import { FooterComponent } from './components/footer.component';
+import { HeaderComponent } from './components/header.component';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet, HeaderComponent, FooterComponent],
   template: `
     <app-header></app-header>
 
-    <main class="flex flex-grow justify-center min-h-screen px-4">
-      <router>
-        <route path="/blog" [exact]="false" [load]="components.blog"></route>
-        <route path="/live" [load]="components.live"></route>
-        <route path="/:pageId">
-          <app-page *routeComponent></app-page>
-        </route>
-        <route path="/" redirectTo="/blog"></route>
-      </router>
+    <main class="flex flex-grow justify-center min-h-screen p-4">
+      <router-outlet></router-outlet>
     </main>
 
     <app-footer></app-footer>
-  `,
+  `
 })
-export class AppComponent {
-  components = {
-    blog: () => import('./blog/blog.module').then((m) => m.BlogModule),
-    live: () => import('./live/live.component').then((m) => m.LiveComponent),
-  };
-}
+export class AppComponent {}

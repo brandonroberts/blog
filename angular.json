@@ -1,222 +1,55 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "apps",
+  "newProjectRoot": "projects",
   "projects": {
-    "blog": {
+    "my-app": {
+      "projectType": "application",
       "root": "",
       "sourceRoot": "src",
-      "projectType": "application",
       "prefix": "app",
-      "schematics": {
-        "@schematics/angular:application": {
-          "minimal": true,
-          "style": "sass",
-          "routing": true
-        },
-        "@schematics/angular:component": {
-          "style": "sass",
-          "skipTests": true,
-          "inlineStyle": true,
-          "inlineTemplate": true
-        },
-        "@schematics/angular:class": {
-          "skipTests": true
-        },
-        "@schematics/angular:directive": {
-          "skipTests": true
-        },
-        "@schematics/angular:guard": {
-          "skipTests": true
-        },
-        "@schematics/angular:module": {
-        },
-        "@schematics/angular:pipe": {
-          "skipTests": true
-        },
-        "@schematics/angular:service": {
-          "skipTests": true
-        }
-      },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@nrwl/vite:build",
           "options": {
-            "aot": true,
-            "outputPath": "dist/blog",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
-            "assets": ["src/favicon.ico", "src/assets", "src/content"],
-            "styles": [
-              "src/styles.scss",
-              "node_modules/prism-themes/themes/prism-atom-dark.css"
-            ],
-            "scripts": [
-              "node_modules/prismjs/prism.js",
-              "node_modules/prismjs/components/prism-typescript.min.js"
-            ]
+            "configFile": "vite.config.ts",
+            "outputPath": "dist/client"
           },
+          "defaultConfiguration": "production",
           "configurations": {
+            "development": {
+              "mode": "development"
+            },
             "production": {
-              "assets": [
-                "src/favicon.ico",
-                "src/assets",
-                "src/content",
-                "src/robots.txt"
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ]
+              "sourcemap": false,
+              "mode": "production"
             }
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@nrwl/vite:dev-server",
+          "defaultConfiguration": "development",
           "options": {
-            "browserTarget": "blog:build"
+            "buildTarget": "my-app:build",
+            "port": 5173
           },
           "configurations": {
+            "development": {
+              "buildTarget": "my-app:build:development",
+              "hmr": true
+            },
             "production": {
-              "browserTarget": "blog:build:production"
+              "buildTarget": "my-app:build:production"
             }
           }
         },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+        "test": {
+          "builder": "@nrwl/vite:test",
           "options": {
-            "browserTarget": "blog:build"
-          }
-        }
-      }
-    },
-    "observable-load-children": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "inlineTemplate": true,
-          "inlineStyle": true,
-          "style": "sass",
-          "skipTests": true
-        },
-        "@schematics/angular:class": {
-          "skipTests": true
-        },
-        "@schematics/angular:directive": {
-          "skipTests": true
-        },
-        "@schematics/angular:guard": {
-          "skipTests": true
-        },
-        "@schematics/angular:interceptor": {
-          "skipTests": true
-        },
-        "@schematics/angular:module": {
-        },
-        "@schematics/angular:pipe": {
-          "skipTests": true
-        },
-        "@schematics/angular:service": {
-          "skipTests": true
-        }
-      },
-      "root": "apps/observable-load-children",
-      "sourceRoot": "apps/observable-load-children/src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/observable-load-children",
-            "index": "apps/observable-load-children/src/index.html",
-            "main": "apps/observable-load-children/src/main.ts",
-            "polyfills": "apps/observable-load-children/src/polyfills.ts",
-            "tsConfig": "apps/observable-load-children/tsconfig.app.json",
-            "assets": [
-              "apps/observable-load-children/src/favicon.ico",
-              "apps/observable-load-children/src/assets"
-            ],
-            "styles": ["apps/observable-load-children/src/styles.sass"],
-            "scripts": [],
-            "vendorChunk": true,
-            "extractLicenses": false,
-            "buildOptimizer": false,
-            "sourceMap": true,
-            "optimization": false,
-            "namedChunks": true
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/observable-load-children/src/environments/environment.ts",
-                  "with": "apps/observable-load-children/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "observable-load-children:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "observable-load-children:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "observable-load-children:build"
+            "config": "vite.config.ts"
           }
         }
       }
     }
-  },
-  "defaultProject": "blog"
+  }
 }
