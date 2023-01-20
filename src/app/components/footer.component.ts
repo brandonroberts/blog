@@ -7,7 +7,7 @@ import { Component, NgModule } from '@angular/core';
     <footer>
       <div class="bg-blue-600 py-4 flex justify-center">
         <div class="text-white">
-          <a href="https://github.com/brandonroberts/astro-blog">Source Code</a> - © Copyright 2019-2023
+          <a href="https://github.com/brandonroberts/blog">Source Code</a> - © Copyright 2019-2023
           | <a rel="me" href="https://mastodon.social/@brandontroberts">Mastodon</a>
         </div>
       </div>
