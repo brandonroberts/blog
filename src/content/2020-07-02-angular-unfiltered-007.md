@@ -4,7 +4,6 @@ description: 'Chatting about the blog post by Ben Lesh about RxJS'
 published: true
 slug: 2020-07-02-angular-unfiltered-007
 publishedDate: '2020-07-02 02:00 PM CST'
-layout: ../../../layouts/BlogPostLayout.astro
 ---
 
 <br/>

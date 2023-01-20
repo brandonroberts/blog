@@ -4,7 +4,6 @@ description: 'NgRx team member Alex Okrushko joins me to talk about the latest r
 published: true
 slug: 2020-08-12-angular-unfiltered-013
 publishedDate: '2020-08-12 02:00 PM CST'
-layout: ../../../layouts/BlogPostLayout.astro
 ---
 
 <br/>

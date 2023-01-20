@@ -4,7 +4,6 @@ description: 'Chatting with Mike Ryan about Forms in Angular'
 published: true
 slug: 2020-05-14-angular-unfiltered-001
 publishedDate: '2020-05-14 02:00 PM CST'
-layout: ../../../layouts/BlogPostLayout.astro
 ---
 
 <br/>

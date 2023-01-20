@@ -4,7 +4,6 @@ description: 'Mixing Action Styles in NgRx State'
 published: true
 slug: 2020-05-14-mixing-action-styles-ngrx
 publishedDate: '2020-05-14 02:00 PM CST'
-layout: ../../../layouts/BlogPostLayout.astro
 ---
 
 <div id="post-info"></div>

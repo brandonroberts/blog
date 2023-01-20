@@ -4,7 +4,6 @@ description: 'Chatting with Austin Akers'
 published: true
 slug: 2020-05-22-angular-unfiltered-003
 publishedDate: '2020-05-22 02:00 PM CST'
-layout: ../../../layouts/BlogPostLayout.astro
 ---
 
 <br/>

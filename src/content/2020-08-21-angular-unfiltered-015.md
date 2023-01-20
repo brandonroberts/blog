@@ -4,7 +4,6 @@ description: 'Chatting with L.E. Nichols'
 published: true
 slug: 2020-08-21-angular-unfiltered-015
 publishedDate: '2020-08-21 02:00 PM CST'
-layout: ../../../layouts/BlogPostLayout.astro
 ---
 
 <br/>

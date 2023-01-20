@@ -4,7 +4,6 @@ description: 'Chatting with Beeman'
 published: true
 slug: 2020-08-07-angular-unfiltered-012
 publishedDate: '2020-08-07 02:00 PM CST'
-layout: ../../../layouts/BlogPostLayout.astro
 ---
 
 <br/>

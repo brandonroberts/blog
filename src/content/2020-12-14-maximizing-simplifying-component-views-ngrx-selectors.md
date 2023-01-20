@@ -4,7 +4,6 @@ description: 'Deriving data, composing selectors, and building view models effic
 published: true
 slug: 2020-12-14-maximizing-simplifying-component-views-ngrx-selectors
 publishedDate: '2020-12-14 02:00 PM CST'
-layout: ../../../layouts/BlogPostLayout.astro
 ---
 
 <br/>

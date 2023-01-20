@@ -4,7 +4,6 @@ description: 'Chatting with RxJS maintainer, Ben Lesh'
 published: true
 slug: 2020-07-24-angular-unfiltered-010
 publishedDate: '2020-07-24 02:00 PM CST'
-layout: ../../../layouts/BlogPostLayout.astro
 ---
 
 <br/>

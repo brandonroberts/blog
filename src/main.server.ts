@@ -19,7 +19,7 @@ export default async function render(url: string, document: string) {
     providers: [
       provideFileRouter(withEnabledBlockingInitialNavigation()),
       provideContent(withMarkdownRenderer()),
-      { provide: ɵSERVER_CONTEXT, useValue: 'analog-ssr' }
+      { provide: ɵSERVER_CONTEXT, useValue: 'analog-ssg' }
     ],
   });
 

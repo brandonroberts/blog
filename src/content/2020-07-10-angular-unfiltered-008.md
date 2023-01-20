@@ -4,7 +4,6 @@ description: 'Chatting with Kate Sky'
 published: true
 slug: 2020-07-10-angular-unfiltered-008
 publishedDate: '2020-07-10 02:00 PM CST'
-layout: ../../../layouts/BlogPostLayout.astro
 ---
 
 <br/>

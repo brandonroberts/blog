@@ -19,7 +19,7 @@ import { Post } from '../data/posts';
         >
 
         <p class="text-sm">
-          {{ post.attributes.publishedDate | date:'MMMM dd, yyyy' }}
+          {{ post.attributes.publishedDate | date : 'MMMM dd, yyyy' }}
         </p>
       </div>
     </div>

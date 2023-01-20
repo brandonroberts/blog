@@ -4,7 +4,6 @@ description: 'Chatting with Santosh Yadav'
 published: true
 slug: 2020-09-25-angular-unfiltered-018
 publishedDate: '2020-09-25 02:00 PM CST'
-layout: ../../../layouts/BlogPostLayout.astro
 ---
 
 <br/>

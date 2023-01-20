@@ -4,7 +4,6 @@ description: 'Chatting with Stephen and Jules from the Angular team at Google'
 published: true
 slug: 2020-07-31-angular-unfiltered-011
 publishedDate: '2020-07-31 02:00 PM CST'
-layout: ../../../layouts/BlogPostLayout.astro
 ---
 
 <br/>

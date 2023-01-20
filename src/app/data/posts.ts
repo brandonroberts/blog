@@ -16,15 +16,21 @@ export function isPost(post: ContentFile<Post>, liveStreams: boolean) {
   return !post.attributes.title.includes('Unfiltered');
 }
 
-
 export function injectPosts(livestreams = false) {
   return injectContentFiles<Post>()
     .filter((post) => isPost(post, livestreams))
-    .filter(post => post.attributes.published)
-    .sort((a, b) => new Date(b.attributes.publishedDate).valueOf() - new Date(a.attributes.publishedDate).valueOf());
+    .filter((post) => post.attributes.published)
+    .sort(
+      (a, b) =>
+        new Date(b.attributes.publishedDate).valueOf() -
+        new Date(a.attributes.publishedDate).valueOf()
+    );
 }
 
 export function injectPost(slug: string) {
   const route = injectActivatedRoute();
-  return injectContentFiles<Post>().find((posts) => posts.filename === `/src/content/${route.snapshot.paramMap.get(slug)}.md`);
+  return injectContentFiles<Post>().find(
+    (posts) =>
+      posts.filename === `/src/content/${route.snapshot.paramMap.get(slug)}.md`
+  );
 }

@@ -3,7 +3,6 @@ title: About Me
 description: 'About Me'
 published: true
 slug: about
-layout: ../layouts/BaseLayout.astro
 ---
 
 <div class="flex flex-col w-1/2 about">

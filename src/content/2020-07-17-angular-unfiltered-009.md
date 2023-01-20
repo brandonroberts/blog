@@ -4,7 +4,6 @@ description: 'Chatting with Mike Hartington, and Lance Finney'
 published: true
 slug: 2020-07-17-angular-unfiltered-009
 publishedDate: '2020-07-17 02:00 PM CST'
-layout: ../../../layouts/BlogPostLayout.astro
 ---
 
 <br/>

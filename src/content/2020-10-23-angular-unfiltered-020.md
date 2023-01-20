@@ -4,7 +4,6 @@ description: 'Chatting with Doguhan Uluca'
 published: true
 slug: 2020-10-23-angular-unfiltered-020
 publishedDate: '2020-10-23 02:00 PM CST'
-layout: ../../../layouts/BlogPostLayout.astro
 ---
 
 <br/>

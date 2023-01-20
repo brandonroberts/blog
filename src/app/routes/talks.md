@@ -3,10 +3,9 @@ title: Tech Talks and Appearances
 description: 'Stuff'
 published: true
 slug: talks
-layout: ../layouts/BaseLayout.astro
 ---
 
-<div class="">
+<div>
 
 <div class="text-2xl py-4">
   Conference talks, and podcast appearances.

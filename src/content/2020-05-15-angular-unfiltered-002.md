@@ -4,7 +4,6 @@ description: 'Chatting with Zack DeRose about Forms in Angular'
 published: true
 slug: 2020-05-15-angular-unfiltered-002
 publishedDate: '2020-05-15 02:00 PM CST'
-layout: ../../../layouts/BlogPostLayout.astro
 ---
 
 <br/>

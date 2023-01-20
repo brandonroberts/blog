@@ -4,7 +4,6 @@ description: 'Running a few commands can get you started quickly when building f
 published: true
 slug: 2021-02-24-building-an-angular-application-from-scratch-with-nx-and-ngrx
 publishedDate: '2021-02-24 02:00 PM CST'
-layout: ../../../layouts/BlogPostLayout.astro
 ---
 
 <br/>

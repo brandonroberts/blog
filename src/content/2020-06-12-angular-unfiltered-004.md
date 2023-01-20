@@ -4,7 +4,6 @@ description: 'Chatting with Devin Shoemaker'
 published: true
 slug: 2020-05-22-angular-unfiltered-004
 publishedDate: '2020-06-12 02:00 PM CST'
-layout: ../../../layouts/BlogPostLayout.astro
 ---
 
 <br/>

@@ -4,7 +4,6 @@ description: 'Chatting with Bryan Wilhite'
 published: true
 slug: 2020-06-26-angular-unfiltered-006
 publishedDate: '2020-06-26 02:00 PM CST'
-layout: ../../../layouts/BlogPostLayout.astro
 ---
 
 <br/>

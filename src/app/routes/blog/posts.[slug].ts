@@ -8,23 +8,15 @@ import { injectPost } from '../../data/posts';
 @Component({
   selector: 'post',
   standalone: true,
-  imports: [
-    MarkdownComponent,
-    AsyncPipe,
-    NgIf,
-    DatePipe,
-    ReadingTimePipe,
-  ],
+  imports: [MarkdownComponent, AsyncPipe, NgIf, DatePipe, ReadingTimePipe],
   template: `
-    <div
-      class="flex flex-grow justify-center min-h-screen"
-      *ngIf="post"
-    >
+    <div class="flex flex-grow justify-center min-h-screen" *ngIf="post">
       <article class="w-screen max-w-4xl p-8">
         <h2 class="text-gray-600 text-2xl">{{ post.attributes.title }}</h2>
 
         <span class="font-light text-sm">
-          {{ post.attributes.publishedDate | date:'MMMM dd, yyyy'}} - {{ post.content | readingtime }} min read
+          {{ post.attributes.publishedDate | date : 'MMMM dd, yyyy' }} -
+          {{ post.content | readingtime }} min read
         </span>
 
         <analog-markdown [content]="post.content"></analog-markdown>
