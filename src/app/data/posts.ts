@@ -1,5 +1,4 @@
 import { ContentFile, injectContentFiles } from '@analogjs/content';
-import { injectActivatedRoute } from '@analogjs/router';
 
 export interface Post {
   title: string;
@@ -25,12 +24,4 @@ export function injectPosts(livestreams = false) {
         new Date(b.attributes.publishedDate).valueOf() -
         new Date(a.attributes.publishedDate).valueOf()
     );
-}
-
-export function injectPost(slug: string) {
-  const route = injectActivatedRoute();
-  return injectContentFiles<Post>().find(
-    (posts) =>
-      posts.filename === `/src/content/${route.snapshot.paramMap.get(slug)}.md`
-  );
 }
