@@ -1,13 +1,7 @@
 import 'zone.js';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { provideFileRouter } from '@analogjs/router';
-import { provideContent, withMarkdownRenderer } from '@analogjs/content';
 
 import { AppComponent } from './app/app.component';
+import { appConfig } from './app/app.config';
 
-bootstrapApplication(AppComponent, {
-  providers: [
-    provideFileRouter(),
-    provideContent(withMarkdownRenderer())
-  ],
-});
+bootstrapApplication(AppComponent, appConfig);

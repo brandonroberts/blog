@@ -7,7 +7,7 @@ import readingTime from 'reading-time';
   standalone: true,
 })
 export class ReadingTimePipe implements PipeTransform {
-  transform(content: string): number {
-    return Math.round(readingTime(content).minutes);
+  transform(content: string | undefined): number {
+    return content ? Math.round(readingTime(content).minutes) : 0;
   }
 }

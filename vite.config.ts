@@ -12,7 +12,6 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     analog({
-      ssr: true,
       static: true,
       prerender: {
         routes: async() => ['/', '/about', '/blog', '/talks', ...posts.map(post => `/blog/posts/${post.replace('.md', '')}`)]

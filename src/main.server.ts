@@ -1,26 +1,23 @@
 import 'zone.js/node';
 import { enableProdMode } from '@angular/core';
-import { renderApplication, ɵSERVER_CONTEXT } from '@angular/platform-server';
-import { provideFileRouter } from '@analogjs/router';
-import { withEnabledBlockingInitialNavigation } from '@angular/router';
-import { provideContent, withMarkdownRenderer } from '@analogjs/content';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { renderApplication } from '@angular/platform-server';
 
+import { config } from './app/app.config.server';
 import { AppComponent } from './app/app.component';
 
 if (import.meta.env.PROD) {
   enableProdMode();
 }
 
+export function bootstrap() {
+  return bootstrapApplication(AppComponent, config);
+}
+
 export default async function render(url: string, document: string) {
-  const html = await renderApplication(AppComponent, {
-    appId: 'analog-app',
+  const html = await renderApplication(bootstrap, {
     document,
     url,
-    providers: [
-      provideFileRouter(withEnabledBlockingInitialNavigation()),
-      provideContent(withMarkdownRenderer()),
-      { provide: ɵSERVER_CONTEXT, useValue: 'analog-ssg' }
-    ],
   });
 
   return html;
