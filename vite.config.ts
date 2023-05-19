@@ -10,6 +10,9 @@ export default defineConfig(({ mode }) => ({
   build: {
     target: ['es2020'],
   },
+  optimizeDeps: {
+    include: ['reading-time']
+  },
   plugins: [
     analog({
       static: true,
