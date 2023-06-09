@@ -30,7 +30,7 @@ article > h2 {
   margin: 4px 0px 4px 0px;
 }
 
-.analog-markdown:has(.about) {
+.analog-markdown-route:has(.about) {
   display: flex;
   justify-content: center;
 }
