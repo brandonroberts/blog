@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => ({
     target: ['es2020'],
   },
   optimizeDeps: {
-    include: ['reading-time']
+    include: ['@angular/common', 'reading-time']
   },
   plugins: [
     analog({

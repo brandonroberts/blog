@@ -22,4 +22,4 @@ Navigate to `http://localhost:5173/`.
 yarn build
 ```
 
-Static site build is under the `dist/server/public` directory.
+Static site build is under the `dist/analog/public` directory.
