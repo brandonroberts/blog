@@ -6,6 +6,12 @@ slug: 2023-06-28-fullstack-angular-with-analog
 publishedDate: '2023-06-28 02:00 PM CST'
 ---
 
+<br/>
+
+<div>
+  <img src="/assets/posts/angular-analog-vite.png" width="100%"/>
+</div>
+
 With the current iteration of the web ecosystem, many frameworks are taking a server-first approach to building applications and websites. This is largely being done through meta-frameworks, such as Next.JS, SvelteKit, Nuxt, Qwik City, and more. These meta-frameworks have features such as filesystem-based routing, server-side rendering, static site generation, built-in API routes, and more integrated into the developer experience. 
 
 Analog is the meta-framework that helps you ship applications and websites faster with Angular.
