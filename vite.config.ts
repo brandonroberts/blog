@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => ({
     analog({
       static: true,
       prerender: {
-        routes: async() => ['/', '/about', '/blog', '/talks', ...posts.map(post => `/blog/posts/${post.replace('.md', '')}`)],
+        routes: async() => ['/', '/about', '/blog', '/talks', '/api/rss.xml', ...posts.map(post => `/blog/posts/${post.replace('.md', '')}`)],
         sitemap: {
           host: 'https://brandonroberts.dev/'
         }
