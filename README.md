@@ -5,13 +5,13 @@ My personal website built with [Analog](https://analogjs.org)
 ## Setup
 
 ```sh
-yarn
+npm install
 ```
 
 ## Serve
 
 ```sh
-yarn start
+npm start
 ```
 
 Navigate to `http://localhost:5173/`.
@@ -19,7 +19,7 @@ Navigate to `http://localhost:5173/`.
 ## Build
 
 ```sh
-yarn build
+npm run build
 ```
 
-Static site build is under the `dist/analog/public` directory.
+Static site build is in the `dist/analog/public` directory.
