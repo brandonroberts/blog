@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "engines": {
-    "node": ">=16.0.0"
+    "node": "^18.13.0"
   },
   "scripts": {
     "dev": "ng serve",
@@ -14,8 +14,8 @@
     "test": "ng test"
   },
   "dependencies": {
-    "@analogjs/content": "0.2.8",
-    "@analogjs/router": "0.2.8",
+    "@analogjs/content": "0.2.14",
+    "@analogjs/router": "0.2.14",
     "@angular/animations": "16.2.6",
     "@angular/common": "16.2.6",
     "@angular/compiler": "16.2.6",
@@ -25,7 +25,7 @@
     "@angular/platform-browser-dynamic": "16.2.6",
     "@angular/platform-server": "16.2.6",
     "@angular/router": "16.2.6",
-    "@nx/angular": "16.9.0",
+    "@nx/angular": "16.8.1",
     "date-fns": "^2.29.3",
     "front-matter": "^4.0.2",
     "marked": "^5.0.5",
@@ -40,12 +40,12 @@
     "zone.js": "~0.13.3"
   },
   "devDependencies": {
-    "@analogjs/platform": "0.2.8",
+    "@analogjs/platform": "0.2.14",
     "@angular-devkit/build-angular": "16.2.3",
     "@angular/cli": "16.2.3",
     "@angular/compiler-cli": "16.2.6",
     "@ngtools/webpack": "16.2.0",
-    "@nx/vite": "16.9.0",
+    "@nx/vite": "16.8.1",
     "autoprefixer": "^10.4.13",
     "install": "^0.13.0",
     "jsdom": "^22.1.0",
