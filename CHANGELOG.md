@@ -1,3 +1,11 @@
+# [1.0.0-beta.5](https://github.com/brandonroberts/blog/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-11-09)
+
+
+### Features
+
+* add package.json update to release ([568d4e2](https://github.com/brandonroberts/blog/commit/568d4e255adc18cc282e2a5a19489d721bfe12e9))
+* run build ([d39e9e8](https://github.com/brandonroberts/blog/commit/d39e9e8f260c2ea2dfc6ada9ae53623fdfa53ac4))
+
 # [1.0.0-beta.4](https://github.com/brandonroberts/blog/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2023-11-09)
 
 
