@@ -19,7 +19,8 @@ module.exports = {
       {
         "assets": ["CHANGELOG.md"]
       }
-    ]
+    ],
+    '@semantic-release/npm'
   ],
   'preset': 'angular'
 };
