@@ -9,7 +9,8 @@ module.exports = {
     [
       '@semantic-release/github',
       {
-        'assets': ['dist/**']
+        'assets': ['dist/analog/public'],
+        successComment: false,
       }
     ],
     '@semantic-release/git'
