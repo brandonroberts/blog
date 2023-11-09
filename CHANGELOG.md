@@ -1,3 +1,10 @@
+# [1.0.0-beta.6](https://github.com/brandonroberts/blog/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2023-11-09)
+
+
+### Bug Fixes
+
+* remove assets ([87a5724](https://github.com/brandonroberts/blog/commit/87a5724ae7085ae4a19e1a21af49788439a0423c))
+
 # [1.0.0-beta.5](https://github.com/brandonroberts/blog/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-11-09)
 
 
