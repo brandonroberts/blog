@@ -15,12 +15,17 @@ module.exports = {
       }
     ],
     [
-      "@semantic-release/git",
+      '@semantic-release/git',
       {
-        "assets": ["CHANGELOG.md"]
+        'assets': ['CHANGELOG.md']
       }
     ],
-    '@semantic-release/npm'
+    [
+      '@semantic-release/npm',
+      {
+        'npmPublish': false
+      }
+    ],
   ],
   'preset': 'angular'
 };
