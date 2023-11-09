@@ -10,7 +10,6 @@ module.exports = {
     [
       '@semantic-release/github',
       {
-        'assets': ['dist/analog/public'],
         successComment: false,
       }
     ],
@@ -20,12 +19,7 @@ module.exports = {
         'npmPublish': false
       }
     ],    
-    [
-      '@semantic-release/git',
-      {
-        'assets': ['package.json', 'CHANGELOG.md']
-      }
-    ],
+    '@semantic-release/git'
   ],
   'preset': 'angular'
 };
