@@ -11,17 +11,19 @@ import { Post } from '../data/posts';
   imports: [NgFor, RouterLink, DatePipe],
   template: `
     <div class="text-2xl">
-      <div class="py-4" *ngFor="let post of posts">
-        <a
-          [routerLink]="['/blog', 'posts', post.attributes.slug]"
-          class="text-gray-600"
-          >{{ post.attributes.title }}</a
-        >
+      @for (post of posts; track post.slug) {
+        <div class="py-4">
+          <a
+            [routerLink]="['/blog', 'posts', post.attributes.slug]"
+            class="text-gray-600"
+            >{{ post.attributes.title }}</a
+          >
 
-        <p class="text-sm">
-          {{ post.attributes.publishedDate | date : 'MMMM dd, yyyy' }}
-        </p>
-      </div>
+          <p class="text-sm">
+            {{ post.attributes.publishedDate | date : 'MMMM dd, yyyy' }}
+          </p>
+        </div>
+      }
     </div>
   `,
 })
