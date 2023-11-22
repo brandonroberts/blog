@@ -36,7 +36,7 @@ module.exports = {
     [
       '@semantic-release/exec',
       {
-        'publishCmd': 'ng build blog && ng build my-lib'
+        'publishCmd': 'ng build blog && ng build my-lib && cat dist/my-lib/package.json'
       }
     ]
   ],
