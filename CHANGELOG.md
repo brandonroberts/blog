@@ -1,3 +1,10 @@
+# [1.0.0-beta.9](https://github.com/brandonroberts/blog/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2023-11-22)
+
+
+### Bug Fixes
+
+* remove initial build ([88fe812](https://github.com/brandonroberts/blog/commit/88fe812ca88ca5d4c36667b2a8ecf79a5cb640a4))
+
 # [1.0.0-beta.8](https://github.com/brandonroberts/blog/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2023-11-22)
 
 
