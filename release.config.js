@@ -23,7 +23,7 @@ module.exports = {
       '@semantic-release/npm',
       {
         'npmPublish': false,
-        'pkgRoot': './projects/my-lib/package.json'
+        'pkgRoot': './projects/my-lib/'
       }
     ],     
     [
