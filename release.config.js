@@ -18,7 +18,7 @@ module.exports = {
       {
         'npmPublish': false
       }
-    ],    
+    ],  
     '@semantic-release/git'
   ],
   'preset': 'angular'
