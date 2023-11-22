@@ -1,3 +1,10 @@
+# [1.0.0-beta.8](https://github.com/brandonroberts/blog/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2023-11-22)
+
+
+### Features
+
+* add release build ([e911583](https://github.com/brandonroberts/blog/commit/e91158387d15a828ad599a85733c446af209825a))
+
 # [1.0.0-beta.7](https://github.com/brandonroberts/blog/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2023-11-22)
 
 
