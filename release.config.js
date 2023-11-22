@@ -32,6 +32,12 @@ module.exports = {
         'assets': ['CHANGELOG.md', 'package.json', 'projects/my-lib/package.json'],
         'message': 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}' 
       }
+    ],
+    [
+      '@semantic-release/exec',
+      {
+        'publishCmd': 'ng build blog && ng build my-lib'
+      }
     ]
   ],
   'preset': 'angular'
