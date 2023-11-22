@@ -1,3 +1,16 @@
+# [1.0.0-beta.7](https://github.com/brandonroberts/blog/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2023-11-22)
+
+
+### Bug Fixes
+
+* update pkgRoot ([31ac566](https://github.com/brandonroberts/blog/commit/31ac566d5ccf92859978a8a60866b67a1cb060d6))
+
+
+### Features
+
+* add my-lib ([1a20635](https://github.com/brandonroberts/blog/commit/1a206357b207c7f234ef1f45524ea425a6ed11eb))
+* add separate package.json update to releases ([ce04721](https://github.com/brandonroberts/blog/commit/ce04721c8d7293a7cefdc27b504ff8041d414242))
+
 # [1.0.0-beta.6](https://github.com/brandonroberts/blog/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2023-11-09)
 
 
