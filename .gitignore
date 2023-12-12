@@ -39,6 +39,9 @@ yarn-error.log
 testem.log
 /typings
 .firebase
+/.angular/cache
+/.nx/cache
+
 
 # System Files
 .DS_Store
