@@ -1,0 +1,11 @@
+<script lang="ts">
+import { RouterOutlet } from '@angular/router';
+
+defineMetadata({
+  imports: [RouterOutlet],
+})
+</script>
+
+<template>
+  <router-outlet></router-outlet>
+</template>
