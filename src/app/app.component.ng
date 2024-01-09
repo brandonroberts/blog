@@ -1,0 +1,21 @@
+<script lang="ts">
+  import { RouterOutlet } from '@angular/router';
+  
+  import AppHeader from './components/app-header.ng';
+  import AppFooter from './components/app-footer.ng';
+
+  defineMetadata({
+    selector: 'app-root',
+    imports: [RouterOutlet],
+  })
+</script>
+
+<template>
+  <AppHeader />
+
+  <main class="flex flex-grow justify-center min-h-screen p-4">
+    <router-outlet></router-outlet>
+  </main>
+
+  <AppFooter />
+</template>

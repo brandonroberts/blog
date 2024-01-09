@@ -1,0 +1,7 @@
+<script lang="ts">
+  import Posts from '../components/posts.ng';
+</script>
+
+<template>
+  <Posts />
+</template>

@@ -24,6 +24,12 @@ export default defineConfig(({ mode }) => ({
       },
       nitro: {
         logLevel: 3
+      },
+      vite: {
+        inlineStylesExtension: 'scss',
+        experimental: {
+          dangerouslySupportNgFormat: true
+        }
       }
     }),
   ],

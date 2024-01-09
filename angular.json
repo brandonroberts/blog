@@ -10,11 +10,12 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@nx/vite:build",
+          "builder": "@analogjs/platform:vite",
           "options": {
             "main": "src/main.ts",
             "configFile": "vite.config.ts",
-            "outputPath": "dist/client"
+            "outputPath": "dist/client",
+            "tsConfig": "tsconfig.app.json"
           },
           "defaultConfiguration": "production",
           "configurations": {
@@ -28,7 +29,7 @@
           }
         },
         "serve": {
-          "builder": "@nx/vite:dev-server",
+          "builder": "@analogjs/platform:vite-dev-server",
           "defaultConfiguration": "development",
           "options": {
             "buildTarget": "blog:build",
@@ -45,7 +46,7 @@
           }
         },
         "test": {
-          "builder": "@nx/vite:test"
+          "builder": "@analogjs/platform:vitest"
         }
       }
     }
