@@ -10,17 +10,10 @@
   })
 </script>
 
-<style>
-  h1 {
-    color: blue;
-  }
-</style>
-
 <template>
   <AppHeader />
 
   <main class="flex flex-grow justify-center min-h-screen p-4">
-    <h1>My Blog</h1>
     <router-outlet></router-outlet>
   </main>
 
