@@ -9,6 +9,7 @@ const posts = fs.readdirSync('./src/content');
 export default defineConfig(({ mode }) => ({
   build: {
     target: ['es2020'],
+    outDir: 'dist/client'
   },
   optimizeDeps: {
     include: ['@angular/common', 'reading-time']
