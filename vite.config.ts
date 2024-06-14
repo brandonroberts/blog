@@ -24,7 +24,10 @@ export default defineConfig(({ mode }) => ({
         }
       },
       nitro: {
-        logLevel: 3
+        logLevel: 3,
+        prerender: {
+          concurrency: 1
+        }
       }
     }),
   ],
