@@ -5,6 +5,7 @@ export interface Post {
   slug: string;
   published: boolean;
   publishedDate: string;
+  description: string;
 }
 
 export function isPost(post: ContentFile<Post>, liveStreams: boolean) {

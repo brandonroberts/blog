@@ -2,8 +2,16 @@
 
 import { defineConfig } from 'vite';
 import analog from '@analogjs/platform';
-import * as fs from 'fs';
-const posts = fs.readdirSync('./src/content');
+
+// Only run in Netlify CI
+let base = process.env['URL'] || 'http://localhost:5173';
+if (process.env['NETLIFY'] === 'true') {
+  if (process.env['CONTEXT'] === 'deploy-preview') {
+    base = `${process.env['DEPLOY_PRIME_URL']}/`;
+  }
+}
+
+process.env['VITE_ANALOG_BASE_URL'] = base;
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -18,15 +26,38 @@ export default defineConfig(({ mode }) => ({
     analog({
       static: true,
       prerender: {
-        routes: async() => ['/', '/about', '/blog', '/talks', ...posts.map(post => `/blog/posts/${post.replace('.md', '')}`)],
+        routes: async() => [
+          '/',
+          '/about',
+          '/blog',
+          '/talks',
+          {
+            contentDir: '/src/content',
+            transform(file) {
+              return `/blog/posts/${file.attributes['slug']}`;
+            },
+          },
+          {
+            contentDir: '/src/content',
+            transform(file) {
+              return `/api/v1/og-images/${file.attributes['slug']}.png?title=${file.attributes['title']}`;
+            },
+          }          
+        ],
         sitemap: {
-          host: 'https://brandonroberts.dev/'
+          host: base
         }
       },
       nitro: {
         logLevel: 3,
         prerender: {
           concurrency: 1
+        },
+        hooks: {
+          'prerender:generate': (route) => {
+            route.route = route.route.split('?')[0];
+            route.fileName = route.fileName?.split('?')[0];
+          }
         }
       }
     }),

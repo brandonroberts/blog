@@ -1,14 +1,21 @@
 import { AsyncPipe, DatePipe, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { injectContent, MarkdownComponent } from '@analogjs/content';
+import { RouteMeta } from '@analogjs/router';
 
 import { ReadingTimePipe } from '../../pipes/reading-time.pipe';
 import { Post } from '../../data/posts';
+import { postMetaResolver, postTitleResolver } from './resolvers';
+
+export const routeMeta: RouteMeta = {
+  title: postTitleResolver,
+  meta: postMetaResolver,
+};
 
 @Component({
   selector: 'post',
   standalone: true,
-  imports: [MarkdownComponent, AsyncPipe, NgIf, DatePipe, ReadingTimePipe],
+  imports: [MarkdownComponent, AsyncPipe, DatePipe, ReadingTimePipe],
   template: `
     @if (post$ | async; as post) {
       <div class="flex flex-grow justify-center min-h-screen">
