@@ -71,6 +71,11 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
                 <img src="assets/images/logos/github-icon.svg" />
               </a>
             </div>
+            <div class="w-8 m-0">
+              <a href="https://bsky.app/profile/brandonroberts.dev" title="Bluesky">
+                <img src="assets/images/logos/bluesky-logo.png" />
+              </a>
+            </div>            
             <div class="w-8">
               <a href="https://youtube.com/brandonrobertsdev" title="YouTube">
                 <img src="assets/images/logos/youtube-logo.png" />
@@ -112,4 +117,4 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     </header>
   `,
 })
-export class HeaderComponent {}
+export class HeaderComponent { }
