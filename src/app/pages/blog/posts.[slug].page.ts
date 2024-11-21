@@ -13,9 +13,9 @@ export const routeMeta: RouteMeta = {
 };
 
 @Component({
-    selector: 'post',
-    imports: [MarkdownComponent, AsyncPipe, DatePipe, ReadingTimePipe],
-    template: `
+  selector: 'post',
+  imports: [MarkdownComponent, AsyncPipe, DatePipe, ReadingTimePipe],
+  template: `
     @if (post$ | async; as post) {
       <div class="flex flex-grow justify-center min-h-screen">
         <article class="w-screen max-w-4xl p-8">
@@ -26,7 +26,9 @@ export const routeMeta: RouteMeta = {
             {{ post.content | readingtime }} min read
           </span>
 
-          <analog-markdown [content]="post.content"></analog-markdown>
+          @defer(hydrate never) {
+            <analog-markdown [content]="post.content"></analog-markdown>
+          }
         </article>
       </div>
     }
