@@ -7,7 +7,9 @@ import { injectPosts } from '../../data/posts';
   selector: 'blog-posts',
   imports: [PostsComponent],
   template: `
-    <posts [posts]="posts"></posts>
+    @defer(hydrate on hover) {
+      <posts [posts]="posts"></posts>
+    }
   `
 })
 export default class BlogComponent {
