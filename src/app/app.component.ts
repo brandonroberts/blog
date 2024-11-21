@@ -5,10 +5,9 @@ import { FooterComponent } from './components/footer.component';
 import { HeaderComponent } from './components/header.component';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent],
-  template: `
+    selector: 'app-root',
+    imports: [RouterOutlet, HeaderComponent, FooterComponent],
+    template: `
     <app-header></app-header>
 
     <main class="flex flex-grow justify-center min-h-screen p-4">

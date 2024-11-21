@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [RouterLink, RouterLinkActive],
-  template: `
+    selector: 'app-header',
+    imports: [RouterLink, RouterLinkActive],
+    template: `
     <header class="bg-blue-600 py-2">
       <div
         class="flex justify-center content-between space-x-2 md:space-x-4 lg:space-x-4 lg:text-2xl text-white"
@@ -115,6 +114,6 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
         </div>
       </div>
     </header>
-  `,
+  `
 })
 export class HeaderComponent { }

@@ -4,10 +4,9 @@ import { PostsComponent } from '../components/posts.component';
 import { injectPosts } from '../data/posts';
 
 @Component({
-  selector: 'livestreams',
-  standalone: true,
-  imports: [PostsComponent],
-  template: ` <posts [posts]="posts"></posts> `,
+    selector: 'livestreams',
+    imports: [PostsComponent],
+    template: ` <posts [posts]="posts"></posts> `
 })
 export default class BlogComponent {
   posts = injectPosts(true);

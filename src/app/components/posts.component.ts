@@ -6,10 +6,9 @@ import { ContentFile } from '@analogjs/content';
 import { Post } from '../data/posts';
 
 @Component({
-  selector: 'posts',
-  standalone: true,
-  imports: [RouterLink, DatePipe],
-  template: `
+    selector: 'posts',
+    imports: [RouterLink, DatePipe],
+    template: `
     <div class="text-2xl">
       @for (post of posts(); track post.slug) {
         <div class="py-4">
@@ -25,7 +24,7 @@ import { Post } from '../data/posts';
         </div>
       }
     </div>
-  `,
+  `
 })
 export class PostsComponent {
   posts = input<ContentFile<Post>[]>([]);

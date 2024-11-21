@@ -13,10 +13,9 @@ export const routeMeta: RouteMeta = {
 };
 
 @Component({
-  selector: 'post',
-  standalone: true,
-  imports: [MarkdownComponent, AsyncPipe, DatePipe, ReadingTimePipe],
-  template: `
+    selector: 'post',
+    imports: [MarkdownComponent, AsyncPipe, DatePipe, ReadingTimePipe],
+    template: `
     @if (post$ | async; as post) {
       <div class="flex flex-grow justify-center min-h-screen">
         <article class="w-screen max-w-4xl p-8">
@@ -31,7 +30,7 @@ export const routeMeta: RouteMeta = {
         </article>
       </div>
     }
-  `,
+  `
 })
 export default class BlogPostComponent {
   post$ = injectContent<Post>();
