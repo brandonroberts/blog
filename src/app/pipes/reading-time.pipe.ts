@@ -4,7 +4,6 @@ import readingTime from 'reading-time';
 
 @Pipe({
   name: 'readingtime',
-  standalone: true,
 })
 export class ReadingTimePipe implements PipeTransform {
   transform(content: string | undefined | object): number {

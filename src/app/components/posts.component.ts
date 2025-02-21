@@ -1,4 +1,4 @@
-import { Component, input, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ContentFile } from '@analogjs/content';
@@ -6,9 +6,9 @@ import { ContentFile } from '@analogjs/content';
 import { Post } from '../data/posts';
 
 @Component({
-    selector: 'posts',
-    imports: [RouterLink, DatePipe],
-    template: `
+  selector: 'posts',
+  imports: [RouterLink, DatePipe],
+  template: `
     <div class="text-2xl">
       @for (post of posts(); track post.slug) {
         <div class="py-4">
