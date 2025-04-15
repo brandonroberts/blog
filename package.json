@@ -12,11 +12,12 @@
     "start": "vite",
     "build": "vite build",
     "watch": "vite build --watch",
-    "test": "vitest"
+    "test": "vitest",
+    "lighthouse": "lhci autorun"
   },
   "dependencies": {
-    "@analogjs/content": "1.15.0-beta.4",
-    "@analogjs/router": "1.15.0-beta.4",
+    "@analogjs/content": "1.15.1",
+    "@analogjs/router": "1.15.1",
     "@angular/animations": "19.2.4",
     "@angular/common": "19.2.4",
     "@angular/compiler": "19.2.4",
@@ -44,12 +45,13 @@
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@analogjs/platform": "1.15.0-beta.4",
-    "@analogjs/vite-plugin-angular": "1.15.0-beta.4",
-    "@analogjs/vitest-angular": "1.15.0-beta.4",
+    "@analogjs/platform": "1.15.1",
+    "@analogjs/vite-plugin-angular": "1.15.1",
+    "@analogjs/vitest-angular": "1.15.1",
     "@angular-devkit/build-angular": "19.2.5",
     "@angular/cli": "19.2.5",
     "@angular/compiler-cli": "19.2.4",
+    "@lhci/cli": "^0.14.0",
     "@nx/angular": "^20.5.0",
     "@nx/devkit": "^20.5.0",
     "@nx/vite": "^20.5.0",

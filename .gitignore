@@ -48,3 +48,5 @@ testem.log
 Thumbs.db
 scully.log
 .nx/workspace-data
+
+.lighthouseci
