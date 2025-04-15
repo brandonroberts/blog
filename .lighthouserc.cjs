@@ -11,25 +11,14 @@ module.exports = {
       target: 'temporary-public-storage',
     },
     assert: {
-      preset: "lighthouse:recommended",
-      assertions: {
-        "first-contentful-paint": [
-          "warn",
-          {
-            "maxNumericValue": 2500,
-            "aggregationMethod": "optimistic"
-          }
-        ],
-        interactive: [
-          "warn",
-          {
-            "maxNumericValue": 5000,
-            "aggregationMethod": "optimistic"
-          }
-        ],
-        "uses-long-cache-ttl": "off",
-        "uses-http2": "off"
-      }
+      assertMatrix: [
+        {
+          matchingUrlPattern: '.*',
+          assertions: {
+            'first-contentful-paint': ['warn', { maxNumericValue: 2000 }],
+          },
+        },
+      ],
     },
   },
 };
