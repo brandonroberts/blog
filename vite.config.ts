@@ -73,4 +73,7 @@ export default defineConfig(({ mode }) => ({
     // fix for readingtime
     'process.env.NODE_DEBUG': mode !== 'production' ? '"true"' : false
   },
+  experimental: {
+    enableNativePlugin: true
+  }
 }));
