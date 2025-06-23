@@ -63,5 +63,10 @@
     "typescript": "~5.8.3",
     "vite": "npm:rolldown-vite@latest",
     "vitest": "^3.0.0"
-  }  
+  },
+  "overrides": {
+    "rollup-plugin-visualizer": {
+      "rolldown": "latest"
+    }
+  }
 }
