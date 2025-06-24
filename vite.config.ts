@@ -51,7 +51,8 @@ export default defineConfig(({ mode }) => ({
       nitro: {
         logLevel: 3,
         prerender: {
-          concurrency: 1
+          concurrency: 1,
+          autoSubfolderIndex: false
         },
         hooks: {
           'prerender:generate': (route) => {
