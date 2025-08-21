@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => ({
     outDir: 'dist/client'
   },
   optimizeDeps: {
-    include: ['@angular/common', 'reading-time']
+    include: ['reading-time']
   },
   plugins: [
     analog({
@@ -61,7 +61,7 @@ export default defineConfig(({ mode }) => ({
           }
         }
       }
-    }),
+    })
   ],
   test: {
     globals: true,
@@ -73,8 +73,5 @@ export default defineConfig(({ mode }) => ({
     'import.meta.vitest': mode !== 'production',
     // fix for readingtime
     'process.env.NODE_DEBUG': mode !== 'production' ? '"true"' : false
-  },
-  experimental: {
-    enableNativePlugin: true
   }
 }));
