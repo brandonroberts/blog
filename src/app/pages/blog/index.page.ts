@@ -8,7 +8,7 @@ import { injectPosts } from '../../data/posts';
   imports: [PostsComponent],
   template: `
     @defer(hydrate on hover) {
-      <posts [posts]="posts"></posts>
+      <posts [posts]="posts()"></posts>
     }
   `
 })

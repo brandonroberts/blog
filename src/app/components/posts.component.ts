@@ -27,5 +27,5 @@ import { Post } from '../data/posts';
   `
 })
 export class PostsComponent {
-  posts = input<ContentFile<Post>[]>([]);
+  posts = input<ContentFile<Post>[] | undefined>([]);
 }

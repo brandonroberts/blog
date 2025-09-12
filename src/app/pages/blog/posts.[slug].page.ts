@@ -1,6 +1,7 @@
-import { AsyncPipe, DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
-import { injectContent, MarkdownComponent } from '@analogjs/content';
+import { DatePipe } from '@angular/common';
+import { Component, effect } from '@angular/core';
+import { MarkdownComponent } from '@analogjs/content';
+import { contentFileResource } from '@analogjs/content/resources';
 import { RouteMeta } from '@analogjs/router';
 
 import { ReadingTimePipe } from '../../pipes/reading-time.pipe';
@@ -14,9 +15,11 @@ export const routeMeta: RouteMeta = {
 
 @Component({
   selector: 'post',
-  imports: [MarkdownComponent, AsyncPipe, DatePipe, ReadingTimePipe],
+  imports: [MarkdownComponent, DatePipe, ReadingTimePipe],
   template: `
-    @if (post$ | async; as post) {
+    @let post = postResource.value();
+
+    @if (post) {
       <div class="flex flex-grow justify-center min-h-screen">
         <article class="w-screen max-w-4xl p-8">
           <h2 class="text-gray-600 text-2xl">{{ post.attributes.title }}</h2>
@@ -26,14 +29,12 @@ export const routeMeta: RouteMeta = {
             {{ post.content | readingtime }} min read
           </span>
 
-          @defer(hydrate never) {
             <analog-markdown [content]="post.content"></analog-markdown>
-          }
         </article>
       </div>
     }
   `
 })
 export default class BlogPostComponent {
-  post$ = injectContent<Post>();
+  postResource = contentFileResource<Post>();
 }

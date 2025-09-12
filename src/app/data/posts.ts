@@ -1,4 +1,6 @@
-import { ContentFile, injectContentFiles } from '@analogjs/content';
+import { ContentFile } from '@analogjs/content';
+import { contentFilesResource } from '@analogjs/content/resources';
+import { computed } from '@angular/core';
 
 export interface Post {
   title: string;
@@ -17,12 +19,10 @@ export function isPost(post: ContentFile<Post>, liveStreams: boolean) {
 }
 
 export function injectPosts(livestreams = false) {
-  return injectContentFiles<Post>()
-    .filter((post) => isPost(post, livestreams))
-    .filter((post) => post.attributes.published)
-    .sort(
-      (a, b) =>
-        new Date(b.attributes.publishedDate).valueOf() -
-        new Date(a.attributes.publishedDate).valueOf()
-    );
+  const posts = contentFilesResource<Post>((post) => isPost(post, livestreams) && post.attributes.published);
+
+  return computed(() => (posts.value() || []).slice().sort((a, b) =>
+    new Date(b.attributes.publishedDate).valueOf() -
+    new Date(a.attributes.publishedDate).valueOf()
+  ));
 }
