@@ -2,6 +2,6 @@ import 'zone.js/node';
 import { render } from '@analogjs/router/server';
 
 import { AppComponent } from './app/app.component';
-import { appConfig } from './app/app.config';
+import { config } from './app/app.config.server';
 
-export default render(AppComponent, appConfig);
+export default render(AppComponent, config);
