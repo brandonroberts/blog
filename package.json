@@ -61,7 +61,10 @@
     "postcss": "^8.4.21",
     "tailwindcss": "^4.1.13",
     "typescript": "~5.8.3",
-    "vite": "^7.0.0",
+    "vite": "npm:rolldown-vite@latest",
     "vitest": "^3.0.0"
+  },
+  "overrides": {
+    "vite": "npm:rolldown-vite@latest"
   }
 }
