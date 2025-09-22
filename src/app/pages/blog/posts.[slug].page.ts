@@ -29,7 +29,7 @@ export const routeMeta: RouteMeta = {
             {{ post.content | readingtime }} min read
           </span>
 
-            <analog-markdown [content]="post.content"></analog-markdown>
+          <analog-markdown [content]="post.content"></analog-markdown>
         </article>
       </div>
     }
