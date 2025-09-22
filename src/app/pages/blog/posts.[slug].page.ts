@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, effect } from '@angular/core';
+import { Component } from '@angular/core';
 import { MarkdownComponent } from '@analogjs/content';
 import { contentFileResource } from '@analogjs/content/resources';
 import { RouteMeta } from '@analogjs/router';

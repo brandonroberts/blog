@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, computed } from '@angular/core';
+import { contentFilesResource } from '@analogjs/content/resources';
 
 import { PostsComponent } from '../components/posts.component';
-import { injectPosts } from '../data/posts';
+import { Post, isPost } from '../data/posts';
 
 @Component({
     selector: 'livestreams',
@@ -9,5 +10,13 @@ import { injectPosts } from '../data/posts';
     template: ` <posts [posts]="posts()"></posts> `
 })
 export default class BlogComponent {
-  posts = injectPosts(true);
+  private postsResource = contentFilesResource<Post>((post) => isPost(post, true) && post.attributes.published);
+
+  readonly posts = computed(() => {
+    return (this.postsResource.value() || [])
+      .slice().sort((a, b) =>
+        new Date(b.attributes.publishedDate).valueOf() -
+        new Date(a.attributes.publishedDate).valueOf()
+      )
+  });
 }
