@@ -2,6 +2,7 @@
 
 import { defineConfig } from 'vite';
 import analog from '@analogjs/platform';
+import tailwindcss from '@tailwindcss/vite';
 
 // Only run in Netlify CI
 let base = process.env['URL'] || 'http://localhost:5173';
@@ -68,7 +69,8 @@ export default defineConfig(({ mode }) => ({
           }
         }
       }
-    })
+    }),
+    tailwindcss(),
   ],
   test: {
     globals: true,
