@@ -1,4 +1,3 @@
-import 'zone.js/node';
 import { render } from '@analogjs/router/server';
 
 import { AppComponent } from './app/app.component';
