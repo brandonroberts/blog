@@ -24,6 +24,14 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     analog({
+      content: {
+        highlighter: 'shiki',
+        shikiOptions: {
+          highlighter: {
+            additionalLangs: ['sh']
+          }
+        }
+      },
       static: true,
       prerender: {
         routes: async() => [

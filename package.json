@@ -33,6 +33,7 @@
     "marked-gfm-heading-id": "^4.1.1",
     "marked-highlight": "^2.2.1",
     "marked-mangle": "^1.1.10",
+    "marked-shiki": "^1.1.0",
     "mermaid": "^10.2.4",
     "prismjs": "^1.29.0",
     "reading-time": "^1.5.0",
@@ -40,6 +41,7 @@
     "satori": "^0.10.14",
     "satori-html": "^0.3.2",
     "sharp": "^0.33.5",
+    "shiki": "^1.6.1",    
     "tslib": "^2.4.0",
     "util": "^0.12.5",
     "zone.js": "~0.15.0"
