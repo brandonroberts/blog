@@ -29,7 +29,7 @@ import { ThemeService } from '../services/theme.service';
             >Live Streams</a
           >
         </div> -->
-        <div>
+        <!-- <div>
           <a
             routerLink="/talks"
             routerLinkActive="text-blue-200 dark:text-blue-300"
@@ -37,7 +37,7 @@ import { ThemeService } from '../services/theme.service';
             title="Talks"
             >Talks</a
           >
-        </div>
+        </div> -->
         <div>
           <a
             routerLink="/about"
