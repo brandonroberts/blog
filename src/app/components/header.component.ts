@@ -81,57 +81,24 @@ import { ThemeService } from '../services/theme.service';
           <h1 class="text-white text-3xl text-center">Brandon Roberts</h1>
           <p class="text-white text-xl text-center">Notes to my future self</p>
 
-          <div class="flex justify-center space-around py-2 space-x-4">
-            <div class="w-8">
-              <a href="https://twitter.com/brandontroberts" title="Twitter">
-                <img src="assets/images/logos/twitter-icon.svg" />
-              </a>
-            </div>
-            <div class="w-8">
-              <a href="https://github.com/brandonroberts" title="GitHub">
-                <img src="assets/images/logos/github-icon.svg" />
-              </a>
-            </div>
-            <div class="w-8 m-0">
-              <a href="https://bsky.app/profile/brandonroberts.dev" title="Bluesky">
-                <img src="assets/images/logos/bluesky-logo.png" />
-              </a>
-            </div>            
-            <div class="w-8">
-              <a href="https://youtube.com/brandonrobertsdev" title="YouTube">
-                <img src="assets/images/logos/youtube-logo.png" />
-              </a>
-            </div>
-            <div class="w-8">
-              <a href="https://twitch.tv/brandontroberts" title="Twitch">
-                <svg
-                  width="43"
-                  height="50"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <defs>
-                    <g id="icon-twitch">
-                      <path
-                        d="M8.927 0L0 8.929V41.07h10.712V50l8.927-8.929h7.14L42.849 25V0H8.927zm30.35 23.214l-7.141 7.143h-7.142l-6.248 6.25v-6.25h-8.034V3.571h28.565v19.643z"
-                      ></path>
-                      <path
-                        d="M24.131 9.826h-3.61v10.695h3.61V9.826zM33.957 9.826h-3.61v10.695h3.61V9.826z"
-                      ></path>
-                    </g>
-                  </defs>
-                  <use
-                    class="off"
-                    href="#icon-twitch"
-                    fill="#ffffff"
-                    opacity="0"
-                    data-svg-origin="21.5 25"
-                    transform="matrix(0.75,0,0,0.75,5.375,6.25)"
-                    style="transform-origin: 0px 0px; opacity: 1;"
-                  ></use>
-                </svg>
-              </a>
-            </div>
+          <div class="flex justify-center items-center py-2 space-x-4">
+            <a href="https://twitter.com/brandontroberts" title="Twitter" class="flex items-center justify-center w-8 h-8">
+              <img src="assets/images/logos/twitter-icon.svg" class="w-6 h-6 object-contain" alt="Twitter" />
+            </a>
+            <a href="https://github.com/brandonroberts" title="GitHub" class="flex items-center justify-center w-8 h-8">
+              <img src="assets/images/logos/github-icon.svg" class="w-6 h-6 object-contain" alt="GitHub" />
+            </a>
+            <a href="https://bsky.app/profile/brandonroberts.dev" title="Bluesky" class="flex items-center justify-center w-8 h-8">
+              <img src="assets/images/logos/bluesky-logo.png" class="w-6 h-6 object-contain" alt="Bluesky" />
+            </a>
+            <a href="https://youtube.com/brandonrobertsdev" title="YouTube" class="flex items-center justify-center w-8 h-8">
+              <img src="assets/images/logos/youtube-logo.png" class="w-6 h-6 object-contain" alt="YouTube" />
+            </a>
+            <a href="https://twitch.tv/brandontroberts" title="Twitch" class="flex items-center justify-center w-8 h-8">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.571 4.714h1.715v5.143H11.57V4.714zm4.715 0H18v5.143h-1.714V4.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0H6zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714v9.429z"/>
+              </svg>
+            </a>
           </div>
         </div>
       </div>
