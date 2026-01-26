@@ -22,9 +22,9 @@ export const routeMeta: RouteMeta = {
     @if (post) {
       <div class="flex flex-grow justify-center min-h-screen">
         <article class="w-screen max-w-4xl p-8">
-          <h2 class="text-gray-600 text-2xl">{{ post.attributes.title }}</h2>
+          <h2 class="text-gray-600 dark:text-gray-300 text-2xl">{{ post.attributes.title }}</h2>
 
-          <span class="font-light text-sm">
+          <span class="font-light text-sm text-gray-500 dark:text-gray-400">
             {{ post.attributes.publishedDate | date : 'MMMM dd, yyyy' }} -
             {{ post.content | readingtime }} min read
           </span>

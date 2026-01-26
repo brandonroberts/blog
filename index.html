@@ -1,6 +1,17 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="">
   <head>
+    <script>
+      // Prevent flash of wrong theme on page load
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = savedTheme === 'dark' || (!savedTheme && systemDark);
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
     <meta charset="utf-8" />
     <title>Brandon Roberts - Web Developer</title>
     <base href="/" />

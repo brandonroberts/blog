@@ -14,11 +14,11 @@ import { Post } from '../data/posts';
         <div class="py-4">
           <a
             [routerLink]="['/blog', 'posts', post.attributes.slug]"
-            class="text-gray-600"
+            class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
             >{{ post.attributes.title }}</a
           >
 
-          <p class="text-sm">
+          <p class="text-sm text-gray-500 dark:text-gray-400">
             {{ post.attributes.publishedDate | date : 'MMMM dd, yyyy' }}
           </p>
         </div>
