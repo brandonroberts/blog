@@ -12,7 +12,7 @@ import { DevToArticle, ExtendedPost } from '../data/posts';
 /** Convert dev.to article to Analog ContentFile format */
 function devToArticleToContentFile(article: DevToArticle): ContentFile<ExtendedPost> {
   return {
-    filename: `/src/content/${article.slug}.md`,
+    filename: article.slug,
     slug: article.slug,
     content: article.body_markdown || article.description,
     attributes: {
@@ -85,7 +85,7 @@ export function withDevToContentFileLoader(): Provider {
         
         for (const article of devToPosts) {
           // Use standard path format so contentFileResource can find it
-          const filePath = `/src/content/${article.slug}.md`;
+          const filePath = article.slug;
           devToFilesMap[filePath] = async () => createDevToContentObject(article) as unknown as string;
         }
         
