@@ -8,18 +8,26 @@ export interface Post {
   description: string;
 }
 
-/** Unified post type for displaying mixed local and external posts */
+/** Extended post attributes that include dev.to post fields */
+export interface ExtendedPost extends Post {
+  /** Whether this is a dev.to post */
+  isDevTo?: boolean;
+  /** Cover/banner image URL (from dev.to) */
+  coverImage?: string;
+  /** Social sharing image URL (from dev.to) */
+  socialImage?: string;
+}
+
+/** Unified post type for displaying mixed local and dev.to posts */
 export interface UnifiedPost {
   title: string;
   slug: string;
   publishedDate: string;
-  /** Internal route path for local posts, external URL for dev.to posts */
+  /** Internal route path */
   url: string;
-  /** Whether this links to an external site */
-  isExternal: boolean;
 }
 
-/** dev.to API article response */
+/** dev.to API article response (full article with content) */
 export interface DevToArticle {
   id: number;
   title: string;
@@ -27,34 +35,27 @@ export interface DevToArticle {
   url: string;
   published_at: string;
   cover_image: string | null;
+  social_image: string | null;
   tag_list: string[];
   reading_time_minutes: number;
   slug: string;
+  body_markdown?: string;
+  body_html_rendered?: string;
 }
 
-/** Convert a local ContentFile post to UnifiedPost */
-export function toUnifiedPost(post: ContentFile<Post>): UnifiedPost {
+/** Convert a ContentFile to UnifiedPost - all posts now render locally */
+export function toUnifiedPost(post: ContentFile<ExtendedPost>): UnifiedPost {
+  const { attributes } = post;
+  
   return {
-    title: post.attributes.title,
-    slug: post.attributes.slug,
-    publishedDate: post.attributes.publishedDate,
-    url: `/blog/posts/${post.attributes.slug}`,
-    isExternal: false,
+    title: attributes.title,
+    slug: attributes.slug,
+    publishedDate: attributes.publishedDate,
+    url: `/blog/posts/${attributes.slug}`,
   };
 }
 
-/** Convert a dev.to article to UnifiedPost */
-export function devToToUnifiedPost(article: DevToArticle): UnifiedPost {
-  return {
-    title: article.title,
-    slug: article.slug,
-    publishedDate: article.published_at,
-    url: article.url,
-    isExternal: true,
-  };
-}
-
-export function isPost(post: ContentFile<Post>, liveStreams: boolean) {
+export function isPost(post: ContentFile<ExtendedPost>, liveStreams: boolean) {
   if (liveStreams) {
     return post.attributes.title.includes('Unfiltered');
   }

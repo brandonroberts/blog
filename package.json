@@ -16,7 +16,7 @@
     "lighthouse": "lhci autorun"
   },
   "dependencies": {
-    "@analogjs/content": "^2.0.1",
+    "@analogjs/content": "^2.2.2",
     "@analogjs/router": "^2.0.1",
     "@angular/animations": "20.3.1",
     "@angular/common": "20.3.1",

@@ -3,8 +3,21 @@
 import { defineConfig, Plugin } from 'vite';
 import analog from '@analogjs/platform';
 import tailwindcss from '@tailwindcss/vite';
+import { marked } from 'marked';
+import { createHighlighter } from 'shiki';
 
-// Virtual module plugin to fetch dev.to posts at build time
+interface DevToArticle {
+  id: number;
+  slug: string;
+  path: string;
+  title: string;
+  description: string;
+  published_at: string;
+  body_markdown?: string;
+  body_html?: string;
+}
+
+// Virtual module plugin to fetch dev.to posts with full content at build time
 function devToPostsPlugin(): Plugin {
   const virtualModuleId = 'virtual:devto-posts';
   const resolvedVirtualModuleId = '\0' + virtualModuleId;
@@ -22,15 +35,65 @@ function devToPostsPlugin(): Plugin {
       if (id === resolvedVirtualModuleId) {
         if (!cachedPosts) {
           try {
-            const response = await fetch(
+            // Initialize Shiki highlighter
+            const highlighter = await createHighlighter({
+              themes: ['github-dark', 'github-light'],
+              langs: ['typescript', 'javascript', 'html', 'css', 'json', 'bash', 'sh', 'shell', 'markdown', 'yaml', 'xml']
+            });
+
+            // Configure marked with Shiki for syntax highlighting
+            marked.use({
+              renderer: {
+                code(token) {
+                  const lang = token.lang || 'text';
+                  try {
+                    const highlighted = highlighter.codeToHtml(token.text, {
+                      lang: highlighter.getLoadedLanguages().includes(lang) ? lang : 'text',
+                      theme: 'github-dark'
+                    });
+                    return highlighted;
+                  } catch {
+                    return `<pre><code class="language-${lang}">${token.text}</code></pre>`;
+                  }
+                }
+              }
+            });
+
+            // First, get the list of articles
+            const listResponse = await fetch(
               'https://dev.to/api/articles?username=brandontroberts&per_page=10'
             );
-            if (response.ok) {
-              const articles = await response.json();
-              cachedPosts = JSON.stringify(articles);
-            } else {
+            
+            if (!listResponse.ok) {
               cachedPosts = '[]';
+              return `export const devToPosts = ${cachedPosts};`;
             }
+            
+            const articleList: DevToArticle[] = await listResponse.json();
+            
+            // Fetch full content for each article and render markdown to HTML
+            const fullArticles = await Promise.all(
+              articleList.map(async (article) => {
+                try {
+                  const articleResponse = await fetch(
+                    `https://dev.to/api/articles/${article.id}`
+                  );
+                  if (articleResponse.ok) {
+                    const fullArticle = await articleResponse.json();
+                    // Render markdown to HTML with syntax highlighting
+                    if (fullArticle.body_markdown) {
+                      fullArticle.body_html_rendered = await marked.parse(fullArticle.body_markdown);
+                    }
+                    return fullArticle;
+                  }
+                  return article;
+                } catch {
+                  return article;
+                }
+              })
+            );
+            
+            cachedPosts = JSON.stringify(fullArticles);
           } catch (error) {
             console.error('Failed to fetch dev.to posts:', error);
             cachedPosts = '[]';
@@ -75,24 +138,44 @@ export default defineConfig(({ mode }) => ({
       },
       static: true,
       prerender: {
-        routes: async() => [
-          '/',
-          '/about',
-          '/blog',
-          '/talks',
-          {
-            contentDir: '/src/content',
-            transform(file) {
-              return `/blog/posts/${file.attributes['slug']}`;
+        routes: async () => {
+          // Fetch dev.to posts for prerendering
+          let devToSlugs: string[] = [];
+          try {
+            const response = await fetch(
+              'https://dev.to/api/articles?username=brandontroberts&per_page=10'
+            );
+            if (response.ok) {
+              const articles: DevToArticle[] = await response.json();
+              devToSlugs = articles.map(a => a.slug);
+            }
+          } catch (error) {
+            console.error('Failed to fetch dev.to slugs for prerender:', error);
+          }
+
+          return [
+            '/',
+            '/about',
+            '/blog',
+            '/talks',
+            // Local content posts
+            {
+              contentDir: '/src/content',
+              transform(file) {
+                return `/blog/posts/${file.attributes['slug']}`;
+              },
             },
-          },
-          {
-            contentDir: '/src/content',
-            transform(file) {
-              return `/api/v1/og-images/${file.attributes['slug']}.png?title=${file.attributes['title']}`;
+            // Dev.to posts
+            ...devToSlugs.map(slug => `/blog/posts/${slug}`),
+            // OG images for local posts
+            {
+              contentDir: '/src/content',
+              transform(file) {
+                return `/api/v1/og-images/${file.attributes['slug']}.png?title=${file.attributes['title']}`;
+              },
             },
-          }          
-        ],
+          ];
+        },
         sitemap: {
           host: base
         }

@@ -2,13 +2,7 @@ import { Component, computed } from '@angular/core';
 import { contentFilesResource } from '@analogjs/content/resources';
 
 import { PostsComponent } from '../../components/posts.component';
-import { 
-  isPost, 
-  Post, 
-  toUnifiedPost, 
-  devToToUnifiedPost 
-} from '../../data/posts';
-import { devToPosts } from 'virtual:devto-posts';
+import { ExtendedPost, isPost, toUnifiedPost } from '../../data/posts';
 
 @Component({
   selector: 'blog-posts',
@@ -18,17 +12,15 @@ import { devToPosts } from 'virtual:devto-posts';
   `
 })
 export default class BlogComponent {
-  private localPostsResource = contentFilesResource<Post>(
+  // contentFilesResource now includes both local and dev.to posts
+  // via the custom withDevToContentLoader provider
+  private postsResource = contentFilesResource<ExtendedPost>(
     (post) => isPost(post, false) && post.attributes.published
   );
 
   readonly posts = computed(() => {
-    const localPosts = (this.localPostsResource.value() || [])
-      .map(toUnifiedPost);
-
-    const devToPostsList = devToPosts.map(devToToUnifiedPost);
-
-    return [...localPosts, ...devToPostsList]
+    return (this.postsResource.value() || [])
+      .map(toUnifiedPost)
       .sort((a, b) =>
         new Date(b.publishedDate).valueOf() -
         new Date(a.publishedDate).valueOf()

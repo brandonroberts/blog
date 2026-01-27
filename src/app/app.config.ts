@@ -5,12 +5,18 @@ import { provideFileRouter } from '@analogjs/router';
 import { provideContent, withMarkdownRenderer } from '@analogjs/content';
 import { withPrismHighlighter } from "@analogjs/content/prism-highlighter";
 
+import { withDevToContentLoader } from './providers/content-loader';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZonelessChangeDetection(),
     provideFileRouter(),
     provideHttpClient(withFetch()),
     provideClientHydration(withIncrementalHydration()),
-    provideContent(withMarkdownRenderer(), withPrismHighlighter())
+    provideContent(
+      withMarkdownRenderer(), 
+      withPrismHighlighter(),
+      ...withDevToContentLoader()
+    )
   ],
 };
