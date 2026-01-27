@@ -1,4 +1,4 @@
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { ApplicationConfig, provideZonelessChangeDetection } from '@angular/core';
 import { provideClientHydration, withIncrementalHydration } from '@angular/platform-browser';
 import { provideFileRouter } from '@analogjs/router';
@@ -9,7 +9,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZonelessChangeDetection(),
     provideFileRouter(),
-    provideHttpClient(),
+    provideHttpClient(withFetch()),
     provideClientHydration(withIncrementalHydration()),
     provideContent(withMarkdownRenderer(), withPrismHighlighter())
   ],

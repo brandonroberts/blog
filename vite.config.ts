@@ -1,8 +1,47 @@
 /// <reference types="vitest" />
 
-import { defineConfig } from 'vite';
+import { defineConfig, Plugin } from 'vite';
 import analog from '@analogjs/platform';
 import tailwindcss from '@tailwindcss/vite';
+
+// Virtual module plugin to fetch dev.to posts at build time
+function devToPostsPlugin(): Plugin {
+  const virtualModuleId = 'virtual:devto-posts';
+  const resolvedVirtualModuleId = '\0' + virtualModuleId;
+  let cachedPosts: string | null = null;
+
+  return {
+    name: 'devto-posts',
+    resolveId(id) {
+      if (id === virtualModuleId) {
+        return resolvedVirtualModuleId;
+      }
+      return undefined;
+    },
+    async load(id) {
+      if (id === resolvedVirtualModuleId) {
+        if (!cachedPosts) {
+          try {
+            const response = await fetch(
+              'https://dev.to/api/articles?username=brandontroberts&per_page=10'
+            );
+            if (response.ok) {
+              const articles = await response.json();
+              cachedPosts = JSON.stringify(articles);
+            } else {
+              cachedPosts = '[]';
+            }
+          } catch (error) {
+            console.error('Failed to fetch dev.to posts:', error);
+            cachedPosts = '[]';
+          }
+        }
+        return `export const devToPosts = ${cachedPosts};`;
+      }
+      return undefined;
+    }
+  };
+}
 
 // Only run in Netlify CI
 let base = process.env['URL'] || 'http://localhost:5173';
@@ -24,6 +63,7 @@ export default defineConfig(({ mode }) => ({
     include: ['reading-time']
   },
   plugins: [
+    devToPostsPlugin(),
     analog({
       content: {
         highlighter: 'shiki',
