@@ -1,7 +1,7 @@
-/* All styling lives in the typed css-ts system:
-   - tokens & dark theme: src/styling/theme.styles.ts
-   - element defaults & markdown content: src/styling/global.styles.ts
-   - component styles: src/app/** /*.styles.ts
-   cssts.gen.css is generated from those modules by vite-plugins/css-ts.ts. */
+/* All styling lives in vanilla-extract:
+   - tokens & dark theme: src/styling/theme.css.ts
+   - element defaults & markdown content: src/styling/global.css.ts
+   - component styles: src/app/** /*.css.ts
+   vanilla-extract emits its CSS through the bundle; this file only
+   carries the reset. */
 @import './preflight.css';
-@import './cssts.gen.css';

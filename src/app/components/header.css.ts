@@ -1,32 +1,34 @@
-import { style } from '../../styling/core';
-import { LG, MD, transitionColors, vars } from '../../styling/theme.styles';
+import { style } from '@vanilla-extract/css';
+import { LG, MD, transitionColors, vars } from '../../styling/theme.css';
 
-export const root = style('root', {
+export const root = style({
   backgroundColor: vars.color.headerBg,
   paddingBlock: '0.5rem',
   ...transitionColors,
 });
 
-export const nav = style('nav', {
+export const nav = style({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   columnGap: '0.5rem',
   color: vars.color.white,
-  [MD]: { columnGap: '1rem' },
-  [LG]: { fontSize: '1.5rem', lineHeight: '2rem' },
+  '@media': {
+    [MD]: { columnGap: '1rem' },
+    [LG]: { fontSize: '1.5rem', lineHeight: '2rem' },
+  },
 });
 
-export const navActive = style('navActive', {
+export const navActive = style({
   color: vars.color.navActive,
 });
 
-export const flexCenter = style('flexCenter', {
+export const flexCenter = style({
   display: 'flex',
   alignItems: 'center',
 });
 
-export const themeToggle = style('themeToggle', {
+export const themeToggle = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -37,24 +39,26 @@ export const themeToggle = style('themeToggle', {
   ':hover': { backgroundColor: vars.color.headerHoverBg },
 });
 
-export const toggleIcon = style('toggleIcon', {
+export const toggleIcon = style({
   width: '1.25rem',
   height: '1.25rem',
 });
 
-export const profile = style('profile', {
+export const profile = style({
   display: 'block',
   justifyContent: 'center',
   paddingBlock: '2rem',
-  [MD]: { display: 'flex' },
+  '@media': {
+    [MD]: { display: 'flex' },
+  },
 });
 
-export const avatarWrap = style('avatarWrap', {
+export const avatarWrap = style({
   padding: '0.5rem',
   marginBlock: 'auto',
 });
 
-export const avatar = style('avatar', {
+export const avatar = style({
   borderRadius: '9999px',
   height: '12rem',
   width: '12rem',
@@ -62,26 +66,26 @@ export const avatar = style('avatar', {
   border: `8px solid ${vars.color.avatarBorder}`,
 });
 
-export const info = style('info', {
+export const info = style({
   padding: '2rem',
   marginBlock: 'auto',
 });
 
-export const name = style('name', {
+export const name = style({
   color: vars.color.white,
   fontSize: '1.875rem',
   lineHeight: '2.25rem',
   textAlign: 'center',
 });
 
-export const tagline = style('tagline', {
+export const tagline = style({
   color: vars.color.white,
   fontSize: '1.25rem',
   lineHeight: '1.75rem',
   textAlign: 'center',
 });
 
-export const socialRow = style('socialRow', {
+export const socialRow = style({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -89,7 +93,7 @@ export const socialRow = style('socialRow', {
   columnGap: '1rem',
 });
 
-export const socialLink = style('socialLink', {
+export const socialLink = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -97,7 +101,7 @@ export const socialLink = style('socialLink', {
   height: '2rem',
 });
 
-export const socialIcon = style('socialIcon', {
+export const socialIcon = style({
   width: '1.5rem',
   height: '1.5rem',
   objectFit: 'contain',

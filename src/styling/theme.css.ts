@@ -1,15 +1,10 @@
-import { createGlobalTheme } from './core';
+import { createGlobalTheme } from '@vanilla-extract/css';
 
 /**
- * Design tokens. Compiled to stable CSS custom properties:
- * `color.pageBg` → `--color-page-bg` on `:root` (light) and `.dark`.
- *
- * Because the variables are plain CSS scoped under `.dark`, the
- * pre-hydration script in index.html theming works before any JS loads,
- * and hand-written CSS can reference the same variables.
- *
- * Values match the Tailwind v4 palette previously in use (blue/gray hex)
- * so the visual output is unchanged.
+ * Design tokens (vanilla-extract). Light values attach to `:root`, dark
+ * values re-assign the same variables under `.dark`, so the pre-hydration
+ * theme script in index.html keeps working. Values match the Tailwind v4
+ * palette previously in use (blue/gray hex) so visual output is unchanged.
  */
 const light = {
   color: {
@@ -44,11 +39,11 @@ const dark: typeof light = {
 };
 
 export const vars = createGlobalTheme(':root', light);
-createGlobalTheme('.dark', dark);
+createGlobalTheme('.dark', vars, dark);
 
-/** Shared breakpoints (Tailwind md/lg). */
-export const MD = '@media (min-width: 768px)' as const;
-export const LG = '@media (min-width: 1024px)' as const;
+/** Media queries (Tailwind md/lg), for use under style()'s '@media' key. */
+export const MD = '(min-width: 768px)';
+export const LG = '(min-width: 1024px)';
 
 /** Tailwind's transition-colors + duration-200 shorthand. */
 export const transitionColors = {

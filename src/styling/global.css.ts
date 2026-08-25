@@ -1,12 +1,11 @@
-import { globalStyle } from './core';
-import { vars } from './theme.styles';
+import { globalStyle } from '@vanilla-extract/css';
+import { vars } from './theme.css';
 
 /**
- * Element defaults and markdown-content styling — global CSS drawn from
- * the same typed tokens as component styles. Markdown files (about.md,
- * talks.md, blog posts) render raw HTML at runtime, so their styling has
- * to be global; keeping it here (rather than a hand-written stylesheet)
- * means one source of truth for colors and type checking on every rule.
+ * Element defaults and markdown-content styling, drawn from the same
+ * typed tokens as component styles. Markdown files (about.md, talks.md,
+ * blog posts) render raw HTML at runtime, so their styling must be
+ * global. This module is imported for its side effects from main.ts.
  */
 
 globalStyle('html, body', {

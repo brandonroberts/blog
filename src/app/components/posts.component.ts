@@ -3,7 +3,7 @@ import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 import { UnifiedPost } from '../data/posts';
-import * as css from './posts.styles';
+import * as css from './posts.css';
 
 @Component({
   selector: 'posts',

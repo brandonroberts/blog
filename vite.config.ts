@@ -3,7 +3,7 @@
 import { defineConfig } from 'vite';
 import analog from '@analogjs/platform';
 import { devToPostsPlugin, getDevToSlugs } from './vite-plugins/devto-posts';
-import { cssTsPlugin } from './vite-plugins/css-ts';
+import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 
 // Only run in Netlify CI
 let base = process.env['URL'] || 'http://localhost:5173';
@@ -25,11 +25,20 @@ export default defineConfig(({ mode }) => ({
     include: ['reading-time']
   },
   plugins: [
-    // Must come before the Analog/Angular plugin so its `load` hook stubs
-    // *.styles.ts modules before the Angular compiler sees them.
-    cssTsPlugin(),
+    vanillaExtractPlugin(),
     devToPostsPlugin(),
     analog({
+      vite: {
+        // Leave vanilla-extract's modules to its own plugin. The Angular
+        // compiler otherwise re-emits *.css.ts from its program (discarding
+        // the compiled styles), and its `.ts` filter also matches the
+        // virtual *.css.ts.vanilla.css ids (the ".ts." substring), where it
+        // would wipe the extracted CSS.
+        transformFilter: (_code, id) => {
+          const file = id.split('?')[0];
+          return !file.endsWith('.css.ts') && !file.endsWith('.vanilla.css');
+        },
+      },
       content: {
         highlighter: 'shiki',
         shikiOptions: {

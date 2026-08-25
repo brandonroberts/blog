@@ -1,7 +1,7 @@
-import { style } from '../../styling/core';
-import { transitionColors, vars } from '../../styling/theme.styles';
+import { style } from '@vanilla-extract/css';
+import { transitionColors, vars } from '../../styling/theme.css';
 
-export const bar = style('bar', {
+export const bar = style({
   backgroundColor: vars.color.headerBg,
   paddingBlock: '1rem',
   display: 'flex',
@@ -9,11 +9,11 @@ export const bar = style('bar', {
   ...transitionColors,
 });
 
-export const text = style('text', {
+export const text = style({
   color: vars.color.white,
 });
 
-export const link = style('link', {
+export const link = style({
   textDecoration: 'none',
   ':hover': { textDecoration: 'underline' },
 });

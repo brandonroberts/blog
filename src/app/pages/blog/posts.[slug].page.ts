@@ -7,7 +7,7 @@ import { RouteMeta } from '@analogjs/router';
 
 import { ReadingTimePipe } from '../../pipes/reading-time.pipe';
 import { ExtendedPost } from '../../data/posts';
-import * as css from './post.styles';
+import * as css from './post.css';
 import { postMetaResolver, postTitleResolver } from './resolvers';
 
 export const routeMeta: RouteMeta = {

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import * as css from './footer.styles';
+import * as css from './footer.css';
 
 @Component({
   selector: 'app-footer',

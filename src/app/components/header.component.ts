@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import { ThemeService } from '../services/theme.service';
-import * as css from './header.styles';
+import * as css from './header.css';
 
 @Component({
     selector: 'app-header',

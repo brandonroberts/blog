@@ -1,6 +1,6 @@
-import { style } from '../styling/core';
+import { style } from '@vanilla-extract/css';
 
-export const main = style('main', {
+export const main = style({
   display: 'flex',
   flexGrow: 1,
   justifyContent: 'center',
