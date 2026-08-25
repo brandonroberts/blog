@@ -4,15 +4,48 @@ import { Meta, Title } from '@angular/platform-browser';
 import { MarkdownComponent } from '@analogjs/content';
 import { contentFileResource } from '@analogjs/content/resources';
 import { RouteMeta } from '@analogjs/router';
+import * as stylex from '@stylexjs/stylex';
 
 import { ReadingTimePipe } from '../../pipes/reading-time.pipe';
 import { ExtendedPost } from '../../data/posts';
+import { colors } from '../../styles/tokens.stylex';
+import { sx } from '../../styles/sx';
 import { postMetaResolver, postTitleResolver } from './resolvers';
 
 export const routeMeta: RouteMeta = {
   title: postTitleResolver,
   meta: postMetaResolver,
 };
+
+const styles = stylex.create({
+  wrapper: {
+    display: 'flex',
+    flexGrow: 1,
+    justifyContent: 'center',
+    minHeight: '100vh',
+  },
+  article: {
+    width: '100vw',
+    maxWidth: '56rem',
+    padding: '2rem',
+  },
+  coverImage: {
+    width: '100%',
+    borderRadius: '0.5rem',
+    marginBottom: '1.5rem',
+  },
+  title: {
+    color: colors.textSecondary,
+    fontSize: '1.5rem',
+    lineHeight: '2rem',
+  },
+  byline: {
+    fontWeight: 300,
+    fontSize: '0.875rem',
+    lineHeight: '1.25rem',
+    color: colors.textMuted,
+  },
+});
 
 @Component({
   selector: 'post',
@@ -21,19 +54,19 @@ export const routeMeta: RouteMeta = {
     @let post = postResource.value();
 
     @if (post) {
-      <div class="flex flex-grow justify-center min-h-screen">
-        <article class="w-screen max-w-4xl p-8">
+      <div [class]="cls.wrapper">
+        <article [class]="cls.article">
           @if (post.attributes.coverImage) {
-            <img 
-              [src]="post.attributes.coverImage" 
+            <img
+              [src]="post.attributes.coverImage"
               [alt]="post.attributes.title"
-              class="w-full rounded-lg mb-6"
+              [class]="cls.coverImage"
             />
           }
-          
-          <h2 class="text-gray-600 dark:text-gray-300 text-2xl">{{ post.attributes.title }}</h2>
 
-          <span class="font-light text-sm text-gray-500 dark:text-gray-400">
+          <h2 [class]="cls.title">{{ post.attributes.title }}</h2>
+
+          <span [class]="cls.byline">
             {{ post.attributes.publishedDate | date : 'MMMM dd, yyyy' }} -
             {{ post.content | readingtime }} min read
           </span>
@@ -45,6 +78,14 @@ export const routeMeta: RouteMeta = {
   `
 })
 export default class BlogPostComponent {
+  protected readonly cls = {
+    wrapper: sx(styles.wrapper),
+    article: sx(styles.article),
+    coverImage: sx(styles.coverImage),
+    title: sx(styles.title),
+    byline: sx(styles.byline),
+  };
+
   private meta = inject(Meta);
   private title = inject(Title);
   

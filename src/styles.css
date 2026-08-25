@@ -1,8 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
-@import "tailwindcss";
+/* Global styles. Component styles live in StyleX (see src/app/**). */
+@import './preflight.css';
+@import './stylex.gen.css';
 
-/* Enable class-based dark mode for Tailwind v4 */
-@custom-variant dark (&:where(.dark, .dark *));
+/* App-level theme variables for styles that can't go through the StyleX
+   compiler: element defaults below and utility classes used by markdown
+   content. The `.dark` class is toggled on <html> by the ThemeService
+   (and the pre-hydration script in index.html). Values mirror the StyleX
+   tokens in src/app/styles/tokens.stylex.ts. */
+:root {
+  --app-page-bg: #fff; /* white */
+  --app-text: #101828; /* gray-900 */
+  --app-link-bg: #54a2ff; /* blue-400 */
+}
+
+.dark {
+  --app-page-bg: #101828; /* gray-900 */
+  --app-text: #f3f4f6; /* gray-100 */
+  --app-link-bg: #155dfc; /* blue-600 */
+}
 
 html,
 body {
@@ -13,14 +28,14 @@ body {
 }
 
 body {
-  @apply bg-white dark:bg-gray-900;
-  @apply text-gray-900 dark:text-gray-100;
+  background-color: var(--app-page-bg);
+  color: var(--app-text);
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 li {
-  @apply list-disc;
-  @apply list-inside;
+  list-style-type: disc;
+  list-style-position: inside;
 }
 
 h2 {
@@ -28,9 +43,9 @@ h2 {
 }
 
 article a {
-  @apply bg-blue-400 dark:bg-blue-600;
-  @apply underline;
-  @apply text-gray-900 dark:text-gray-100;
+  background-color: var(--app-link-bg);
+  text-decoration: underline;
+  color: var(--app-text);
 }
 
 article > h2 {
@@ -40,4 +55,33 @@ article > h2 {
 .analog-markdown-route:has(.about) {
   display: flex;
   justify-content: center;
+}
+
+/* Utility classes still referenced from markdown content
+   (src/app/pages/about.md, talks.md). Markdown is rendered as raw HTML
+   at runtime, so the StyleX compiler can never see or transform these —
+   they must remain plain global CSS. */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.w-1\/2 {
+  width: 50%;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.py-4 {
+  padding-block: 1rem;
 }
