@@ -1,9 +1,6 @@
 import { Injectable, signal, effect, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
-import { darkTheme } from '../styles/tokens.stylex';
-import { sx } from '../styles/sx';
-
 export type Theme = 'light' | 'dark';
 
 @Injectable({
@@ -79,13 +76,10 @@ export class ThemeService {
   /** Apply theme class to document */
   private applyTheme(theme: Theme): void {
     const root = document.documentElement;
-    // `.dark` drives the plain-CSS variables in styles.css; the StyleX
-    // theme class overrides the StyleX design tokens for component styles.
-    const stylexDarkClasses = sx(darkTheme).split(' ').filter(Boolean);
     if (theme === 'dark') {
-      root.classList.add('dark', ...stylexDarkClasses);
+      root.classList.add('dark');
     } else {
-      root.classList.remove('dark', ...stylexDarkClasses);
+      root.classList.remove('dark');
     }
   }
 }

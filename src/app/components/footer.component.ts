@@ -1,37 +1,14 @@
 import { Component } from '@angular/core';
-import * as stylex from '@stylexjs/stylex';
 
-import { colors } from '../styles/tokens.stylex';
-import { sx } from '../styles/sx';
-
-const styles = stylex.create({
-  bar: {
-    backgroundColor: colors.headerBg,
-    paddingBlock: '1rem',
-    display: 'flex',
-    justifyContent: 'center',
-    transitionProperty: 'background-color, border-color, color',
-    transitionDuration: '0.2s',
-    transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
-  },
-  text: {
-    color: colors.white,
-  },
-  link: {
-    textDecoration: {
-      default: 'none',
-      ':hover': 'underline',
-    },
-  },
-});
+import * as css from './footer.styles';
 
 @Component({
   selector: 'app-footer',
   template: `
     <footer>
-      <div [class]="cls.bar">
-        <div [class]="cls.text">
-          <a href="https://github.com/brandonroberts/blog" [class]="cls.link">Source Code</a> - ©
+      <div [class]="css.bar">
+        <div [class]="css.text">
+          <a href="https://github.com/brandonroberts/blog" [class]="css.link">Source Code</a> - ©
           Copyright 2019-{{ currentYear }}
         </div>
       </div>
@@ -40,10 +17,5 @@ const styles = stylex.create({
 })
 export class FooterComponent {
   currentYear = new Date().getFullYear();
-
-  protected readonly cls = {
-    bar: sx(styles.bar),
-    text: sx(styles.text),
-    link: sx(styles.link),
-  };
+  protected readonly css = css;
 }

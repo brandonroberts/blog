@@ -4,48 +4,16 @@ import { Meta, Title } from '@angular/platform-browser';
 import { MarkdownComponent } from '@analogjs/content';
 import { contentFileResource } from '@analogjs/content/resources';
 import { RouteMeta } from '@analogjs/router';
-import * as stylex from '@stylexjs/stylex';
 
 import { ReadingTimePipe } from '../../pipes/reading-time.pipe';
 import { ExtendedPost } from '../../data/posts';
-import { colors } from '../../styles/tokens.stylex';
-import { sx } from '../../styles/sx';
+import * as css from './post.styles';
 import { postMetaResolver, postTitleResolver } from './resolvers';
 
 export const routeMeta: RouteMeta = {
   title: postTitleResolver,
   meta: postMetaResolver,
 };
-
-const styles = stylex.create({
-  wrapper: {
-    display: 'flex',
-    flexGrow: 1,
-    justifyContent: 'center',
-    minHeight: '100vh',
-  },
-  article: {
-    width: '100vw',
-    maxWidth: '56rem',
-    padding: '2rem',
-  },
-  coverImage: {
-    width: '100%',
-    borderRadius: '0.5rem',
-    marginBottom: '1.5rem',
-  },
-  title: {
-    color: colors.textSecondary,
-    fontSize: '1.5rem',
-    lineHeight: '2rem',
-  },
-  byline: {
-    fontWeight: 300,
-    fontSize: '0.875rem',
-    lineHeight: '1.25rem',
-    color: colors.textMuted,
-  },
-});
 
 @Component({
   selector: 'post',
@@ -54,19 +22,19 @@ const styles = stylex.create({
     @let post = postResource.value();
 
     @if (post) {
-      <div [class]="cls.wrapper">
-        <article [class]="cls.article">
+      <div [class]="css.wrapper">
+        <article [class]="css.article">
           @if (post.attributes.coverImage) {
             <img
               [src]="post.attributes.coverImage"
               [alt]="post.attributes.title"
-              [class]="cls.coverImage"
+              [class]="css.coverImage"
             />
           }
 
-          <h2 [class]="cls.title">{{ post.attributes.title }}</h2>
+          <h2 [class]="css.title">{{ post.attributes.title }}</h2>
 
-          <span [class]="cls.byline">
+          <span [class]="css.byline">
             {{ post.attributes.publishedDate | date : 'MMMM dd, yyyy' }} -
             {{ post.content | readingtime }} min read
           </span>
@@ -78,13 +46,7 @@ const styles = stylex.create({
   `
 })
 export default class BlogPostComponent {
-  protected readonly cls = {
-    wrapper: sx(styles.wrapper),
-    article: sx(styles.article),
-    coverImage: sx(styles.coverImage),
-    title: sx(styles.title),
-    byline: sx(styles.byline),
-  };
+  protected readonly css = css;
 
   private meta = inject(Meta);
   private title = inject(Title);

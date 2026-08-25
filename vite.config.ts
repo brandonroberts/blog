@@ -3,7 +3,7 @@
 import { defineConfig } from 'vite';
 import analog from '@analogjs/platform';
 import { devToPostsPlugin, getDevToSlugs } from './vite-plugins/devto-posts';
-import { stylexPlugin } from './vite-plugins/stylex';
+import { cssTsPlugin } from './vite-plugins/css-ts';
 
 // Only run in Netlify CI
 let base = process.env['URL'] || 'http://localhost:5173';
@@ -25,6 +25,9 @@ export default defineConfig(({ mode }) => ({
     include: ['reading-time']
   },
   plugins: [
+    // Must come before the Analog/Angular plugin so its `load` hook stubs
+    // *.styles.ts modules before the Angular compiler sees them.
+    cssTsPlugin(),
     devToPostsPlugin(),
     analog({
       content: {
@@ -80,7 +83,6 @@ export default defineConfig(({ mode }) => ({
         }
       }
     }),
-    stylexPlugin(),
   ],
   test: {
     globals: true,
