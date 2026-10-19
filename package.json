@@ -49,7 +49,6 @@
   "devDependencies": {
     "@analogjs/platform": "^3.0.0-beta.3",
     "@analogjs/vite-plugin-angular": "^3.0.0-beta.3",
-    "@analogjs/vite-plugin-nitro": "^3.0.0-beta.3",
     "@analogjs/vitest-angular": "^3.0.0-beta.3",
     "@angular/build": "22.2.3",
     "@angular/cli": "22.2.3",
@@ -58,6 +57,7 @@
     "autoprefixer": "^10.4.13",
     "install": "^0.13.0",
     "jsdom": "^22.1.0",
+    "nitro": "3.0.260903-beta",
     "postcss": "^8.4.21",
     "tailwindcss": "^4.1.13",
     "typescript": "~6.0.3",

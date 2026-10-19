@@ -3,7 +3,7 @@
 import { defineConfig } from 'vite';
 import analog from '@analogjs/platform';
 import angular from '@analogjs/vite-plugin-angular';
-import nitro from '@analogjs/vite-plugin-nitro';
+import { nitro } from 'nitro/vite';
 import tailwindcss from '@tailwindcss/vite';
 import { devToPostsPlugin, getDevToSlugs } from './vite-plugins/devto-posts';
 
