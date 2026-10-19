@@ -2,7 +2,7 @@ import { Component, computed } from '@angular/core';
 import { contentFilesResource } from '@analogjs/content/resources';
 
 import { PostsComponent } from '../components/posts.component';
-import { Post, isPost } from '../data/posts';
+import { Post, isPost, toUnifiedPost } from '../data/posts';
 
 @Component({
     selector: 'livestreams',
@@ -14,9 +14,10 @@ export default class BlogComponent {
 
   readonly posts = computed(() => {
     return (this.postsResource.value() || [])
-      .slice().sort((a, b) =>
-        new Date(b.attributes.publishedDate).valueOf() -
-        new Date(a.attributes.publishedDate).valueOf()
+      .map(toUnifiedPost)
+      .sort((a, b) =>
+        new Date(b.publishedDate).valueOf() -
+        new Date(a.publishedDate).valueOf()
       )
   });
 }
