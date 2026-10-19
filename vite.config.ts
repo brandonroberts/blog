@@ -2,6 +2,8 @@
 
 import { defineConfig } from 'vite';
 import analog from '@analogjs/platform';
+import angular from '@analogjs/vite-plugin-angular';
+import nitro from '@analogjs/vite-plugin-nitro';
 import tailwindcss from '@tailwindcss/vite';
 import { devToPostsPlugin, getDevToSlugs } from './vite-plugins/devto-posts';
 
@@ -67,16 +69,17 @@ export default defineConfig(({ mode }) => ({
           host: base
         }
       },
-      nitro: {
-        logLevel: 3,
-        prerender: {
-          concurrency: 1
-        },
-        hooks: {
-          'prerender:generate': (route) => {
-            route.route = route.route.split('?')[0];
-            route.fileName = route.fileName?.split('?')[0];
-          }
+    }),
+    angular(),
+    nitro({
+      logLevel: 3,
+      prerender: {
+        concurrency: 1
+      },
+      hooks: {
+        'prerender:generate': (route) => {
+          route.route = route.route.split('?')[0];
+          route.fileName = route.fileName?.split('?')[0];
         }
       }
     }),
