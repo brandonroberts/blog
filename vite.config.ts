@@ -38,6 +38,9 @@ export default defineConfig(({ mode }) => ({
         }
       },
       static: true,
+      experimental: {
+        typedRouting: true
+      },
       prerender: {
         routes: async () => {
           const devToSlugs = await getDevToSlugs();

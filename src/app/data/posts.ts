@@ -23,8 +23,6 @@ export interface UnifiedPost {
   title: string;
   slug: string;
   publishedDate: string;
-  /** Internal route path */
-  url: string;
 }
 
 /** dev.to API article response (full article with content) */
@@ -51,7 +49,6 @@ export function toUnifiedPost(post: ContentFile<ExtendedPost>): UnifiedPost {
     title: attributes.title,
     slug: attributes.slug,
     publishedDate: attributes.publishedDate,
-    url: `/blog/posts/${attributes.slug}`,
   };
 }
 

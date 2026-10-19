@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLinkActive } from '@angular/router';
+import { LinkTo } from '@analogjs/router';
 
 import { ThemeService } from '../services/theme.service';
 
 @Component({
     selector: 'app-header',
-    imports: [RouterLink, RouterLinkActive],
+    imports: [LinkTo, RouterLinkActive],
     template: `
     <header class="bg-blue-600 dark:bg-blue-800 py-2 transition-colors duration-200">
       <div
@@ -13,7 +14,7 @@ import { ThemeService } from '../services/theme.service';
       >
         <div>
           <a
-            routerLink="/blog"
+            linkTo="/blog"
             routerLinkActive="text-blue-200 dark:text-blue-300"
             [routerLinkActiveOptions]="{ exact: false }"
             title="Blog Posts"
@@ -22,7 +23,7 @@ import { ThemeService } from '../services/theme.service';
         </div>
         <!-- <div>
           <a
-            routerLink="/live"
+            linkTo="/live"
             routerLinkActive="text-blue-200 dark:text-blue-300"
             [routerLinkActiveOptions]="{ exact: false }"
             title="Live Streams"
@@ -31,7 +32,7 @@ import { ThemeService } from '../services/theme.service';
         </div> -->
         <!-- <div>
           <a
-            routerLink="/talks"
+            linkTo="/talks"
             routerLinkActive="text-blue-200 dark:text-blue-300"
             [routerLinkActiveOptions]="{ exact: false }"
             title="Talks"
@@ -40,7 +41,7 @@ import { ThemeService } from '../services/theme.service';
         </div> -->
         <div>
           <a
-            routerLink="/about"
+            linkTo="/about"
             routerLinkActive="text-blue-200 dark:text-blue-300"
             [routerLinkActiveOptions]="{ exact: false }"
             title="About Me"
