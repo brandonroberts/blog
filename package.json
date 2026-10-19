@@ -44,8 +44,7 @@
     "sharp": "^0.34.5",
     "shiki": "^1.6.1",
     "tslib": "^2.4.0",
-    "util": "^0.12.5",
-    "zone.js": "~0.15.0"
+    "util": "^0.12.5"
   },
   "devDependencies": {
     "@analogjs/platform": "^3.0.0-beta.3",
