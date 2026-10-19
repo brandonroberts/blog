@@ -1,18 +1,18 @@
 import { Component, input } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { LinkTo } from '@analogjs/router';
 
 import { UnifiedPost } from '../data/posts';
 
 @Component({
   selector: 'posts',
-  imports: [RouterLink, DatePipe],
+  imports: [LinkTo, DatePipe],
   template: `
     <div class="text-2xl">
       @for (post of posts(); track post.slug) {
         <div class="py-4">
           <a
-            [routerLink]="post.url"
+            [linkTo]="{ path: '/blog/posts/[slug]', params: { slug: post.slug } }"
             class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
             >{{ post.title }}</a
           >
