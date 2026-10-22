@@ -19,6 +19,9 @@ process.env['VITE_ANALOG_BASE_URL'] = base;
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  server: {
+    port: 5173
+  },
   build: {
     target: ['es2020'],
     outDir: 'dist/client'
