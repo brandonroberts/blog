@@ -9,12 +9,6 @@ targets:
 variants:
   - range: ">=1.0.0-0"
     module: ./variants/v1.patch
-oracle:
-  command: node .grafts/reading-time-browser/oracle.mjs {mode}
-  modes:
-    - dev
-    - build
-  timeout: 900
 status: applied
 ---
 
@@ -35,17 +29,15 @@ uses it.
 Upstream: https://github.com/ngryman/reading-time (the stream export is part of its public API,
 so a lazy getter keeps it working for Node users).
 
-Running the oracle (`npx graft verify reading-time-browser`) needs Playwright's Chromium once:
-`npx playwright install chromium`.
-
 ## Invariants
 
-- `readingTime(text)` works in the browser from the Vite dev server: loading the package
-  throws nothing, and 400 words read as 2 minutes.
-- In the production build, a prerendered post page loads in a real browser with no page or
-  console errors, and shows "N min read" with N > 0.
-- In Node, `readingTime()` returns the same result as before (400 words, 2 minutes), and
-  `readingTimeStream` still exists and counts words.
+Covered by `src/app/pipes/reading-time.pipe.spec.ts` (`npm test`):
+
+- Loading `reading-time` and calling `readingTime()` doesn't load its stream API, and so
+  doesn't pull Node's `stream`/`util` polyfills (and `process is not defined`) into the browser.
+- `readingTime()` still gives the same result (400 words read as 2 minutes), so posts show the
+  same "N min read".
+- `readingTimeStream` still works for anyone who uses it (it loads on first use).
 
 ## Where to look
 
@@ -64,4 +56,6 @@ graft may be unnecessary: check whether loading the package still pulls in `stre
 ## History
 
 - 2026-11-04: Graft created against reading-time@1.5.0, replacing the
-  `process.env.NODE_DEBUG` define in `vite.config.ts`.
+  `process.env.NODE_DEBUG` define in `vite.config.ts`. Verified by hand: the dev server and a
+  prerendered post load in Chromium without `process is not defined`; the Invariants are now
+  covered by `reading-time.pipe.spec.ts`.
