@@ -1,0 +1,34 @@
+# Keep the grafts in .grafts/ working when their upstream packages release.
+# Run it from the Actions tab. For each grafted package with a newer version on npm (latest, or a
+# next/rc/beta prerelease), it runs `graft sync`:
+# - the graft still fits: a PR with the version bump and the updated graft.md (CI checks behavior);
+# - it no longer fits: a draft PR or an issue with the sync report, for an agent or a person.
+#
+# Requires: Settings → Actions → General → "Allow GitHub Actions to create and approve pull
+# requests". PRs opened with the default token don't trigger other workflows, so CI won't run on
+# them until someone pushes; pass a GitHub App token as `github-token` to fix that.
+# To hand grafts that no longer fit to an agent, set `agent-command`. See
+# https://github.com/brandonroberts/graft/tree/main/packages/action
+name: Graft sync
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency: graft-sync
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22.x
+          cache: npm
+      - run: npm ci
+      - uses: brandonroberts/graft/packages/action@main

@@ -1,0 +1,13 @@
+diff --git a/index.js b/index.js
+--- a/index.js
++++ b/index.js
+@@ -1,2 +1,8 @@
+ module.exports.default = module.exports = require('./lib/reading-time')
+-module.exports.readingTimeStream = require('./lib/stream')
++// Load the stream API (and with it Node's `stream` and `util`) only when it is used, so bundles
++// that only call readingTime() don't pull in polyfills that read `process` when they load.
++Object.defineProperty(module.exports, 'readingTimeStream', {
++  enumerable: true,
++  configurable: true,
++  get: function () { return require('./lib/stream') }
++})
