@@ -1,0 +1,29 @@
+# Tests, and a check that the grafts in .grafts/ are applied to the installed packages.
+# Runs on pull requests too, so the PRs opened by graft-sync.yml are checked here.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22.x
+          cache: npm
+      # Keep install scripts on: `postinstall` applies the grafts (graft apply --installed).
+      - run: npm ci
+      # Fails if a graft was silently dropped (e.g. an install that skipped postinstall).
+      - uses: brandonroberts/graft/packages/action@main
+        with:
+          sync: false
+      # The graft's Invariants are covered by these tests (see .grafts/*/graft.md).
+      - run: npx vitest run
