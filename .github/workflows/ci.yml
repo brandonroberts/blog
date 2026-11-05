@@ -23,9 +23,6 @@ jobs:
       - run: npm ci
       # Fails if a graft was silently dropped (e.g. an install that skipped postinstall): each
       # graft's package-manager config, anchors, and installed files must match its variant.
-      # Problems are annotated on the PR and listed in the job summary.
-      - uses: brandonroberts/graft/packages/action@main
-        with:
-          sync: false
+      - run: npx graft check
       # The graft's Invariants are covered by these tests (see .grafts/*/graft.md).
       - run: npx vitest run
