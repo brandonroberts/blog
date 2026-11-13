@@ -99,7 +99,5 @@ export default defineConfig(({ mode }) => ({
   },
   define: {
     'import.meta.vitest': mode !== 'production',
-    // fix for readingtime
-    'process.env.NODE_DEBUG': mode !== 'production' ? '"true"' : false
   }
 }));
