@@ -54,7 +54,7 @@
     "@angular/build": "22.2.3",
     "@angular/cli": "22.2.3",
     "@angular/compiler-cli": "22.2.3",
-    "@graftsync/cli": "^0.2.1",
+    "@graftsync/cli": "^0.2.5",
     "@lhci/cli": "^0.14.0",
     "autoprefixer": "^10.4.13",
     "install": "^0.13.0",
